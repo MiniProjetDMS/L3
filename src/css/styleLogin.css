@@ -1,0 +1,60 @@
+
+.text-input{
+	-fx-background-radius : 20;
+	-fx-text-fill: #fff;
+	-fx-prompt-text-fill: #d4cee3;
+}
+
+.button1{
+	-fx-background-color: #0080ff;
+	-fx-text-fill: #fff;
+        -fx-background-radius : 5;
+}
+.button1:hover{
+	-fx-text-fill: #0b5095;
+}
+.button1:pressed{
+	-fx-text-fill: #498dd1;
+}
+.button1:active{
+	-fx-text-fill: #498dd1;
+}
+
+.button2{
+	-fx-background-radius : 5;
+	-fx-background-color: #6f4cbb;
+	-fx-text-fill: #371897;
+	-fx-border-color: #6f4cbb;
+	-fx-border-radius:5;
+}
+
+.button2:hover{
+	-fx-text-fill: #e4eefd;
+}
+
+.buttonBck{
+    -fx-background-radius: 40;
+    
+}
+
+.linear-grad{
+    -fx-background-image: url(bkLogin.png);
+    -fx-background-color: linear-gradient(to bottom left, #6f4cbb, #431fa0);
+}
+
+.image1{
+    -fx-image: url(adminn.png);
+}
+.image2{
+    -fx-image: url(assistant.png);
+}
+.image3{
+    -fx-image: url(medecin.png);
+}
+
+.backG-login{
+    -fx-background-image: url(logIn.png);
+}
+
+
+
