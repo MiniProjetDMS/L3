@@ -30,7 +30,7 @@
                            <image>
                               <Image url="@../css/avatar.png" />
                            </image></ImageView>
-                        <TextField prefHeight="50.0" prefWidth="284.0" promptText="Email" translateX="30.0">
+                        <TextField prefHeight="50.0" prefWidth="284.0" promptText="Email" styleClass="text-input" translateX="30.0">
                            <font>
                               <Font size="20.0" />
                            </font>

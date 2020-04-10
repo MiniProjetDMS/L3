@@ -30,7 +30,6 @@ public class Mini_Projet extends Application {
         
         stage.setScene(scene);
         
-        System.out.println("Root :::: "+getClass().getDeclaredMethods().toString());
         stage.initStyle(StageStyle.UNDECORATED); 
         //pour ue bar d'etat transparance
 	//grab your root here
