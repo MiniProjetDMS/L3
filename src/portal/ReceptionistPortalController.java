@@ -3,27 +3,25 @@ package portal;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ReceptionistPortalController implements Initializable {
 
+    
     @FXML
-    private Button btnMsgD;
+    private Pane paneManagePatient;
     @FXML
-    private Label msgLab;
+    private Pane paneManageAppointement;
     @FXML
-    private TextField textF;
+    private Pane paneMessageDoctor;
 
     /**
      * Initializes the controller class.
@@ -44,12 +42,20 @@ public class ReceptionistPortalController implements Initializable {
         app_stage.show();
     }    
 
+
     @FXML
-    private void onClck(ActionEvent event) {
-        if(event.getSource().equals(btnMsgD)){
-            msgLab.setText(textF.getText());
-        } else {
-        }
+    private void toFrontManagePatient(MouseEvent event) {
+        paneManagePatient.toFront();
+    }
+
+    @FXML
+    private void toFrontManageAppointement(MouseEvent event) {
+        paneManageAppointement.toFront();
+    }
+
+    @FXML
+    private void toFrontMessageDoctor(MouseEvent event) {
+        paneMessageDoctor.toFront();
     }
     
 }

@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.ReceptionistPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" stylesheets="@../css/stylePortal.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="portal.ReceptionistPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -20,33 +20,34 @@
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Manage Patient" textFill="#61455f">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image2" translateX="50.0" translateY="20.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontManagePatient" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Manage Patient" textFill="#61455f" translateY="120.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Manage Appointement" textFill="#61455f">
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontManageAppointement" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Manage Appointement" textFill="#61455f" translateY="120.0">
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="btnMsgD" mnemonicParsing="false" onAction="#onClck" prefHeight="61.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Message Doctor" textFill="#61455f">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#exitR" prefHeight="61.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Exit" textFill="#61455f">
+                  <Button fx:id="btnMsgD" mnemonicParsing="false" onAction="#onClck" onMouseClicked="#toFrontMessageDoctor" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Message Doctor" textFill="#61455f" translateY="120.0">
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#exitR" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Exit" textFill="#61455f" translateY="120.0">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -61,12 +62,19 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="paneManagePatient" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label fx:id="msgLab" layoutX="152.0" layoutY="76.0" prefHeight="46.0" prefWidth="257.0" text="test" />
-                        <TextField fx:id="textF" layoutX="152.0" layoutY="183.0" prefWidth="298.0" />
+                        <Label layoutX="162.0" layoutY="101.0" prefHeight="33.0" prefWidth="269.0" text="Manage Patient" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneManageAppointement" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Label layoutX="72.0" layoutY="90.0" prefHeight="33.0" prefWidth="269.0" text="Manage Appointement" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneMessageDoctor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Label layoutX="86.0" layoutY="72.0" prefHeight="33.0" prefWidth="269.0" text="Message Doctor" />
                      </children>
                   </Pane>
                </children>
