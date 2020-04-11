@@ -1,4 +1,4 @@
-package portal;
+package mini_projet.portal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +57,7 @@ public class AdminPortalController implements Initializable {
     @FXML
     private void exitA(MouseEvent event) throws IOException {
         Parent home;
-        home = FXMLLoader.load(getClass().getResource("../mini_projet/LoginAdmin.fxml"));
+        home = FXMLLoader.load(getClass().getResource("LoginAdmin.fxml"));//hna mazal makmalt :'(
         Scene homeScene = new Scene(home);
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

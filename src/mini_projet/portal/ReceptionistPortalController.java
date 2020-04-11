@@ -1,4 +1,4 @@
-package portal;
+package mini_projet.portal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +33,7 @@ public class ReceptionistPortalController implements Initializable {
     @FXML
     private void exitR(MouseEvent event) throws IOException {
         Parent home;
-        home = FXMLLoader.load(getClass().getResource("LoginReceptionist.fxml"));
+        home = FXMLLoader.load(getClass().getResource("../LoginReceptionist.fxml"));
         Scene homeScene = new Scene(home);
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

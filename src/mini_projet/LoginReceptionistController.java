@@ -49,7 +49,7 @@ public class LoginReceptionistController implements Initializable {
     @FXML
     private void login(MouseEvent event) throws IOException {
         Parent home;
-        home = FXMLLoader.load(getClass().getResource("ReceptionistPortal.fxml"));
+        home = FXMLLoader.load(getClass().getResource("portal/ReceptionistPortal.fxml"));
         Scene homeScene = new Scene(home);
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
