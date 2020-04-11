@@ -54,6 +54,7 @@ public class LoginReceptionistController implements Initializable {
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(homeScene);
+        app_stage.resizableProperty().set(true);
         app_stage.show();
     }
     

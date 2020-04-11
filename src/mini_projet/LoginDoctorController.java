@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mini_projet;
 
 import java.io.IOException;
@@ -18,11 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Nadir
- */
 public class LoginDoctorController implements Initializable {
 
     /**
@@ -54,6 +44,7 @@ public class LoginDoctorController implements Initializable {
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(homeScene);
+        app_stage.resizableProperty().set(true);
         app_stage.show();
     }
     

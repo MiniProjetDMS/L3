@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package mini_projet;
+package portal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,12 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Nadir
- */
-public class ReceptionistPortalController implements Initializable {
+public class DoctorPortalController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -30,16 +20,17 @@ public class ReceptionistPortalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
     @FXML
-    private void exit(MouseEvent event) throws IOException {
+    private void exitD(MouseEvent event) throws IOException {
         Parent home;
-        home = FXMLLoader.load(getClass().getResource("LoginAdmin.fxml"));
+        home = FXMLLoader.load(getClass().getResource("LoginDoctor.fxml"));
         Scene homeScene = new Scene(home);
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         app_stage.setScene(homeScene);
+        app_stage.resizableProperty().set(false);
         app_stage.show();
-    }    
+    }
     
 }

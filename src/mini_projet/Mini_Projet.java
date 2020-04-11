@@ -29,8 +29,8 @@ public class Mini_Projet extends Application {
         
         
         stage.setScene(scene);
-        
-        stage.initStyle(StageStyle.UNDECORATED); 
+        stage.resizableProperty().set(false);
+        //stage.initStyle(StageStyle.UNDECORATED); 
         //pour ue bar d'etat transparance
 	//grab your root here
 	root.setOnMousePressed((MouseEvent event) -> {
