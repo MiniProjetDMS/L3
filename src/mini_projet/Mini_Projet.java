@@ -13,7 +13,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author Nadir
+ * 
  */
 public class Mini_Projet extends Application {
     
