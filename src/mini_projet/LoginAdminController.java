@@ -18,11 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Nadir
- */
+
 public class LoginAdminController implements Initializable {
 
     @FXML

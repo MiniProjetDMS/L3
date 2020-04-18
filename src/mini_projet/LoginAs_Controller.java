@@ -22,10 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Nadir
- */
+
 public class LoginAs_Controller implements Initializable {
     
     @FXML

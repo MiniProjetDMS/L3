@@ -6,6 +6,14 @@
 	-fx-prompt-text-fill: #d4cee3;
 }
 
+.text-input-exemple{
+	-fx-background-radius : 0;
+        -fx-background-color: #0080ff;  //#6f74dd;
+	-fx-text-fill: #FFF;
+	-fx-prompt-text-fill: #fff;
+        
+}
+
 .button{
 	-fx-background-color: #0080ff;
 	-fx-text-fill: #fff;
