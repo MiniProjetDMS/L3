@@ -3,15 +3,18 @@
 .text-input{
 	-fx-background-radius : 20;
 	-fx-text-fill: #000;
-	-fx-prompt-text-fill: #d4cee3;
+	-fx-prompt-text-fill: #fff;
 }
 
 .text-input-exemple{
 	-fx-background-radius : 0;
-        -fx-background-color: #0080ff;  //#6f74dd;
+        -fx-background-color:  #0080ff;  
 	-fx-text-fill: #FFF;
 	-fx-prompt-text-fill: #fff;
-        
+  
+ 
+
+
 }
 
 .button{

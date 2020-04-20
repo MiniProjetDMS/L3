@@ -1,4 +1,22 @@
-package mini_projet; 
+
+                
+         /* try{
+              //conn=null;
+              conn=Connexion.getConnection(); 
+              //st=conn.createStatement();
+              rst=conn.createStatement().executeQuery("SELECT * FROM Receptionist");
+              
+              while(rst.next()){
+                 System.out.print(rst.getInt("id_recep")+"\t");
+                  System.out.print(rst.getString("nom_recep")+"\t");
+                 
+                  System.out.println();
+              }
+          }catch(Exception ex){
+             ex.printStackTrace();
+          } */
+     
+  package mini_projet; 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,16 +36,17 @@ public class Connexion {
           try{
               conn=ConnecterDB(); 
               st=conn.createStatement();
-              rst=st.executeQuery("SELECT * FROM medcin");
+              rst=st.executeQuery("SELECT * FROM receptionicte");
               
               while(rst.next()){
-                  System.out.print(rst.getInt("id_med")+"\t");
-                  System.out.print(rst.getString("nom_med")+"\t");
+                  System.out.print(rst.getInt("id_recep")+"\t");
+                  System.out.print(rst.getString("nom_recep")+"\t");
                  
                   System.out.println();
               }
           }catch(Exception ex){
               ex.printStackTrace();
+              System.out.println("erreur :: " + ex.getMessage());
           } 
      
     }
@@ -42,6 +61,7 @@ return conn;
 catch (Exception e) {
            
             JOptionPane.showMessageDialog(null, e);
+            System.out.println("Erreur :: "+e.getMessage());
             return null;
         }
 }
