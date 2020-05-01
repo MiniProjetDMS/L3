@@ -4,6 +4,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.portal.ReceptionistPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReceptionistPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -63,11 +66,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <Pane fx:id="paneManagePatient" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="162.0" layoutY="101.0" prefHeight="33.0" prefWidth="269.0" text="Manage Patient" />
-                     </children>
-                  </Pane>
                   <Pane fx:id="paneManageAppointement" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
                         <Label layoutX="72.0" layoutY="90.0" prefHeight="33.0" prefWidth="269.0" text="Manage Appointement" />
@@ -78,10 +76,39 @@
                         <Label layoutX="86.0" layoutY="72.0" prefHeight="33.0" prefWidth="269.0" text="Message Doctor" />
                      </children>
                   </Pane>
+                  <Pane fx:id="paneManagePatient" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <TableView layoutX="10.0" layoutY="213.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="333.0" prefWidth="635.0" snapToPixel="false">
+                          <columns>
+                            <TableColumn prefWidth="52.333343505859375" text="ID" />
+                            <TableColumn prefWidth="97.66665649414062" text="N° CNI" />
+                              <TableColumn prefWidth="75.0" text="Nom" />
+                              <TableColumn prefWidth="75.0" text="Prenom" />
+                              <TableColumn prefWidth="75.0" text="sexe" />
+                              <TableColumn prefWidth="108.3333740234375" text="Phone Number" />
+                              <TableColumn prefWidth="71.33331298828125" text="Address" />
+                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="78.0" text="RND" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="610.0" layoutY="47.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="65.0" text="Add" />
+                        <Label layoutX="19.0" layoutY="17.0" text="Nom" />
+                        <TextField layoutX="101.0" layoutY="13.0" />
+                        <Label layoutX="18.0" layoutY="158.0" text="N° tele" />
+                        <Label layoutX="19.0" layoutY="64.0" text="sexe" />
+                        <Label layoutX="19.0" layoutY="87.0" text="Date de néssance" />
+                        <Label layoutX="21.0" layoutY="111.0" text="etat civile" />
+                        <Label layoutX="20.0" layoutY="135.0" text="adresse" />
+                        <Label layoutX="20.0" layoutY="39.0" text="Prenom" />
+                        <TextField layoutX="101.0" layoutY="44.0" />
+                        <TextField layoutX="101.0" layoutY="107.0" />
+                        <TextField layoutX="101.0" layoutY="146.0" />
+                     </children>
+                  </Pane>
                </children>
             </StackPane>
          </center>
       </BorderPane>
+      <Label layoutX="328.0" layoutY="-62.0" prefHeight="33.0" prefWidth="269.0" text="Manage Patient" />
    </children>
    <stylesheets>
       <URL value="@../css/stylePortal.css" />

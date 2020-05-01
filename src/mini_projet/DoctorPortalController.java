@@ -1,5 +1,3 @@
-package mini_projet.portal;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

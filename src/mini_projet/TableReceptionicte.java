@@ -1,4 +1,4 @@
-package mini_projet.portal;
+package mini_projet;
 
 
 public class TableReceptionicte {

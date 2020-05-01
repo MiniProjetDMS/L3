@@ -1,5 +1,6 @@
 package mini_projet;
 
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,12 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Mini_Projet extends Application {
     
@@ -48,31 +43,13 @@ public class Mini_Projet extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ClassNotFoundException {
-        
-        Connection conn = null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver"); 
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/clinique_dentaire";
-            String user      = "root";
-            String password  = "";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url, user, password);
-            //****
-            if(conn != null)
-                System.out.println("cnx Done !!");
-            // for testing :
-            Statement stmt=conn.createStatement();  
-            ResultSet rs=stmt.executeQuery("select * from medcin");  
-            while(rs.next())  
-                System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-            // ...
-	
-        } catch(SQLException e) {
-           System.out.println("dommage erreur ::"+e.getMessage());
-        } 
-        
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        // #####
+        //Connection conn = null;
+        //conn = DBConnector.getConnection();
+        //if(conn != null)
+        //    System.out.println("connection done !");
+        // #####
         launch(args);
         
     }

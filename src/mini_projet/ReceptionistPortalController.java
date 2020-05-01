@@ -1,4 +1,3 @@
-package mini_projet.portal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,6 +22,8 @@ public class ReceptionistPortalController implements Initializable {
     private Pane paneManageAppointement;
     @FXML
     private Pane paneMessageDoctor;
+    @FXML
+    private Button btnMsgD;
 
     /**
      * Initializes the controller class.
@@ -33,7 +35,7 @@ public class ReceptionistPortalController implements Initializable {
     @FXML
     private void exitR(MouseEvent event) throws IOException {
         Parent home;
-        home = FXMLLoader.load(getClass().getResource("/mini_projet/LoginReceptionist.fxml"));
+        home = FXMLLoader.load(getClass().getResource("/mini_projet/LoginReceptionist.fxml"));//kayan problème de path normalement en utilise directement LoginReceptionist.fxml
         Scene homeScene = new Scene(home);
         Stage app_stage;
         app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,7 +43,6 @@ public class ReceptionistPortalController implements Initializable {
         app_stage.resizableProperty().set(false);
         app_stage.show();
     }    
-
 
     @FXML
     private void toFrontManagePatient(MouseEvent event) {
