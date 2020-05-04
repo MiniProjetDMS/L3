@@ -1,3 +1,6 @@
+
+package mini_projet;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,10 +26,12 @@ public class DoctorPortalController implements Initializable {
     @FXML
     private Pane paneStatistique;
     @FXML
-    private Pane paneAppointement;
+    private Pane paneAppointementList;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,7 +66,7 @@ public class DoctorPortalController implements Initializable {
 
     @FXML
     private void toFrontAppointement(MouseEvent event) {
-        paneAppointement.toFront();
+        paneAppointementList.toFront();
     }
     
 }

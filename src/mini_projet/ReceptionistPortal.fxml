@@ -3,6 +3,8 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,8 +16,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReceptionistPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReceptionistPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -61,47 +64,236 @@
             </VBox>
          </left>
          <center>
-            <StackPane prefHeight="580.0" prefWidth="715.0" style="-fx-background-color: #d5ffff; -fx-background-radius: 20;" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="570.0" prefWidth="716.0" style="-fx-background-color: #d5ffff; -fx-background-radius: 20;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <Pane fx:id="paneManageAppointement" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                  <Pane fx:id="paneManagePatient" prefHeight="575.0" prefWidth="732.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label layoutX="72.0" layoutY="90.0" prefHeight="33.0" prefWidth="269.0" text="Manage Appointement" />
+                        <TableView layoutY="224.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="319.0" prefWidth="635.0" snapToPixel="false">
+                          <columns>
+                            <TableColumn fx:id="IDcol" prefWidth="71.0" text="ID" />
+                            <TableColumn fx:id="CNIcol" prefWidth="83.0" text="N° CNI" />
+                              <TableColumn fx:id="nomCol" prefWidth="82.0" text="Family Name" />
+                              <TableColumn fx:id="prenomCol" prefWidth="89.0" text="First Name" />
+                              <TableColumn fx:id="GenCol" prefWidth="63.0" text="Gender" />
+                              <TableColumn fx:id="phoneCol" prefWidth="97.0" text="Phone Number" />
+                              <TableColumn fx:id="AddressCol" prefWidth="149.0" text="Address" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="AddPat" layoutX="639.0" layoutY="258.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Add">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Button>
+                        <Label layoutX="27.0" layoutY="71.0" text="Family Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <TextField fx:id="PatNOm" layoutX="117.0" layoutY="64.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label layoutX="29.0" layoutY="180.0" text="Phone number">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="410.0" layoutY="110.0" text="Gender">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="27.0" layoutY="107.0" text="Birth Date">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="410.0" layoutY="151.0" text="Civil Status">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="29.0" layoutY="142.0" text="Adresse">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="409.0" layoutY="74.0" text="First Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <TextField fx:id="PatPrenom" layoutX="490.0" layoutY="70.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="PatGen" layoutX="490.0" layoutY="106.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="PatPhone" layoutX="117.0" layoutY="173.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Button fx:id="UpdatePat" layoutX="639.0" layoutY="328.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Update">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="DelPat" layoutX="639.0" layoutY="399.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Delete">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="PatAdress" layoutX="116.0" layoutY="135.0" prefHeight="25.0" prefWidth="282.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <DatePicker fx:id="PatDate" layoutX="119.0" layoutY="100.0" />
+                        <TextField fx:id="PatCivil" layoutX="490.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Text layoutX="267.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="PatID" layoutX="341.0" layoutY="32.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label layoutX="6.0" layoutY="6.0" prefHeight="41.0" prefWidth="190.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="   Manage Patient">
+                           <font>
+                              <Font name="Arial Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneManageAppointement" prefHeight="563.0" prefWidth="722.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Label layoutX="8.0" layoutY="5.0" prefHeight="42.0" prefWidth="204.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text=" Manage Appointement">
+                           <font>
+                              <Font name="Arial Bold" size="19.0" />
+                           </font></Label>
+                        <Text layoutX="257.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointement ID">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="34.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointement N°">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="appID" layoutX="365.0" layoutY="25.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="PatieID" layoutX="138.0" layoutY="71.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="AppNum" layoutX="138.0" layoutY="127.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Text layoutX="385.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="385.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <DatePicker fx:id="appDate" layoutX="443.0" layoutY="71.0" />
+                        <TextField fx:id="AppTime" layoutX="443.0" layoutY="127.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Text layoutX="182.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Info">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="PatieInfo" layoutX="251.0" layoutY="181.0" prefHeight="25.0" prefWidth="269.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TableView layoutX="5.0" layoutY="224.0" prefHeight="336.0" prefWidth="619.0">
+                           <columns>
+                              <TableColumn fx:id="numApp" prefWidth="70.0" text="Appoint N°" />
+                              <TableColumn fx:id="patientInfo" prefWidth="208.0" text="Patient Informations" />
+                              <TableColumn fx:id="AppDate" minWidth="0.0" prefWidth="92.0" text="Date" />
+                              <TableColumn fx:id="AppTime2" prefWidth="82.0" text="Time" />
+                              <TableColumn fx:id="AppCom" prefWidth="164.0" text="Comment" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="UpdateApp" layoutX="634.0" layoutY="346.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Update">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="DelApp" layoutX="634.0" layoutY="415.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Delete">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="AddApp" layoutX="631.0" layoutY="277.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Add">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </Pane>
                   <Pane fx:id="paneMessageDoctor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label layoutX="86.0" layoutY="72.0" prefHeight="33.0" prefWidth="269.0" text="Message Doctor" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneManagePatient" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <TableView layoutX="10.0" layoutY="213.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="333.0" prefWidth="635.0" snapToPixel="false">
-                          <columns>
-                            <TableColumn prefWidth="52.333343505859375" text="ID" />
-                            <TableColumn prefWidth="97.66665649414062" text="N° CNI" />
-                              <TableColumn prefWidth="75.0" text="Nom" />
-                              <TableColumn prefWidth="75.0" text="Prenom" />
-                              <TableColumn prefWidth="75.0" text="sexe" />
-                              <TableColumn prefWidth="108.3333740234375" text="Phone Number" />
-                              <TableColumn prefWidth="71.33331298828125" text="Address" />
-                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="78.0" text="RND" />
-                          </columns>
+                        <Label layoutX="8.0" layoutY="7.0" prefHeight="40.0" prefWidth="186.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="  Manage Doctor">
+                           <font>
+                              <Font name="Arial Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="31.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="31.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="31.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="31.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="DentNom" layoutX="126.0" layoutY="77.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="DentAdress" layoutX="126.0" layoutY="147.0" prefHeight="25.0" prefWidth="302.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="DentPhone" layoutX="126.0" layoutY="184.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <DatePicker fx:id="DentDate" layoutX="126.0" layoutY="114.0" />
+                        <Text layoutX="468.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="468.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Civil Status">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="468.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="DentPre" layoutX="537.0" layoutY="81.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="DentCivil" layoutX="537.0" layoutY="118.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TextField fx:id="DentGen" layoutX="537.0" layoutY="159.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Text layoutX="272.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="dentID" layoutX="335.0" layoutY="39.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <TableView layoutX="6.0" layoutY="237.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="321.0" prefWidth="628.0" snapToPixel="false">
+                           <columns>
+                              <TableColumn fx:id="IDcolo" prefWidth="71.0" text="ID" />
+                              <TableColumn fx:id="CNIcolo" prefWidth="83.0" text="N° CNI" />
+                              <TableColumn fx:id="nomColo" prefWidth="82.0" text="Family Name" />
+                              <TableColumn fx:id="prenomColo" prefWidth="89.0" text="First Name" />
+                              <TableColumn fx:id="GenColo" prefWidth="63.0" text="Gender" />
+                              <TableColumn fx:id="phoneColo" prefWidth="97.0" text="Phone Number" />
+                              <TableColumn fx:id="AddressColo" prefWidth="149.0" text="Address" />
+                           </columns>
                         </TableView>
-                        <Button layoutX="610.0" layoutY="47.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="65.0" text="Add" />
-                        <Label layoutX="19.0" layoutY="17.0" text="Nom" />
-                        <TextField layoutX="101.0" layoutY="13.0" />
-                        <Label layoutX="18.0" layoutY="158.0" text="N° tele" />
-                        <Label layoutX="19.0" layoutY="64.0" text="sexe" />
-                        <Label layoutX="19.0" layoutY="87.0" text="Date de néssance" />
-                        <Label layoutX="21.0" layoutY="111.0" text="etat civile" />
-                        <Label layoutX="20.0" layoutY="135.0" text="adresse" />
-                        <Label layoutX="20.0" layoutY="39.0" text="Prenom" />
-                        <TextField layoutX="101.0" layoutY="44.0" />
-                        <TextField layoutX="101.0" layoutY="107.0" />
-                        <TextField layoutX="101.0" layoutY="146.0" />
+                        <Button fx:id="UpdateDent" layoutX="641.0" layoutY="365.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Update">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="AddDent" layoutX="641.0" layoutY="295.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Add">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="DelDent" layoutX="641.0" layoutY="431.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-radius: 20;" text="Delete">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+
                      </children>
                   </Pane>
                </children>
