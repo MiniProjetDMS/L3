@@ -3,10 +3,11 @@ package mini_projet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -29,7 +29,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import mini_projet.DBConnector;
 
 
 public class AdminPortalController implements Initializable {
@@ -40,12 +39,6 @@ public class AdminPortalController implements Initializable {
     private Pane paneManageDoctor;
     @FXML
     private Pane paneManageReceptionist;
-    @FXML
-    private TextField textNom;
-    @FXML
-    private TextField textPrenom;
-    @FXML
-    private DatePicker dat;
     @FXML
     private TableView<TableReceptionicte> table; //*** 1er table
     @FXML
@@ -69,18 +62,6 @@ public class AdminPortalController implements Initializable {
     private TextField idFname;   
     @FXML
     private TextField textID;
-    @FXML
-    private TextField textNumber;
-    @FXML
-    private TextField textNom11;
-    @FXML
-    private RadioButton male;
-    @FXML
-    private RadioButton female;
-    @FXML
-    private PasswordField password;
-    @FXML
-    private TextField textLogin;
     @FXML
     private TextField textNom1;
     @FXML
@@ -118,6 +99,24 @@ public class AdminPortalController implements Initializable {
     private PasswordField password1;
     @FXML
     private TextField textLogin1;  
+    @FXML
+    private TextField textFieldNom_rescep;
+    @FXML
+    private TextField textFieldPrenom_rescep;
+    @FXML
+    private DatePicker datePicker_recep;
+    @FXML
+    private TextField textFieldPhone_rescep;
+    @FXML
+    private TextField textFieldAdress_rescep;
+    @FXML
+    private RadioButton radioButtonMal_recep;
+    @FXML
+    private RadioButton radioButtonFem_recep;
+    @FXML
+    private PasswordField textFieldPassword_rescep;
+    @FXML
+    private TextField textFieldLogin_rescep;
     
     /**
      * Initializes the controller class.
@@ -127,7 +126,10 @@ public class AdminPortalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        testCnx();        
+    }    
+    
+    void testCnx(){
         // ##### connection BDD
         Connection conn = null;
         try {
@@ -167,9 +169,37 @@ public class AdminPortalController implements Initializable {
         cNumTlf_doctor.setCellValueFactory(new PropertyValueFactory<>("num_tel_med"));
         cAdres_doctor.setCellValueFactory(new PropertyValueFactory<>("adress_med"));
         table1.setItems(oblist2);     //remplir 2eme table
-    }    
+    }
 
-
+    private void receptionisteFor() throws SQLException{
+        String nomR,prenomR,dateR,phoneNR,adressR,sexeR = null,passwordR,loginR;
+        //String  ID_r= null ;
+        String emailR = null;//-------------
+        
+        nomR = textFieldNom_rescep.getText();
+        prenomR = textFieldPrenom_rescep.getText();
+        dateR = datePicker_recep.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        phoneNR = textFieldPhone_rescep.getText();
+        adressR = textFieldAdress_rescep.getText();
+        if(radioButtonMal_recep.isSelected())
+            sexeR = "Male";
+        if(radioButtonFem_recep.isSelected())
+            sexeR = "Female";
+        passwordR = textFieldPassword_rescep.getText();
+        loginR = textFieldLogin_rescep.getText();
+        
+        Random rand = new Random();
+        char c = (char)(rand.nextInt(26) + 97);
+        String ID_r = new String();
+        ID_r = c+"";
+        emailR = "test@mail.dz"; 
+        
+        TableReceptionicte rpRecep = new TableReceptionicte(ID_r,nomR,prenomR, sexeR, dateR,adressR, phoneNR, loginR, passwordR, emailR);
+        rpRecep.insertingReceptioniste();
+        testCnx();
+    }
+    
+    
     @FXML
     private void toFrontMR(MouseEvent event) {
         paneManageReceptionist.toFront();
@@ -213,6 +243,11 @@ public class AdminPortalController implements Initializable {
 
     @FXML
     private void Del(MouseEvent event) {
+    }
+
+    @FXML
+    private void printTest(MouseEvent event) throws SQLException {// button add :: Fonction test
+        receptionisteFor();
     }
     
      

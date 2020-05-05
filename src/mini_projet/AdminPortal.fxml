@@ -82,84 +82,6 @@
                         <Text layoutX="65.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-input-exemple" text="Birth Date" />
                      </children>
                   </Pane>
-                  <Pane fx:id="paneManageReceptionist" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d9d1ff;" stylesheets="@../../css/stylePortal.css">
-                     <children>
-                        <TextField fx:id="textNom" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Family Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Label layoutX="18.0" layoutY="55.0" text="Family Name:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <TextField fx:id="textPrenom" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="First Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Label layoutX="414.0" layoutY="55.0" text="First Name:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <DatePicker fx:id="dat" layoutX="508.0" layoutY="198.0" />
-                        <Label layoutX="421.0" layoutY="202.0" text="Birth Date:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <Button layoutX="643.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#Add" prefHeight="37.0" prefWidth="67.0" style="-fx-background-radius: 20;" text="Add" />
-                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#Del" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete" />
-                        <TableView fx:id="table" editable="true" layoutX="8.0" layoutY="301.0" prefHeight="259.0" prefWidth="633.0">
-                          <columns>
-                            <TableColumn fx:id="cNom" prefWidth="110.0" text="Family Name" />
-                            <TableColumn fx:id="cPrenom" prefWidth="96.0" text="First Name" />
-                              <TableColumn fx:id="cNee" prefWidth="100.0" text="Birth Date" />
-                              <TableColumn fx:id="cID" prefWidth="95.0" text="ID" />
-                              <TableColumn fx:id="cPhone" prefWidth="93.0" text="Phone Number " />
-                              <TableColumn fx:id="cAdress" prefWidth="113.0" text="Adress" />
-                          </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </TableView>
-                        <TextField fx:id="textID" layoutX="116.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your ID" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Label layoutX="80.0" layoutY="104.0" text="ID :">
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                        <TextField fx:id="textNumber" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Label layoutX="393.0" layoutY="104.0" text="Phone number:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <TextField fx:id="textNom11" layoutX="116.0" layoutY="149.0" prefHeight="26.0" prefWidth="392.0" promptText="Type your Adress" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Label layoutX="54.0" layoutY="153.0" text="Adress:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <Label layoutX="53.0" layoutY="202.0" text="Gender:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <RadioButton fx:id="male" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Male" />
-                        <RadioButton fx:id="female" layoutX="232.0" layoutY="202.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="109.0" text="Female" />
-                        <PasswordField fx:id="password" layoutX="508.0" layoutY="247.0" styleClass="text-input-exemple" />
-                        <Label layoutX="420.0" layoutY="251.0" text="Password:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <Label layoutX="62.0" layoutY="251.0" text="Login:">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                        <TextField fx:id="textLogin" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
-                     </children>
-                  </Pane>
                   <Pane fx:id="paneManageDoctor" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d9d1ff;" stylesheets="@../../css/stylePortal.css">
                      <children>
                         <TextField fx:id="textNom1" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Family Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
@@ -235,6 +157,84 @@
                            </effect>
                         </Label>
                         <TextField fx:id="textLogin1" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneManageReceptionist" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d9d1ff;" stylesheets="@../../css/stylePortal.css">
+                     <children>
+                        <TextField fx:id="textFieldNom_rescep" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Family Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Label layoutX="18.0" layoutY="55.0" text="Family Name:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <TextField fx:id="textFieldPrenom_rescep" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="First Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Label layoutX="414.0" layoutY="55.0" text="First Name:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <DatePicker fx:id="datePicker_recep" layoutX="508.0" layoutY="198.0" />
+                        <Label layoutX="421.0" layoutY="202.0" text="Birth Date:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <Button layoutX="643.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#printTest" prefHeight="37.0" prefWidth="67.0" style="-fx-background-radius: 20;" text="Add" />
+                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#Del" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete" />
+                        <TableView fx:id="table" editable="true" layoutX="8.0" layoutY="301.0" prefHeight="259.0" prefWidth="633.0">
+                          <columns>
+                            <TableColumn fx:id="cNom" prefWidth="110.0" text="Family Name" />
+                            <TableColumn fx:id="cPrenom" prefWidth="96.0" text="First Name" />
+                              <TableColumn fx:id="cNee" prefWidth="100.0" text="Birth Date" />
+                              <TableColumn fx:id="cID" prefWidth="95.0" text="ID" />
+                              <TableColumn fx:id="cPhone" prefWidth="93.0" text="Phone Number " />
+                              <TableColumn fx:id="cAdress" prefWidth="113.0" text="Adress" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </TableView>
+                        <TextField fx:id="textID" layoutX="116.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your ID" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Label layoutX="80.0" layoutY="104.0" text="ID :">
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Label>
+                        <TextField fx:id="textFieldPhone_rescep" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Label layoutX="393.0" layoutY="104.0" text="Phone number:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <TextField fx:id="textFieldAdress_rescep" layoutX="116.0" layoutY="149.0" prefHeight="26.0" prefWidth="392.0" promptText="Type your Adress" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Label layoutX="54.0" layoutY="153.0" text="Adress:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <Label layoutX="53.0" layoutY="202.0" text="Gender:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <RadioButton fx:id="radioButtonMal_recep" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Male" />
+                        <RadioButton fx:id="radioButtonFem_recep" layoutX="232.0" layoutY="202.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="109.0" text="Female" />
+                        <PasswordField fx:id="textFieldPassword_rescep" layoutX="508.0" layoutY="247.0" styleClass="text-input-exemple" />
+                        <Label layoutX="420.0" layoutY="251.0" text="Password:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="251.0" text="Login:">
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <TextField fx:id="textFieldLogin_rescep" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
                      </children>
                   </Pane>

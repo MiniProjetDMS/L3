@@ -1,5 +1,12 @@
 package mini_projet;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class TableReceptionicte {
     String id_recep;
@@ -8,6 +15,11 @@ public class TableReceptionicte {
     String adress_recep, num_tel_recep, pseudo_recep;
     String mdp_recep, email_recep;
 
+        // ##### connection BDD
+    Connection conn = null;
+
+        // ##### 
+    
     public TableReceptionicte(String id_recep, String nom_recep, String prenom_recep, String sexe, String date_nes_recep, String adress_recep, String num_tel_recep, String pseudo_recep, String mdp_recep, String email_recep) {
         this.id_recep = id_recep;
         this.nom_recep = nom_recep;
@@ -19,6 +31,14 @@ public class TableReceptionicte {
         this.pseudo_recep = pseudo_recep;
         this.mdp_recep = mdp_recep;
         this.email_recep = email_recep;
+        
+        try {
+            conn = DBConnector.getConnection();
+            if(conn != null)
+                System.out.println("connection BDD Admin controller done !");
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public TableReceptionicte(String id_recep, String nom_recep, String prenom_recep, String date_nes_recep, String adress_recep, String num_tel_recep) {
@@ -112,5 +132,26 @@ public class TableReceptionicte {
         return email_recep;
     }
     
+    void insertingReceptioniste() throws SQLException{
+
+       //Inserting values to a table
+        String query = "INSERT INTO receptionicte(`id_recep`, `nom_recep`, `prenom_recep`, `sexe`, `date_nes_recep`, `adress_recep`, `num_tel_recep`, `pseudo_recep`, `mdp_recep`, `email_recep`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+                       
+        pstmt.setString(1, id_recep); 
+        pstmt.setString(2, nom_recep);
+        pstmt.setString(3, prenom_recep);
+        pstmt.setString(4, sexe); 
+        pstmt.setString(5, date_nes_recep);
+        pstmt.setString(6, adress_recep);
+        pstmt.setString(7, num_tel_recep); 
+        pstmt.setString(8, pseudo_recep);
+        pstmt.setString(9, mdp_recep); 
+        pstmt.setString(10, email_recep);
+        pstmt.execute();
+        
+        System.out.println("Successfully inserted :: "+nom_recep);
+
+    }    
     
 }
