@@ -63,9 +63,9 @@ public class AdminPortalController implements Initializable {
     @FXML
     private TextField textID;
     @FXML
-    private TextField textNom1;
+    private TextField textNomDoc;
     @FXML
-    private TextField textPrenom1;
+    private TextField textPrenomDoc;
     @FXML
     private DatePicker dat1;
     @FXML
@@ -88,17 +88,17 @@ public class AdminPortalController implements Initializable {
     @FXML
     private TextField textID1;
     @FXML
-    private TextField textNumber1;
+    private TextField textNumberDoc;
     @FXML
-    private TextField textNom111;
+    private TextField textAressDoc;
     @FXML
-    private RadioButton male1;
+    private RadioButton RadioBtnDoc_M;
     @FXML
-    private RadioButton female1;
+    private RadioButton RadioBtnDoc_F;
     @FXML
-    private PasswordField password1;
+    private PasswordField passwordDoc;
     @FXML
-    private TextField textLogin1;  
+    private TextField textLoginDoc;  
     @FXML
     private TextField textFieldNom_rescep;
     @FXML
@@ -182,9 +182,9 @@ public class AdminPortalController implements Initializable {
         phoneNR = textFieldPhone_rescep.getText();
         adressR = textFieldAdress_rescep.getText();
         if(radioButtonMal_recep.isSelected())
-            sexeR = "Male";
+            sexeR = "M";
         if(radioButtonFem_recep.isSelected())
-            sexeR = "Female";
+            sexeR = "F";
         passwordR = textFieldPassword_rescep.getText();
         loginR = textFieldLogin_rescep.getText();
         
@@ -196,6 +196,34 @@ public class AdminPortalController implements Initializable {
         
         TableReceptionicte rpRecep = new TableReceptionicte(ID_r,nomR,prenomR, sexeR, dateR,adressR, phoneNR, loginR, passwordR, emailR);
         rpRecep.insertingReceptioniste();
+        testCnx();
+    }
+    
+    private void DoctorFor() throws SQLException{
+        String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD;
+        //String  ID_r= null ;
+        String emailD = null;//-------------
+        
+        nomD = textNomDoc.getText();
+        prenomD = textPrenomDoc.getText();
+        dateD = dat1.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        phoneD = textNumberDoc.getText();
+        adressD = textAressDoc.getText();
+        if(RadioBtnDoc_M.isSelected())
+            sexeD = "M";
+        if(RadioBtnDoc_F.isSelected())
+            sexeD = "F";
+        passwordD = passwordDoc.getText();
+        loginD = textLoginDoc.getText();
+        
+        Random rand = new Random();
+        char c = (char)(rand.nextInt(26) + 97);
+        String ID_d = new String();
+        ID_d = c+"";
+        emailD = "test1@mail.dz"; 
+        
+        TableDoctor docDoctor = new TableDoctor(ID_d,nomD,prenomD, sexeD, dateD,adressD, phoneD, loginD, passwordD, emailD);
+        docDoctor.insertingDoctor();
         testCnx();
     }
     
@@ -246,10 +274,13 @@ public class AdminPortalController implements Initializable {
     }
 
     @FXML
-    private void printTest(MouseEvent event) throws SQLException {// button add :: Fonction test
+    private void printTest(MouseEvent event) throws SQLException {// button add :: Fonction test Receptionist
         receptionisteFor();
     }
     
-     
+    @FXML
+    private void printDoc(MouseEvent event) throws SQLException {// button add :: Fonction test Doctor
+        DoctorFor();
+    }
     
 }

@@ -1,5 +1,12 @@
 package mini_projet;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class TableDoctor {
     
     String id_med;
@@ -12,6 +19,11 @@ public class TableDoctor {
     String pseudo_med;
     String mdp_medc;
     String email_medc;
+  
+    // ##### connection BDD
+    Connection conn = null;
+
+        // ##### 
 
     public TableDoctor(String id_med, String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) {
         this.id_med = id_med;
@@ -24,8 +36,17 @@ public class TableDoctor {
         this.pseudo_med = pseudo_med;
         this.mdp_medc = mdp_medc;
         this.email_medc = email_medc;
-    }
-
+    
+    try {
+            conn = DBConnector.getConnection();
+            if(conn != null)
+                System.out.println("connection BDD Admin controller done !");
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+}
     public TableDoctor(String id_med, String nom_med, String prenom_med, String date_nes_med, String adress_med, String num_tel_med) {
         this.id_med = id_med;
         this.nom_med = nom_med;
@@ -115,4 +136,25 @@ public class TableDoctor {
         this.email_medc = email_medc;
     }
     
+    void insertingDoctor() throws SQLException{
+
+       //Inserting values to a table
+        String query = "INSERT INTO receptionicte(`id_recep`, `nom_recep`, `prenom_recep`, `sexe`, `date_nes_recep`, `adress_recep`, `num_tel_recep`, `pseudo_recep`, `mdp_recep`, `email_recep`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = conn.prepareStatement(query);//
+                       
+        pstmt.setString(1, id_med); 
+        pstmt.setString(2, nom_med);
+        pstmt.setString(3, prenom_med);
+        pstmt.setString(4, sexe); 
+        pstmt.setString(5, date_nes_med);
+        pstmt.setString(6, adress_med);
+        pstmt.setString(7, num_tel_med); 
+        pstmt.setString(8, pseudo_med);
+        pstmt.setString(9, mdp_medc); 
+        pstmt.setString(10, email_medc);
+        pstmt.execute();// recuperer les  saisis par user, w tzifet l bdd
+        
+        System.out.println("Successfully inserted :: "+nom_med);
+
+    } 
 }
