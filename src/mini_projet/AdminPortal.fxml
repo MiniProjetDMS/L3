@@ -162,13 +162,13 @@
                   </Pane>
                   <Pane fx:id="paneManageDoctor" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d9d1ff;" stylesheets="@../../css/stylePortal.css">
                      <children>
-                        <TextField fx:id="textNom1" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Family Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textNomDoc" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Family Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="18.0" layoutY="55.0" text="Family Name:">
                            <effect>
                               <Blend />
                            </effect>
                         </Label>
-                        <TextField fx:id="textPrenom1" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="First Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textPrenomDoc" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="First Name" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="414.0" layoutY="55.0" text="First Name:">
                            <effect>
                               <Blend />
@@ -204,7 +204,7 @@
                               <Bloom />
                            </effect>
                         </Label>
-                        <TextField fx:id="textNumber1" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textNumberDoc" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="393.0" layoutY="104.0" text="Phone number:">
                            <effect>
                               <Blend />
@@ -221,9 +221,9 @@
                               <Blend />
                            </effect>
                         </Label>
-                        <RadioButton fx:id="male1" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Male" />
-                        <RadioButton fx:id="female1" layoutX="232.0" layoutY="202.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="109.0" text="Female" />
-                        <PasswordField fx:id="password1" layoutX="508.0" layoutY="247.0" styleClass="text-input-exemple" />
+                        <RadioButton fx:id="RadioBtnDoc_M" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Male" />
+                        <RadioButton fx:id="RadioBtnDoc_F" layoutX="232.0" layoutY="202.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="109.0" text="Female" />
+                        <PasswordField fx:id="passwordDoc" layoutX="508.0" layoutY="247.0" styleClass="text-input-exemple" />
                         <Label layoutX="420.0" layoutY="251.0" text="Password:">
                            <effect>
                               <Blend />
@@ -234,7 +234,7 @@
                               <Blend />
                            </effect>
                         </Label>
-                        <TextField fx:id="textLogin1" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textLoginDoc" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
                      </children>
                   </Pane>

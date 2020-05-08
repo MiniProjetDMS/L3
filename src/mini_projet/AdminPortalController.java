@@ -90,7 +90,7 @@ public class AdminPortalController implements Initializable {
     @FXML
     private TextField textNumberDoc;
     @FXML
-    private TextField textAressDoc;
+    private TextField textAddressDoc;
     @FXML
     private RadioButton RadioBtnDoc_M;
     @FXML
@@ -208,7 +208,7 @@ public class AdminPortalController implements Initializable {
         prenomD = textPrenomDoc.getText();
         dateD = dat1.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
         phoneD = textNumberDoc.getText();
-        adressD = textAressDoc.getText();
+        adressD = textAddressDoc.getText();
         if(RadioBtnDoc_M.isSelected())
             sexeD = "M";
         if(RadioBtnDoc_F.isSelected())
@@ -218,11 +218,11 @@ public class AdminPortalController implements Initializable {
         
         Random rand = new Random();
         char c = (char)(rand.nextInt(26) + 97);
-        String ID_d = new String();
-        ID_d = c+"";
+        String textID1 = new String();
+        textID1 = c+"";
         emailD = "test1@mail.dz"; 
         
-        TableDoctor docDoctor = new TableDoctor(ID_d,nomD,prenomD, sexeD, dateD,adressD, phoneD, loginD, passwordD, emailD);
+        TableDoctor docDoctor = new TableDoctor(textID1,nomD,prenomD, sexeD, dateD,adressD, phoneD, loginD, passwordD, emailD);
         docDoctor.insertingDoctor();
         testCnx();
     }
