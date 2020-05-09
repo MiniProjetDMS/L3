@@ -139,7 +139,7 @@ public class TableDoctor {
     void insertingDoctor() throws SQLException{
 
        //Inserting values to a table
-        String query = "INSERT INTO receptionicte(`id_recep`, `nom_recep`, `prenom_recep`, `sexe`, `date_nes_recep`, `adress_recep`, `num_tel_recep`, `pseudo_recep`, `mdp_recep`, `email_recep`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO medcin(`id_med`, `nom_med`, `prenom_med`, `sexe`, `date_nes_med`, `adress_med`, `num_tel_med`, `pseudo_med`, `mdp_medc`, `email_medc`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(query);//
                        
         pstmt.setString(1, id_med); 

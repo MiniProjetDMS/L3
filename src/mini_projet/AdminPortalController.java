@@ -170,7 +170,8 @@ public class AdminPortalController implements Initializable {
         cAdres_doctor.setCellValueFactory(new PropertyValueFactory<>("adress_med"));
         table1.setItems(oblist2);     //remplir 2eme table
     }
-
+    
+    @FXML
     private void receptionisteFor() throws SQLException{
         String nomR,prenomR,dateR,phoneNR,adressR,sexeR = null,passwordR,loginR;
         //String  ID_r= null ;
@@ -199,6 +200,7 @@ public class AdminPortalController implements Initializable {
         testCnx();
     }
     
+    @FXML
     private void DoctorFor() throws SQLException{
         String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD;
         //String  ID_r= null ;
