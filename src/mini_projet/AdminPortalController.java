@@ -1,9 +1,8 @@
 package mini_projet;
-// just a try
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -126,31 +125,30 @@ public class AdminPortalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        testCnx();        
-    }    
+        remplirTblesDoctRecep();        
+    }
     
-    void testCnx(){
-        // ##### connection BDD
-        Connection conn = null;
-        try {
-            conn = DBConnector.getConnection();
-            if(conn != null)
-                System.out.println("connection BDD Admin controller done !");
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // ##### 
-        try {
+    /*
+    * Remplir les deux table Doctor et Receptioniste
+    * 
+    *
+    */
+    void remplirTblesDoctRecep(){         
+
+        try(Connection conn = DBConnector.getConnection();) {
+            //if(conn != null)
+            //    System.out.println("connection BDD Admin controller done !");
+            
             ResultSet rs = conn.createStatement().executeQuery("select * from receptionicte");
             ResultSet rs2 = conn.createStatement().executeQuery("select * from medcin");
             
             while(rs.next()){
-                oblist1.add(new TableReceptionicte(rs.getString("id_recep"),rs.getString("nom_recep"),rs.getString("prenom_recep"),rs.getString("date_nes_recep"),rs.getString("adress_recep"),rs.getString("num_tel_recep")));
+                oblist1.add(new TableReceptionicte(rs.getInt("id_recep"),rs.getString("nom_recep"),rs.getString("prenom_recep"),rs.getString("date_nes_recep"),rs.getString("adress_recep"),rs.getString("num_tel_recep")));
             }
             while(rs2.next()){
-                oblist2.add(new TableDoctor(rs2.getString("id_med"), rs2.getString("nom_med"), rs2.getString("prenom_med"),rs2.getString("date_nes_med"), rs2.getString("adress_med"), rs2.getString("num_tel_med")));
+                oblist2.add(new TableDoctor(rs2.getInt("id_med"), rs2.getString("nom_med"), rs2.getString("prenom_med"),rs2.getString("date_nes_med"), rs2.getString("adress_med"), rs2.getString("num_tel_med")));
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -160,7 +158,7 @@ public class AdminPortalController implements Initializable {
         cID.setCellValueFactory(new PropertyValueFactory<>("id_recep"));
         cAdress.setCellValueFactory(new PropertyValueFactory<>("adress_recep"));
         cPhone.setCellValueFactory(new PropertyValueFactory<>("num_tel_recep"));
-        table.setItems(oblist1);      //remplir 1er table   
+        table.setItems(oblist1);      //remplir 1er table Receptioniste  
         
         cID_doctor.setCellValueFactory(new PropertyValueFactory<>("id_med"));
         cNom_doctor.setCellValueFactory(new PropertyValueFactory<>("nom_med"));
@@ -168,15 +166,21 @@ public class AdminPortalController implements Initializable {
         cNee_doctor.setCellValueFactory(new PropertyValueFactory<>("date_nes_med"));
         cNumTlf_doctor.setCellValueFactory(new PropertyValueFactory<>("num_tel_med"));
         cAdres_doctor.setCellValueFactory(new PropertyValueFactory<>("adress_med"));
-        table1.setItems(oblist2);     //remplir 2eme table
+        table1.setItems(oblist2);     //remplir 2eme table Doctor
     }
     
     @FXML
-    private void receptionisteFor() throws SQLException{
-        String nomR,prenomR,dateR,phoneNR,adressR,sexeR = null,passwordR,loginR;
-        //String  ID_r= null ;
-        String emailR = null;//-------------
+    private void addReceptioniste() throws SQLException, ClassNotFoundException{
+        newReceptioniste();
+    }
+    
+    /*
+    * fonction recuperer et insertion les données de receptioniste 
+    * de formulaire vers la BDD
+    */ 
+    private void newReceptioniste() throws SQLException, ClassNotFoundException{
         
+        String nomR,prenomR,dateR,phoneNR,adressR,sexeR = null,passwordR,loginR,emailR;
         nomR = textFieldNom_rescep.getText();
         prenomR = textFieldPrenom_rescep.getText();
         dateR = datePicker_recep.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
@@ -188,24 +192,48 @@ public class AdminPortalController implements Initializable {
             sexeR = "F";
         passwordR = textFieldPassword_rescep.getText();
         loginR = textFieldLogin_rescep.getText();
+        emailR = null;//-------------
+        emailR = "test@mail.dz";//.textFieldEmail_rescep.getText(); 
+        int id = TableReceptionicte.insertReceptioniste(nomR,prenomR, sexeR, dateR,adressR, phoneNR, loginR, passwordR, emailR);
+        System.out.println("inserting nom :: "+nomR+" Id ::"+id);
+        afficherNewReceptioniste(id);
+    }
+    
+    /*
+    * fonction pour la affiche la nouvelle receptioniste dans le table
+    */
+    void afficherNewReceptioniste(int id) throws SQLException, ClassNotFoundException{ // hadi khosni na7iha ndekhalha l la classe tableReceptioniste bach had code yesghar 
         
-        Random rand = new Random();
-        char c = (char)(rand.nextInt(26) + 97);
-        String ID_r = new String();
-        ID_r = c+"";
-        emailR = "test@mail.dz"; 
-        
-        TableReceptionicte rpRecep = new TableReceptionicte(ID_r,nomR,prenomR, sexeR, dateR,adressR, phoneNR, loginR, passwordR, emailR);
-        rpRecep.insertingReceptioniste();
-        testCnx();
+        try (Connection conn = DBConnector.getConnection();){
+            ResultSet rs = conn.createStatement().executeQuery("select * from receptionicte where id_recep = "+id);
+            while(rs.next()){
+                    oblist1.add(new TableReceptionicte(rs.getInt("id_recep"),rs.getString("nom_recep"),rs.getString("prenom_recep"),rs.getString("date_nes_recep"),rs.getString("adress_recep"),rs.getString("num_tel_recep")));
+                }
+
+            cNom.setCellValueFactory(new PropertyValueFactory<>("nom_recep"));
+            cPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom_recep"));
+            cNee.setCellValueFactory(new PropertyValueFactory<>("date_nes_recep"));
+            cID.setCellValueFactory(new PropertyValueFactory<>("id_recep"));
+            cAdress.setCellValueFactory(new PropertyValueFactory<>("adress_recep"));
+            cPhone.setCellValueFactory(new PropertyValueFactory<>("num_tel_recep"));
+            table.setItems(oblist1);      //remplir 1er table  
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     @FXML
-    private void DoctorFor() throws SQLException{
-        String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD;
-        //String  ID_r= null ;
-        String emailD = null;//-------------
+    private void addDoctor() throws SQLException, ClassNotFoundException{
+        newDoctor();
+    }
+    
+    /*
+    * fonction recuperer et insertion les données de medecin 
+    * de formulaire vers la BDD
+    */
+    private void newDoctor() throws SQLException, ClassNotFoundException{
         
+        String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD,emailD;        
         nomD = textNomDoc.getText();
         prenomD = textPrenomDoc.getText();
         dateD = dat1.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
@@ -216,19 +244,35 @@ public class AdminPortalController implements Initializable {
         if(RadioBtnDoc_F.isSelected())
             sexeD = "F";
         passwordD = passwordDoc.getText();
-        loginD = textLoginDoc.getText();
-        
-        Random rand = new Random();
-        char c = (char)(rand.nextInt(26) + 97);
-        String textID1 = new String();
-        textID1 = c+"";
-        emailD = "test1@mail.dz"; 
-        
-        TableDoctor docDoctor = new TableDoctor(textID1,nomD,prenomD, sexeD, dateD,adressD, phoneD, loginD, passwordD, emailD);
-        docDoctor.insertingDoctor();
-        testCnx();
+        loginD = textLoginDoc.getText();        
+        emailD = "test1@mail.dz"; //textEmailDoc.getText();            
+        int id = TableDoctor.insertDoctor(nomD, prenomD, sexeD, dateD, adressD, phoneD, loginD, passwordD, emailD);
+        System.out.println("inserting nom :: "+nomD+" Id ::"+id);
+        afficherNewDoctor(id);
     }
     
+    /*
+    * fonction pour la affiche la nouvelle receptioniste dans le table
+    */
+    void afficherNewDoctor(int id) throws SQLException, ClassNotFoundException{ // hadi khosni na7iha ndekhalha l la classe tableReceptioniste bach had code yesghar 
+        
+        try (Connection conn = DBConnector.getConnection();){
+            ResultSet rs2 = conn.createStatement().executeQuery("select * from medcin where id_med  = "+id);
+            while(rs2.next()){
+                oblist2.add(new TableDoctor(rs2.getInt("id_med"), rs2.getString("nom_med"), rs2.getString("prenom_med"),rs2.getString("date_nes_med"), rs2.getString("adress_med"), rs2.getString("num_tel_med")));
+            }
+
+        cID_doctor.setCellValueFactory(new PropertyValueFactory<>("id_med"));
+        cNom_doctor.setCellValueFactory(new PropertyValueFactory<>("nom_med"));
+        cPrenom_doctor.setCellValueFactory(new PropertyValueFactory<>("prenom_med"));
+        cNee_doctor.setCellValueFactory(new PropertyValueFactory<>("date_nes_med"));
+        cNumTlf_doctor.setCellValueFactory(new PropertyValueFactory<>("num_tel_med"));
+        cAdres_doctor.setCellValueFactory(new PropertyValueFactory<>("adress_med"));
+        table1.setItems(oblist2);     //remplir 2eme table Doctor
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
     @FXML
     private void toFrontMR(MouseEvent event) {
@@ -256,33 +300,5 @@ public class AdminPortalController implements Initializable {
         app_stage.resizableProperty().set(false);
         app_stage.show();
     }
-
-   /* private void fonctionMessage(MouseEvent event) {
-        labMessage.setText(textF.getText());
-    }*/
-
-    @FXML
-    private void Add(MouseEvent event) {
    
-    }
-
-    /*@FXML
-    private void Del(MouseEvent event) {
-           labMsg.setText("...");
-    }*/
-
-    @FXML
-    private void Del(MouseEvent event) {
-    }
-
-    @FXML
-    private void printTest(MouseEvent event) throws SQLException {// button add :: Fonction test Receptionist
-        receptionisteFor();
-    }
-    
-    @FXML
-    private void printDoc(MouseEvent event) throws SQLException {// button add :: Fonction test Doctor
-        DoctorFor();
-    }
-    
 }

@@ -17,10 +17,9 @@ public class DBConnector {
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
             // ####
-            if(conn != null)
-                System.out.println(String.format("successfully, "+ "Connected to database %s ", conn.getCatalog()));
-            return conn;
-            	
+            //if(conn != null)
+            //    System.out.println(String.format("successfully, "+ "Connected to database %s ", conn.getCatalog()));
+            return conn;            	
             } catch(SQLException e) {
                System.out.println("dommage erreur ::"+e.getMessage());
                return null;

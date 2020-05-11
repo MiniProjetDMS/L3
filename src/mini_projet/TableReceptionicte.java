@@ -2,25 +2,24 @@ package mini_projet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Statement;
 
 
 public class TableReceptionicte {
-    String id_recep;
+    int id_recep;
+
+    public int getId_recep() {
+        return id_recep;
+    }
+    //String id_recep;
     String nom_recep, prenom_recep, sexe;
     String date_nes_recep;
     String adress_recep, num_tel_recep, pseudo_recep;
     String mdp_recep, email_recep;
-
-        // ##### connection BDD
-    Connection conn = null;
-
-        // ##### 
     
-    public TableReceptionicte(String id_recep, String nom_recep, String prenom_recep, String sexe, String date_nes_recep, String adress_recep, String num_tel_recep, String pseudo_recep, String mdp_recep, String email_recep) {
+    public TableReceptionicte(int id_recep, String nom_recep, String prenom_recep, String sexe, String date_nes_recep, String adress_recep, String num_tel_recep, String pseudo_recep, String mdp_recep, String email_recep) {
         this.id_recep = id_recep;
         this.nom_recep = nom_recep;
         this.prenom_recep = prenom_recep;
@@ -31,17 +30,9 @@ public class TableReceptionicte {
         this.pseudo_recep = pseudo_recep;
         this.mdp_recep = mdp_recep;
         this.email_recep = email_recep;
-        
-        try {
-            conn = DBConnector.getConnection();
-            if(conn != null)
-                System.out.println("connection BDD Admin controller done !");
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
-    public TableReceptionicte(String id_recep, String nom_recep, String prenom_recep, String date_nes_recep, String adress_recep, String num_tel_recep) {
+    public TableReceptionicte(int id_recep, String nom_recep, String prenom_recep, String date_nes_recep, String adress_recep, String num_tel_recep) {
         this.id_recep = id_recep;
         this.nom_recep = nom_recep;
         this.prenom_recep = prenom_recep;
@@ -49,8 +40,8 @@ public class TableReceptionicte {
         this.adress_recep = adress_recep;
         this.num_tel_recep = num_tel_recep;
     }
-    
-    public void setId_recep(String id_recep) {
+
+    public void setId_recep(int id_recep) {
         this.id_recep = id_recep;
     }
 
@@ -90,12 +81,6 @@ public class TableReceptionicte {
         this.email_recep = email_recep;
     }
 
-    
-    
-    public String getId_recep() {
-        return id_recep;
-    }
-
     public String getNom_recep() {
         return nom_recep;
     }
@@ -132,26 +117,42 @@ public class TableReceptionicte {
         return email_recep;
     }
     
-    void insertingReceptioniste() throws SQLException{
+    public static int insertReceptioniste(String nom_recep, String prenom_recep, String sexe, String date_nes_recep, String adress_recep, String num_tel_recep, String pseudo_recep, String mdp_recep, String email_recep) throws SQLException, ClassNotFoundException {
 
-       //Inserting values to a table
-        String query = "INSERT INTO receptionicte(`id_recep`, `nom_recep`, `prenom_recep`, `sexe`, `date_nes_recep`, `adress_recep`, `num_tel_recep`, `pseudo_recep`, `mdp_recep`, `email_recep`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement pstmt = conn.prepareStatement(query);
-                       
-        pstmt.setString(1, id_recep); 
-        pstmt.setString(2, nom_recep);
-        pstmt.setString(3, prenom_recep);
-        pstmt.setString(4, sexe); 
-        pstmt.setString(5, date_nes_recep);
-        pstmt.setString(6, adress_recep);
-        pstmt.setString(7, num_tel_recep); 
-        pstmt.setString(8, pseudo_recep);
-        pstmt.setString(9, mdp_recep); 
-        pstmt.setString(10, email_recep);
-        pstmt.execute();
+        ResultSet rs = null;
+        int rId = 0;
         
-        System.out.println("Successfully inserted :: "+nom_recep);
+        String sql = "INSERT INTO receptionicte(`nom_recep`, `prenom_recep`, `sexe`, `date_nes_recep`, `adress_recep`, `num_tel_recep`, `pseudo_recep`, `mdp_recep`, `email_recep`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    }    
+        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
+
+            pstmt.setString(1, nom_recep);
+            pstmt.setString(2, prenom_recep);
+            pstmt.setString(3, sexe); 
+            pstmt.setString(4, date_nes_recep);
+            pstmt.setString(5, adress_recep);
+            pstmt.setString(6, num_tel_recep); 
+            pstmt.setString(7, pseudo_recep);
+            pstmt.setString(8, mdp_recep); 
+            pstmt.setString(9, email_recep);
+
+            int rowAffected = pstmt.executeUpdate();
+            if(rowAffected == 1){
+                rs = pstmt.getGeneratedKeys();
+                if(rs.next())
+                    rId = rs.getInt(1);
+            }else{
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if(rs != null)  rs.close();
+        }        
+        return rId;
+        
+    }
     
 }

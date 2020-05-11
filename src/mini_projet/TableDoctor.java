@@ -1,15 +1,17 @@
 package mini_projet;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TableDoctor {
     
-    String id_med;
+    int id_med;
     String nom_med;
     String prenom_med;
     String sexe;
@@ -25,7 +27,7 @@ public class TableDoctor {
 
         // ##### 
 
-    public TableDoctor(String id_med, String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) {
+    public TableDoctor(int id_med, String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) {
         this.id_med = id_med;
         this.nom_med = nom_med;
         this.prenom_med = prenom_med;
@@ -47,7 +49,7 @@ public class TableDoctor {
     
     
 }
-    public TableDoctor(String id_med, String nom_med, String prenom_med, String date_nes_med, String adress_med, String num_tel_med) {
+    public TableDoctor(int id_med, String nom_med, String prenom_med, String date_nes_med, String adress_med, String num_tel_med) {
         this.id_med = id_med;
         this.nom_med = nom_med;
         this.prenom_med = prenom_med;
@@ -56,7 +58,7 @@ public class TableDoctor {
         this.num_tel_med = num_tel_med;
     }
 
-    public String getId_med() {
+    public int getId_med() {
         return id_med;
     }
 
@@ -96,7 +98,7 @@ public class TableDoctor {
         return email_medc;
     }
 
-    public void setId_med(String id_med) {
+    public void setId_med(int id_med) {
         this.id_med = id_med;
     }
 
@@ -136,6 +138,49 @@ public class TableDoctor {
         this.email_medc = email_medc;
     }
     
+    public static int insertDoctor (String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) throws SQLException, ClassNotFoundException {
+
+        ResultSet rs = null;
+        int doctorId = 0;
+        
+        String sql = "INSERT INTO medcin(`nom_med`, `prenom_med`, `sexe`, `date_nes_med`, `adress_med`, `num_tel_med`, `pseudo_med`, `mdp_medc`, `email_medc`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
+ 
+                    pstmt.setString(1, nom_med);
+                    pstmt.setString(2, prenom_med);
+                    pstmt.setString(3, sexe); 
+                    pstmt.setString(4, date_nes_med);
+                    pstmt.setString(5, adress_med);
+                    pstmt.setString(6, num_tel_med); 
+                    pstmt.setString(7, pseudo_med);
+                    pstmt.setString(8, mdp_medc); 
+                    pstmt.setString(9, email_medc);
+
+            int rowAffected = pstmt.executeUpdate();
+            if(rowAffected == 1)
+            {
+                rs = pstmt.getGeneratedKeys();
+                if(rs.next())
+                    doctorId = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                if(rs != null)  rs.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return doctorId;
+    }
+    
+    
+    /*
     void insertingDoctor() throws SQLException{
 
        //Inserting values to a table
@@ -156,5 +201,5 @@ public class TableDoctor {
         
         System.out.println("Successfully inserted :: "+nom_med);
 
-    } 
+    } */
 }
