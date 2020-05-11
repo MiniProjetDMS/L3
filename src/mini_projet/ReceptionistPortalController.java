@@ -1,38 +1,63 @@
-package mini_projet;
+
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-//import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ReceptionistPortalController implements Initializable {
 
+    
+    @FXML
+    private Pane paneManagePatient;
+    @FXML
+    private Pane paneManageAppointement;
+    @FXML
+    private Pane paneMessageDoctor;
+    @FXML
+    private Button btnMsgD;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+    @FXML
+    private void exitR(MouseEvent event) throws IOException {
+        Parent home;
+        home = FXMLLoader.load(getClass().getResource("/mini_projet/LoginReceptionist.fxml"));//kayan problème de path normalement en utilise directement LoginReceptionist.fxml
+        Scene homeScene = new Scene(home);
+        Stage app_stage;
+        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(homeScene);
+        app_stage.resizableProperty().set(false);
+        app_stage.show();
+    }    
+
+    @FXML
+    private void toFrontManagePatient(MouseEvent event) {
+        paneManagePatient.toFront();
     }
 
+    @FXML
+    private void toFrontManageAppointement(MouseEvent event) {
+        paneManageAppointement.toFront();
+    }
+
+    @FXML
+    private void toFrontMessageDoctor(MouseEvent event) {
+        paneMessageDoctor.toFront();
+    }
+    
 }
