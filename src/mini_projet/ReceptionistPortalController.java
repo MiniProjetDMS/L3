@@ -1,8 +1,13 @@
-
-
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,9 +15,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import mini_projet.AdminPortalController;
+import mini_projet.DBConnector;
+import mini_projet.TableDoctor;
+import mini_projet.TablePatient;
+import mini_projet.TableReceptionicte;
 
 public class ReceptionistPortalController implements Initializable {
 
@@ -25,14 +41,153 @@ public class ReceptionistPortalController implements Initializable {
     private Pane paneMessageDoctor;
     @FXML
     private Button btnMsgD;
+    @FXML
+    private TextField appID;
+    @FXML
+    private TextField PatieID;
+    @FXML
+    private TextField AppNum;
+    @FXML
+    private DatePicker appDate;
+    @FXML
+    private TextField AppTime;
+    @FXML
+    private TextField PatieInfo;
+    @FXML
+    private TableColumn<?, ?> numApp;
+    @FXML
+    private TableColumn<?, ?> patientInfo;
+    @FXML
+    private TableColumn<?, ?> AppDate;
+    @FXML
+    private TableColumn<?, ?> AppTime2;
+    @FXML
+    private TableColumn<?, ?> AppCom;
+    @FXML
+    private Button UpdateApp;
+    @FXML
+    private Button DelApp;
+    @FXML
+    private Button AddApp;
+    @FXML
+    private TextField DentNom;
+    @FXML
+    private TextField DentAdress;
+    @FXML
+    private TextField DentPhone;
+    @FXML
+    private DatePicker DentDate;
+    @FXML
+    private TextField DentPre;
+    @FXML
+    private TextField DentCivil;
+    @FXML
+    private TextField DentGen;
+    @FXML
+    private TextField dentID;
+    @FXML
+    private TableColumn<?, ?> IDcolo;
+    @FXML
+    private TableColumn<?, ?> CNIcolo;
+    @FXML
+    private TableColumn<?, ?> nomColo;
+    @FXML
+    private TableColumn<?, ?> prenomColo;
+    @FXML
+    private TableColumn<?, ?> GenColo;
+    @FXML
+    private TableColumn<?, ?> phoneColo;
+    @FXML
+    private TableColumn<?, ?> AddressColo;
+    @FXML
+    private Button UpdateDent;
+    @FXML
+    private Button AddDent;
+    @FXML
+    private Button DelDent;
+    @FXML
+    private TableView<TablePatient> tablePatient;
+    @FXML
+    private TableColumn<TablePatient, String> cId_patient;
+    @FXML
+    private TableColumn<TablePatient, String> cNom_patient;
+    @FXML
+    private TableColumn<TablePatient, String> cPrenom_patient;
+    @FXML
+    private TableColumn<TablePatient, String> cNee_patient;
+    @FXML
+    private TableColumn<TablePatient, String> sexe_patient;
+    @FXML
+    private TableColumn<TablePatient, String> cPhone_patient;
+    @FXML
+    private TableColumn<TablePatient, String> cAdress_patient;
+    
+    ObservableList<TablePatient> oblist1 = FXCollections.observableArrayList();
+    
+    @FXML
+    private TextField textFieldNom_patient;
+    @FXML
+    private TextField textFieldPrenom_patient;
+    @FXML
+    private TextField textFieldPhone_patient;
+    @FXML
+    private Button UpdatePat;
+    @FXML
+    private Button DelPat;
+    @FXML
+    private TextField textFieldAdress_patient;
+    @FXML
+    private DatePicker datePicker_patient;
+    @FXML
+    private TextField textFieldCivilStatus_patient;
+    @FXML
+    private TextField textFieldID_patient;
+    @FXML
+    private RadioButton radioButtonMal_patient;
+    @FXML
+    private RadioButton radioButtonFem_patient;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        remplirTblesPatient();
     }
+    
+    /*
+    * Remplir les deux table Patient
+    * 
+    */
+    void remplirTblesPatient(){         
+
+        try(Connection conn = DBConnector.getConnection();) {
+            //if(conn != null)
+            //    System.out.println("connection BDD Admin controller done !");
+            
+            ResultSet rs = conn.createStatement().executeQuery("select * from patient");
+            
+            while(rs.next()){
+                oblist1.add(new TablePatient(rs.getInt("id_pat"),rs.getString("nom_pat"),rs.getString("prenom_pat"),rs.getString("sexe"),rs.getString("date_nes_pat"),rs.getString("etat_civil"),rs.getString("adress_pat"),rs.getString("num_tel_pat")));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            cId_patient.setCellValueFactory(new PropertyValueFactory<>("id_pat"));
+            cNom_patient.setCellValueFactory(new PropertyValueFactory<>("nom_pat"));
+            cPrenom_patient.setCellValueFactory(new PropertyValueFactory<>("prenom_pat"));
+            cNee_patient.setCellValueFactory(new PropertyValueFactory<>("date_nes_pat"));
+            sexe_patient.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+            cPhone_patient.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));
+            cAdress_patient.setCellValueFactory(new PropertyValueFactory<>("adress_pat"));
+            tablePatient.setItems(oblist1);      //remplir 1er table Patient         
+
+    }
+    
+    
+    
+    
     @FXML
     private void exitR(MouseEvent event) throws IOException {
         Parent home;
