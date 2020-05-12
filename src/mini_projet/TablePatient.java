@@ -18,12 +18,12 @@ public class TablePatient {
     String nom_pat;
     String prenom_pat;
     String sexe;
-    Date date_nes_pat;
+    String date_nes_pat;
     String etat_civil;
     String adress_pat;
     String num_tel_pat;
 
-    public TablePatient(int id_pat, String nom_pat, String prenom_pat, String sexe, Date date_nes_pat, String etat_civil, String adress_pat, String num_tel_pat) {
+    public TablePatient(int id_pat, String nom_pat, String prenom_pat, String sexe, String date_nes_pat, String etat_civil, String adress_pat, String num_tel_pat) {
         this.id_pat = id_pat;
         this.nom_pat = nom_pat;
         this.prenom_pat = prenom_pat;
@@ -50,7 +50,7 @@ public class TablePatient {
         return sexe;
     }
 
-    public Date getDate_nes_pat() {
+    public String getDate_nes_pat() {
         return date_nes_pat;
     }
 
@@ -82,7 +82,7 @@ public class TablePatient {
         this.sexe = sexe;
     }
 
-    public void setDate_nes_pat(Date date_nes_pat) {
+    public void setDate_nes_pat(String date_nes_pat) {
         this.date_nes_pat = date_nes_pat;
     }
 
@@ -108,7 +108,6 @@ public class TablePatient {
         
         try (Connection conn = DBConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
- 
 
             pstmt.setString(1, nom_pat);
             pstmt.setString(2, prenom_pat);

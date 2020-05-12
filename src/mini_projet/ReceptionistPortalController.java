@@ -26,9 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mini_projet.AdminPortalController;
 import mini_projet.DBConnector;
-import mini_projet.TableDoctor;
 import mini_projet.TablePatient;
-import mini_projet.TableReceptionicte;
 
 public class ReceptionistPortalController implements Initializable {
 

@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -232,7 +231,6 @@ public class AdminPortalController implements Initializable {
     * de formulaire vers la BDD
     */
     private void newDoctor() throws SQLException, ClassNotFoundException{
-        
         String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD,emailD;        
         nomD = textNomDoc.getText();
         prenomD = textPrenomDoc.getText();
@@ -245,7 +243,7 @@ public class AdminPortalController implements Initializable {
             sexeD = "F";
         passwordD = passwordDoc.getText();
         loginD = textLoginDoc.getText();        
-        emailD = "test1@mail.dz"; //textEmailDoc.getText();            
+        emailD = "test1@mail.dz"; //textEmailDoc.getText();        
         int id = TableDoctor.insertDoctor(nomD, prenomD, sexeD, dateD, adressD, phoneD, loginD, passwordD, emailD);
         System.out.println("inserting nom :: "+nomD+" Id ::"+id);
         afficherNewDoctor(id);
