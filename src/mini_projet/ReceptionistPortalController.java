@@ -3,6 +3,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -213,4 +214,55 @@ public class ReceptionistPortalController implements Initializable {
         paneMessageDoctor.toFront();
     }
     
+    @FXML
+    private void addPatient() throws SQLException, ClassNotFoundException{
+        newPatient();
+    }
+    
+    /*
+    * fonction recuperer et insertion les données de patient    
+    * de formulaire vers la BDD
+    */ 
+    private void newPatient() throws SQLException, ClassNotFoundException{        
+        String nom_pat, prenom_pat, date_nes_pat, etat_civil, adress_pat, num_tel_pat, sexe = null;
+        nom_pat = textFieldNom_patient.getText();
+        prenom_pat = textFieldPrenom_patient.getText();
+        date_nes_pat = datePicker_patient.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        etat_civil = textFieldCivilStatus_patient.getText();
+        adress_pat = textFieldAdress_patient.getText();
+        if(radioButtonMal_patient.isSelected())
+            sexe = "M";
+        if(radioButtonFem_patient.isSelected())
+            sexe = "F";
+        num_tel_pat = textFieldPhone_patient.getText();
+        int id = TablePatient.insertPatient(nom_pat, prenom_pat, sexe, date_nes_pat, etat_civil, adress_pat, num_tel_pat);
+        System.out.println("inserting nom :: "+nom_pat+" Id ::"+id);
+        afficherNewPatient(id);
+    }
+    
+    /*
+    * fonction pour la affiche le nouveau patient dans le table
+    */
+    void afficherNewPatient(int id) throws SQLException, ClassNotFoundException{         
+        try(Connection conn = DBConnector.getConnection();) {
+            //if(conn != null)
+            //    System.out.println("connection BDD Receptioniste controller done !");
+            
+            ResultSet rs = conn.createStatement().executeQuery("select * from patient where id_pat = "+id);
+            
+            while(rs.next()){
+                oblist1.add(new TablePatient(rs.getInt("id_pat"),rs.getString("nom_pat"),rs.getString("prenom_pat"),rs.getString("sexe"),rs.getString("date_nes_pat"),rs.getString("etat_civil"),rs.getString("adress_pat"),rs.getString("num_tel_pat")));
+            }
+            cId_patient.setCellValueFactory(new PropertyValueFactory<>("id_pat"));
+            cNom_patient.setCellValueFactory(new PropertyValueFactory<>("nom_pat"));
+            cPrenom_patient.setCellValueFactory(new PropertyValueFactory<>("prenom_pat"));
+            cNee_patient.setCellValueFactory(new PropertyValueFactory<>("date_nes_pat"));
+            sexe_patient.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+            cPhone_patient.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));
+            cAdress_patient.setCellValueFactory(new PropertyValueFactory<>("adress_pat"));
+            tablePatient.setItems(oblist1);      //remplir 1er table Patient   
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

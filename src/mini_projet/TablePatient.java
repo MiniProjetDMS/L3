@@ -98,7 +98,7 @@ public class TablePatient {
         this.num_tel_pat = num_tel_pat;
     }
     
-    public static int insertPatient (String nom_pat, String prenom_pat, String sexe, Date date_nes_pat, String etat_civil, String adress_pat, String num_tel_pat) throws SQLException, ClassNotFoundException {
+    public static int insertPatient (String nom_pat, String prenom_pat, String sexe, String date_nes_pat, String etat_civil, String adress_pat, String num_tel_pat) throws SQLException, ClassNotFoundException {
 
         ResultSet rs = null;
         int PatientId = 0;
@@ -112,7 +112,7 @@ public class TablePatient {
             pstmt.setString(1, nom_pat);
             pstmt.setString(2, prenom_pat);
             pstmt.setString(3, sexe);
-            pstmt.setDate(4, date_nes_pat);
+            pstmt.setString(4, date_nes_pat);
             pstmt.setString(5, etat_civil);
             pstmt.setString(6, adress_pat);
             pstmt.setString(7, num_tel_pat);
