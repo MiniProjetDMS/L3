@@ -202,4 +202,31 @@ public class TableDoctor {
         System.out.println("Successfully inserted :: "+nom_med);
 
     } */
+ /*   public static int  remove(String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) throws SQLException, ClassNotFoundException {
+        int doctorId = 0;
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+    //    ResultSet rs = null;
+   
+         
+        String sql = "Delete from medcin where id_med ='" +doctorId+"'";
+
+        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
+ 
+                    pstmt.setString(1, nom_med);
+                    pstmt.setString(2, prenom_med);
+                    pstmt.setString(3, sexe); 
+                    pstmt.setString(4, date_nes_med);
+                    pstmt.setString(5, adress_med);
+                    pstmt.setString(6, num_tel_med); 
+                    pstmt.setString(7, pseudo_med);
+                    pstmt.setString(8, mdp_medc); 
+                    pstmt.setString(9, email_medc);
+             pstmt.executeUpdate();
+        }
+        return doctorId;
+    }*/
 }

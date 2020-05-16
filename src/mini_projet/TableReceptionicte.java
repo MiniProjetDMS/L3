@@ -8,6 +8,10 @@ import java.sql.Statement;
 
 
 public class TableReceptionicte {
+
+   
+
+    
     int id_recep;
 
     public TableReceptionicte(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5) {

@@ -278,7 +278,6 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="PatieInfo" layoutX="251.0" layoutY="181.0" prefHeight="25.0" prefWidth="269.0" promptText="Name, Date..." style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
                         <TableView layoutX="5.0" layoutY="224.0" prefHeight="336.0" prefWidth="619.0">
                            <columns>
                               <TableColumn fx:id="numApp" prefWidth="70.0" text="Appoint N°" />
@@ -303,6 +302,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
+                        <Label layoutX="251.0" layoutY="180.0" prefHeight="32.0" prefWidth="273.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="    Patient's Personal Informations" />
                      </children>
                   </Pane>
                </children>

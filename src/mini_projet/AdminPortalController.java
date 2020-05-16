@@ -3,14 +3,18 @@ package mini_projet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -271,7 +275,58 @@ public class AdminPortalController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+     
+/*        @FXML
+    private void DeleteDoctor(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String nomD,prenomD,sexe=null,addressD,loginD,mdpD,emailD;
+        String dateD;
+        String phoneD;
+        nomD = textNomDoc.getText();
+        prenomD = textPrenomDoc.getText();
+        dateD = dat1.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        phoneD = textNumberDoc.getText();
+        addressD = textAddressDoc.getText();
+        if(RadioBtnDoc_M.isSelected())
+            sexe = "M";
+        if(RadioBtnDoc_F.isSelected())
+            sexe = "F";
+        mdpD = passwordDoc.getText();
+        loginD = textLoginDoc.getText();        
+        emailD = "test1@mail.dz";
+        int myIndex =table1.getSelectionModel().getSelectedIndex();
+         if(myIndex > -1)
+         {
+        int id=TableDoctor.remove(nomD,prenomD,sexe,dateD,addressD,phoneD,loginD,mdpD,emailD);
+        /*String requette="Delete from medcin where id_med ='" +id+"'";
+         try{
+               Connection conn=DBConnector.getConnection();
+               PreparedStatement preparedSt=conn.prepareStatement(requette);
+               preparedSt.execute();
+             System.out.println("You Should Select a Row First");
+               
+                Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  medecin  set id_med = @autoid := (@autoid+1)");
+                  //m.execute("ALTER TABLE medecin auto_increment = 1");
+                  
+            
+                  
+               
+         }
+         catch(Exception e){}
+        
+         }
+   else
+   {
+       System.out.println("You Should Select a Row First");
+      // infoBox2("You Should Select a Row First", null, "Failed");
+   }
+         Connection conn=DBConnector.getConnection();
+         Statement s = conn.createStatement();
+         s.execute("ALTER TABLE medcin auto_increment = 1");*//*
+         afficherNewDoctor(myIndex);
+    }}
+    */
     @FXML
     private void toFrontMR(MouseEvent event) {
         paneManageReceptionist.toFront();
