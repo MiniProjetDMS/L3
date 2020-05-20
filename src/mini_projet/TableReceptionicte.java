@@ -163,4 +163,53 @@ public class TableReceptionicte {
         
     }
     
+    
+    /*
+    * Delete Receptioniste  where ID in parameter
+    *
+    */
+    public static void deleteReceptioniste (int id) throws SQLException, ClassNotFoundException {
+
+        ResultSet rs = null;
+        String sql = "DELETE FROM receptionicte WHERE id_recep = " + id;        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {            
+            pstmt.execute();
+            System.out.println("Record ID :"+id+" deleted successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /*
+    * Update receptioniste
+    */
+    public static void updateReceptioniste(int id, String nom_recep, String prenom_recep, String sexe, String date_nes_recep, String adress_recep, String num_tel_recep, String pseudo_recep, String mdp_recep, String email_recep) throws SQLException, ClassNotFoundException{
+               
+        String sql = "UPDATE receptionicte SET `nom_recep` = ?, `prenom_recep` = ?, `sexe` = ?, `date_nes_recep` = ?, `adress_recep` = ?, `num_tel_recep` = ?, `pseudo_recep` = ?, `mdp_recep` = ?, `email_recep` = ?"+" WHERE `id_recep` = ?";
+                
+        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
+
+            pstmt.setString(1, nom_recep);
+            pstmt.setString(2, prenom_recep);
+            pstmt.setString(3, sexe); 
+            pstmt.setString(4, date_nes_recep);
+            pstmt.setString(5, adress_recep);
+            pstmt.setString(6, num_tel_recep); 
+            pstmt.setString(7, pseudo_recep);
+            pstmt.setString(8, mdp_recep); 
+            pstmt.setString(9, email_recep);
+            pstmt.setInt(10, id);
+            
+            int i = pstmt.executeUpdate();
+            System.out.println("Record ID :"+id+" Name :"+i+" update successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    
+    }
+            
 }

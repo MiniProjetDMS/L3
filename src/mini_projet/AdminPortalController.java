@@ -3,18 +3,15 @@ package mini_projet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +22,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -353,5 +351,87 @@ public class AdminPortalController implements Initializable {
         app_stage.resizableProperty().set(false);
         app_stage.show();
     }
+    
+    /*
+    * recuper id selectioné et supprimi de la bdd Doctor
+    *
+    */
+    @FXML
+    private void removeSelectDoctor() throws SQLException, ClassNotFoundException{
+        if(table1.getSelectionModel().getSelectedItem() != null){
+            TableDoctor selectDoctor = table1.getSelectionModel().getSelectedItem();
+            TableDoctor.deleteDoctor(selectDoctor.getId_med());
+            table1.getItems().removeAll(table1.getSelectionModel().getSelectedItem());
+        }
+    }
+    
+    /*
+    * recuper id selectioné et supprimi de la bdd Receptioniste
+    * 
+    */
+    @FXML
+    private void removeSelectReceptioniste() throws SQLException, ClassNotFoundException{
+        if(table.getSelectionModel().getSelectedItem() != null){
+            TableReceptionicte selectReceptioniste = table.getSelectionModel().getSelectedItem();
+            TableReceptionicte.deleteReceptioniste(selectReceptioniste.getId_recep());
+            table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+        }
+    }
+    
+    /*
+    * recuper id selectioné et meter a jour ! receptioniste
+    */
+    @FXML
+    private void updateReceptioniste() throws SQLException, ClassNotFoundException{
+        
+        String nomR,prenomR,dateR,phoneNR,adressR,sexeR = null,passwordR,loginR,emailR;
+        nomR = textFieldNom_rescep.getText();
+        prenomR = textFieldPrenom_rescep.getText();
+        dateR = datePicker_recep.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        phoneNR = textFieldPhone_rescep.getText();
+        adressR = textFieldAdress_rescep.getText();
+        if(radioButtonMal_recep.isSelected())
+            sexeR = "M";
+        if(radioButtonFem_recep.isSelected())
+            sexeR = "F";
+        passwordR = textFieldPassword_rescep.getText();
+        loginR = textFieldLogin_rescep.getText();
+        emailR = null;//-------------
+        emailR = "test@mail.dz";//.textFieldEmail_rescep.getText(); 
+        if(table.getSelectionModel().getSelectedItem() != null){
+            TableReceptionicte selectReceptioniste = table.getSelectionModel().getSelectedItem();
+            System.out.println("mini_projet.AdminPortalController.updateReceptioniste() :ID :: " +selectReceptioniste.getId_recep());
+            TableReceptionicte.updateReceptioniste(selectReceptioniste.getId_recep(),nomR,prenomR, sexeR, dateR,adressR, phoneNR, loginR, passwordR, emailR);
+            table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+            afficherNewReceptioniste(selectReceptioniste.getId_recep());
+        }
+    }
    
+    /*
+    * recuper id selectioné et meter a jour ! doctor
+    */
+    @FXML
+    private void updateDoctor() throws SQLException, ClassNotFoundException{
+        
+        String nomD,prenomD,dateD,phoneD,adressD,sexeD = null,passwordD,loginD,emailD;        
+        nomD = textNomDoc.getText();
+        prenomD = textPrenomDoc.getText();
+        dateD = dat1.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        phoneD = textNumberDoc.getText();
+        adressD = textAddressDoc.getText();
+        if(RadioBtnDoc_M.isSelected())
+            sexeD = "M";
+        if(RadioBtnDoc_F.isSelected())
+            sexeD = "F";
+        passwordD = passwordDoc.getText();
+        loginD = textLoginDoc.getText();        
+        emailD = "test1@mail.dz"; //textEmailDoc.getText();  
+        if(table1.getSelectionModel().getSelectedItem() != null){
+            TableDoctor selectReceptioniste = table1.getSelectionModel().getSelectedItem();
+            System.out.println("mini_projet.AdminPortalController.updateDoctor() :ID :: " +selectReceptioniste.getId_med());
+            TableDoctor.updateDoctor(selectReceptioniste.getId_med(),nomD,prenomD, sexeD, dateD,adressD, phoneD, loginD, passwordD, emailD);
+            table1.getItems().removeAll(table1.getSelectionModel().getSelectedItem());
+            afficherNewDoctor(selectReceptioniste.getId_med());
+        }
+    }
 }

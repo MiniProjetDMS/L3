@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.AdminPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.AdminPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -103,7 +103,7 @@
                            </effect>
                         </Label>
                         <Button layoutX="643.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#addReceptioniste" prefHeight="37.0" prefWidth="67.0" style="-fx-background-radius: 20;" text="Add" />
-                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete" />
+                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#removeSelectReceptioniste" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete" />
                         <TableView fx:id="table" editable="true" layoutX="8.0" layoutY="301.0" prefHeight="259.0" prefWidth="633.0">
                           <columns>
                               <TableColumn fx:id="cID" prefWidth="51.0" text="ID" />
@@ -157,24 +157,24 @@
                            </effect>
                         </Label>
                         <TextField fx:id="textFieldLogin_rescep" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type your Login:" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
+                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#updateReceptioniste" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update" />
                      </children>
                   </Pane>
                   <Pane fx:id="paneManageDoctor" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;" stylesheets="@../../css/stylePortal.css">
                      <children>
-                        <TextField fx:id="textNomDoc" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textNomDoc" layoutX="116.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Nom" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="18.0" layoutY="55.0" text="Family Name:">
                            <effect>
                               <Blend />
                            </effect>
                         </Label>
-                        <TextField fx:id="textPrenomDoc" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textPrenomDoc" layoutX="504.0" layoutY="51.0" prefHeight="26.0" prefWidth="206.0" promptText="Prenom" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="414.0" layoutY="55.0" text="First Name:">
                            <effect>
                               <Blend />
                            </effect>
                         </Label>
-                        <DatePicker fx:id="dat1" layoutX="508.0" layoutY="198.0" />
+                        <DatePicker fx:id="dat1" layoutX="508.0" layoutY="198.0" promptText="Née" />
                         <Label layoutX="421.0" layoutY="202.0" text="Birth Date:">
                            <effect>
                               <Blend />
@@ -184,7 +184,7 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#DeleteDoctor" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete">
+                        <Button layoutX="643.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#removeSelectDoctor" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 20;" text="Delete">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
@@ -204,19 +204,19 @@
                               <Blend />
                            </effect>
                         </TableView>
-                        <TextField fx:id="textID1" layoutX="116.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textID1" layoutX="116.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="ID" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="80.0" layoutY="104.0" text="ID :">
                            <effect>
                               <Bloom />
                            </effect>
                         </Label>
-                        <TextField fx:id="textNumberDoc" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textNumberDoc" layoutX="504.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" promptText="N° Téléphone" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="393.0" layoutY="104.0" text="Phone number:">
                            <effect>
                               <Blend />
                            </effect>
                         </Label>
-                        <TextField fx:id="textAddressDoc" layoutX="116.0" layoutY="149.0" prefHeight="26.0" prefWidth="392.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <TextField fx:id="textAddressDoc" layoutX="116.0" layoutY="149.0" prefHeight="26.0" prefWidth="392.0" promptText="Adresse" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
                         <Label layoutX="54.0" layoutY="153.0" text="Adress:">
                            <effect>
                               <Blend />
@@ -227,9 +227,9 @@
                               <Blend />
                            </effect>
                         </Label>
-                        <RadioButton fx:id="RadioBtnDoc_M" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" text="Male" />
+                        <RadioButton fx:id="RadioBtnDoc_M" layoutX="116.0" layoutY="202.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="98.0" selected="true" text="Male" />
                         <RadioButton fx:id="RadioBtnDoc_F" layoutX="232.0" layoutY="202.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="109.0" text="Female" />
-                        <PasswordField fx:id="passwordDoc" layoutX="508.0" layoutY="247.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <PasswordField fx:id="passwordDoc" layoutX="508.0" layoutY="247.0" promptText="Mot de passe" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
                         <Label layoutX="420.0" layoutY="251.0" text="Password:">
                            <effect>
                               <Blend />
@@ -240,8 +240,8 @@
                               <Blend />
                            </effect>
                         </Label>
-                        <TextField fx:id="textLoginDoc" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
-                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update">
+                        <TextField fx:id="textLoginDoc" layoutX="116.0" layoutY="247.0" prefHeight="26.0" prefWidth="206.0" promptText="Pseudonyme" style="-fx-background-radius: 20;" styleClass="text-input-exemple" stylesheets="@../../css/stylePortal.css" />
+                        <Button layoutX="643.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#updateDoctor" prefHeight="36.0" prefWidth="68.0" style="-fx-background-radius: 20;" text="Update">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>

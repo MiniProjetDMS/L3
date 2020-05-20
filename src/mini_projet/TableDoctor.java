@@ -179,54 +179,52 @@ public class TableDoctor {
         return doctorId;
     }
     
+    /*
+    * Delete Doctor where ID in parameter
+    *
+    */
+    public static void deleteDoctor (int id) throws SQLException, ClassNotFoundException {
+
+        ResultSet rs = null;
+        String sql = "DELETE FROM medcin WHERE id_med = " + id;        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {            
+            pstmt.execute();
+            System.out.println("Record ID :"+id+" deleted successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     
     /*
-    void insertingDoctor() throws SQLException{
-
-       //Inserting values to a table
-        String query = "INSERT INTO medcin(`id_med`, `nom_med`, `prenom_med`, `sexe`, `date_nes_med`, `adress_med`, `num_tel_med`, `pseudo_med`, `mdp_medc`, `email_medc`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement pstmt = conn.prepareStatement(query);//
-                       
-        pstmt.setString(1, id_med); 
-        pstmt.setString(2, nom_med);
-        pstmt.setString(3, prenom_med);
-        pstmt.setString(4, sexe); 
-        pstmt.setString(5, date_nes_med);
-        pstmt.setString(6, adress_med);
-        pstmt.setString(7, num_tel_med); 
-        pstmt.setString(8, pseudo_med);
-        pstmt.setString(9, mdp_medc); 
-        pstmt.setString(10, email_medc);
-        pstmt.execute();// recuperer les  saisis par user, w tzifet l bdd
-        
-        System.out.println("Successfully inserted :: "+nom_med);
-
-    } */
- /*   public static int  remove(String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) throws SQLException, ClassNotFoundException {
-        int doctorId = 0;
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
-        
-    //    ResultSet rs = null;
-   
-         
-        String sql = "Delete from medcin where id_med ='" +doctorId+"'";
-
+    * Update Doctor
+    */
+    public static void updateDoctor(int id,String nom_med, String prenom_med, String sexe, String date_nes_med, String adress_med, String num_tel_med, String pseudo_med, String mdp_medc, String email_medc) throws SQLException, ClassNotFoundException{
+               
+        String sql = "UPDATE medcin SET `nom_med` = ?, `prenom_med` = ?, `sexe` = ?, `date_nes_med` = ?, `adress_med` = ?, `num_tel_med` = ?, `pseudo_med` = ?, `mdp_medc` = ?, `email_medc` = ?"+" WHERE `id_med` = ?";
+                
         
         try (Connection conn = DBConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
- 
-                    pstmt.setString(1, nom_med);
-                    pstmt.setString(2, prenom_med);
-                    pstmt.setString(3, sexe); 
-                    pstmt.setString(4, date_nes_med);
-                    pstmt.setString(5, adress_med);
-                    pstmt.setString(6, num_tel_med); 
-                    pstmt.setString(7, pseudo_med);
-                    pstmt.setString(8, mdp_medc); 
-                    pstmt.setString(9, email_medc);
-             pstmt.executeUpdate();
-        }
-        return doctorId;
-    }*/
+
+            pstmt.setString(1, nom_med);
+            pstmt.setString(2, prenom_med);
+            pstmt.setString(3, sexe); 
+            pstmt.setString(4, date_nes_med);
+            pstmt.setString(5, adress_med);
+            pstmt.setString(6, num_tel_med); 
+            pstmt.setString(7, pseudo_med);
+            pstmt.setString(8, mdp_medc); 
+            pstmt.setString(9, email_medc);
+            pstmt.setInt(10, id);
+            
+            int i = pstmt.executeUpdate();
+            System.out.println("Record ID :"+id+" Name :"+i+" update successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }       
+    
+    }
+
 }
