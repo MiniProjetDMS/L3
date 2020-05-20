@@ -265,4 +265,46 @@ public class ReceptionistPortalController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+    
+    /*
+    * recuper id selectioné et supprimi de la bdd Patient
+    * 
+    */
+    @FXML
+    private void removeSelectPatient() throws SQLException, ClassNotFoundException{
+        if(tablePatient.getSelectionModel().getSelectedItem() != null){
+            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
+            TablePatient.deletePatient(selectReceptioniste.getId_pat());
+            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
+        }
+    }
+    
+    /*
+    * recuper id selectioné et meter a jour ! Patient
+    */
+    @FXML
+    private void updateSelectPatient() throws SQLException, ClassNotFoundException{
+        
+        String nom_pat, prenom_pat, date_nes_pat, etat_civil, adress_pat, num_tel_pat, sexe = null;
+        nom_pat = textFieldNom_patient.getText();
+        prenom_pat = textFieldPrenom_patient.getText();
+        date_nes_pat = datePicker_patient.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        etat_civil = textFieldCivilStatus_patient.getText();
+        adress_pat = textFieldAdress_patient.getText();
+        if(radioButtonMal_patient.isSelected())
+            sexe = "M";
+        if(radioButtonFem_patient.isSelected())
+            sexe = "F";
+        num_tel_pat = textFieldPhone_patient.getText();
+        
+        if(tablePatient.getSelectionModel().getSelectedItem() != null){
+            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
+            System.out.println("mini_projet.AdminPortalController.updateReceptioniste() :ID :: " +selectReceptioniste.getId_pat());
+            TablePatient.updatePatient(selectReceptioniste.getId_pat(),nom_pat, prenom_pat, sexe, date_nes_pat, etat_civil, adress_pat, num_tel_pat);
+            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
+            afficherNewPatient(selectReceptioniste.getId_pat());
+        }
+    }
+    
+    
 }

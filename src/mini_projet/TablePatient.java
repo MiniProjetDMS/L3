@@ -2,7 +2,6 @@
 package mini_projet;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -136,4 +135,37 @@ public class TablePatient {
         return PatientId;
     }
     
+    public static void deletePatient(int id) throws SQLException, ClassNotFoundException {
+        ResultSet rs = null;
+        String sql = "DELETE FROM patient WHERE id_pat = " + id;        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {            
+            pstmt.execute();
+            System.out.println("Record ID :"+id+" deleted successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updatePatient(int id, String nom_pat, String prenom_pat, String sexe, String date_nes_pat, String etat_civil, String adress_pat, String num_tel_pat) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE patient SET `nom_pat` = ?, `prenom_pat` = ?, `sexe` = ?, `date_nes_pat` = ?, `etat_civil` = ?, `adress_pat` = ?, `num_tel_pat` = ?"+" WHERE `id_pat` = ?";
+        
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);) {
+
+            pstmt.setString(1, nom_pat);
+            pstmt.setString(2, prenom_pat);
+            pstmt.setString(3, sexe);
+            pstmt.setString(4, date_nes_pat);
+            pstmt.setString(5, etat_civil);
+            pstmt.setString(6, adress_pat);
+            pstmt.setString(7, num_tel_pat);
+            pstmt.setInt(8, id);
+            
+            int i = pstmt.executeUpdate();
+            System.out.println("Record ID :"+id+" Name :"+i+" update successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
