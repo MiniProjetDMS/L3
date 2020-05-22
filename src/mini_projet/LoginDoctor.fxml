@@ -31,7 +31,7 @@
                            <image>
                               <Image url="@../css/avatar.png" />
                            </image></ImageView>
-                        <TextField prefHeight="50.0" prefWidth="284.0" promptText="Email" translateX="30.0">
+                        <TextField fx:id="textFpseudo" prefHeight="50.0" prefWidth="284.0" promptText="Pseudonyme" translateX="30.0">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -44,18 +44,19 @@
                            <image>
                               <Image url="@../css/password.png" />
                            </image></ImageView>
-                        <PasswordField prefHeight="50.0" prefWidth="284.0" promptText="Password" translateX="30.0">
+                        <PasswordField fx:id="textFPassword" prefHeight="50.0" prefWidth="284.0" promptText="Password" translateX="30.0">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </PasswordField>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onMouseClicked="#login" styleClass="button1" text="Login" translateX="250.0" translateY="15.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#loginD" styleClass="button1" text="Login" translateX="250.0" translateY="15.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <Label fx:id="labMsg" text="Label" />
                </children>
             </VBox>
          </children>

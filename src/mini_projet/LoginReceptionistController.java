@@ -7,6 +7,7 @@ package mini_projet;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -24,6 +28,15 @@ import javafx.stage.Stage;
  * @author Nadir
  */
 public class LoginReceptionistController implements Initializable {
+
+    @FXML
+    private TextField textFpseudo;
+    @FXML
+    private PasswordField textFPassword;
+    @FXML
+    private Button btnBk1;
+    @FXML
+    private Label labMsg;
 
     /**
      * Initializes the controller class.
@@ -45,9 +58,11 @@ public class LoginReceptionistController implements Initializable {
         app_stage.show();
     } 
     
+    /*
+    * charger la page de receptioniste
+    */
     
-    @FXML
-    private void login(MouseEvent event) throws IOException {
+    private void loginReceptioniste(MouseEvent event) throws IOException {
         Parent home;
         home = FXMLLoader.load(getClass().getResource("ReceptionistPortal.fxml"));
         Scene homeScene = new Scene(home);
@@ -56,6 +71,23 @@ public class LoginReceptionistController implements Initializable {
         app_stage.setScene(homeScene);
         app_stage.resizableProperty().set(true);
         app_stage.show();
+    }
+    
+    /*
+    * si le pseudonyme correcte laisse le entrer
+    * 
+    */
+    @FXML
+    private void loginR(MouseEvent event) throws SQLException, ClassNotFoundException, IOException{
+        String pseudo = textFpseudo.getText();
+        String password = textFPassword.getText();
+        if(TableReceptionicte.receptionisteExiste(pseudo, password)){
+            labMsg.setText("successfully");
+            loginReceptioniste(event);
+        }else{
+            labMsg.setText("Vérifier votre pseudonym ou mot de passe !!");
+        }
+        
     }
     
 }

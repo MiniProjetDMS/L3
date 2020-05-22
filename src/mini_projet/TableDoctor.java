@@ -226,5 +226,25 @@ public class TableDoctor {
         }       
     
     }
+    
+    /*
+    * Test si pseudonym et le mot de passe existe dans la BDD
+    * si oui resulta vrais sinon fausse
+    */
+    public static boolean receptionisteExiste(String pseudonym, String password) throws SQLException, ClassNotFoundException{        
+        boolean status = false;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM medcin WHERE pseudo_med = ? AND mdp_medc = ?");) {
+            pstmt.setString(1, pseudonym);
+            pstmt.setString(2, password);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }        
+         return status;
+    }
 
 }
