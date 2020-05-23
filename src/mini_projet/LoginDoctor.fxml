@@ -51,12 +51,12 @@
                         </PasswordField>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onMouseClicked="#loginD" styleClass="button1" text="Login" translateX="250.0" translateY="15.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#loginDoctor" styleClass="button1" text="Login" translateX="250.0" translateY="15.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Label fx:id="labMsg" text="Label" />
+                  <Label fx:id="labMsg" />
                </children>
             </VBox>
          </children>

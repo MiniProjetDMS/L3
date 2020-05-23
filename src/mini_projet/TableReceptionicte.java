@@ -11,6 +11,19 @@ import java.util.logging.Logger;
 
 public class TableReceptionicte {
 
+     void receptioniste(TableReceptionicte receptioniste) {
+        this.id_recep = receptioniste.getId_recep();
+        this.nom_recep = receptioniste.getNom_recep();
+        this.prenom_recep = receptioniste.getPrenom_recep();
+        this.sexe = receptioniste.getSexe();
+        this.date_nes_recep = receptioniste.getDate_nes_recep();
+        this.adress_recep = receptioniste.getAdress_recep();
+        this.num_tel_recep = receptioniste.getNum_tel_recep();
+        this.pseudo_recep = receptioniste.getPseudo_recep();
+        this.mdp_recep = receptioniste.getMdp_recep();
+        this.email_recep = receptioniste.getEmail_recep();
+    }
+
    
 
     
@@ -233,5 +246,31 @@ public class TableReceptionicte {
         }        
          return status;
     }
-            
+    
+    /**
+     * Test si pseudonym et le mot de passe existe dans la BDD
+     * @param pseudonym
+     * @param password
+     * @return Receptioniste by ID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static TableReceptionicte _receptionisteExiste(String pseudonym, String password) throws SQLException, ClassNotFoundException{    
+        boolean status = false;
+        TableReceptionicte receptioniste = null;
+        try(Connection conn = DBConnector.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM receptionicte WHERE pseudo_recep = ? AND mdp_recep = ?");) {
+            pstmt.setString(1, pseudonym);
+            pstmt.setString(2, password);
+            System.out.println("PreparedStatement :: "+pstmt);            
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            receptioniste = new TableReceptionicte(rs.getInt("id_recep"), rs.getString("nom_recep"), rs.getString("prenom_recep"), rs.getString("sexe"), rs.getString("date_nes_recep"), rs.getString("adress_recep"), rs.getString("num_tel_recep"), rs.getString("pseudo_recep"), rs.getString("mdp_recep"), rs.getString("email_recep"));
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }        
+         return receptioniste;
+    }
+     
 }

@@ -89,5 +89,26 @@ public class LoginReceptionistController implements Initializable {
         }
         
     }
+    @FXML
+    public void loginRece(MouseEvent event) throws SQLException, ClassNotFoundException, IOException{
+        String pseudo = textFpseudo.getText();
+        String password = textFPassword.getText();
+        if(TableReceptionicte.receptionisteExiste(pseudo, password)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReceptionistPortal.fxml"));
+            Parent root =  loader.load();            
+            ReceptionistPortalController receptionisteID = loader.getController();
+            receptionisteID.setID(556684);
+            receptionisteID.setReceptioniste(TableReceptionicte._receptionisteExiste(pseudo, password));            
+            Scene homeScene = new Scene(root);
+            Stage app_stage;
+            app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app_stage.setScene(homeScene);
+            app_stage.resizableProperty().set(true);
+            app_stage.show();
+        }else{
+            labMsg.setText("Vérifier votre pseudonym ou mot de passe !!");
+        }
+    }
+
     
 }

@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1029.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReceptionistPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1029.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.ReceptionistPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -29,6 +29,11 @@
                </BorderPane.margin>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image2" translateX="50.0" translateY="20.0" />
+                  <Label fx:id="lab_ID" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                   <Button mnemonicParsing="false" onMouseClicked="#toFrontManagePatient" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Manage Patient" textFill="#61455f" translateY="120.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

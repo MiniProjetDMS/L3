@@ -46,7 +46,7 @@ public class LoginDoctorController implements Initializable {
         app_stage.setScene(homeScene);
         app_stage.show();
     }
-    
+    /*
     private void loginDoctor(MouseEvent event) throws IOException, SQLException, ClassNotFoundException {
         Parent home;
         home = FXMLLoader.load(getClass().getResource("DoctorPortal.fxml"));
@@ -57,22 +57,47 @@ public class LoginDoctorController implements Initializable {
         app_stage.resizableProperty().set(true);
         app_stage.show();
     
-    }  
+    }  */
     
     /*
     * si le pseudonyme correcte laisse le entrer
     * 
-    */
+    *//*
     @FXML
     private void loginD(MouseEvent event) throws SQLException, ClassNotFoundException, IOException{
         String pseudo = textFpseudo.getText();
         String password = textFPassword.getText();
-        if(TableReceptionicte.receptionisteExiste(pseudo, password)){
+        if(TableDoctor.doctorExiste(pseudo, password)){
             labMsg.setText("successfully");
             loginDoctor(event);
         }else{
             labMsg.setText("Vérifier votre pseudonym ou mot de passe !!");
         }
         
+    }*/
+    
+    /*
+    * si le pseudonyme correcte laisse le entrer 
+    * charger les informations de med
+    */
+    @FXML
+    public void loginDoctor(MouseEvent event) throws SQLException, ClassNotFoundException, IOException{
+        String pseudo = textFpseudo.getText();
+        String password = textFPassword.getText();
+        if(TableDoctor.doctorExiste(pseudo, password)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorPortal.fxml"));
+            Parent root =  loader.load();            
+            DoctorPortalController doctorID = loader.getController();
+            doctorID.setDoctor(TableDoctor._doctorExiste(pseudo, password));            
+            Scene homeScene = new Scene(root);
+            Stage app_stage;
+            app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app_stage.setScene(homeScene);
+            app_stage.resizableProperty().set(true);
+            app_stage.show();
+        }else{
+            labMsg.setText("Vérifier votre pseudonym ou mot de passe !!");
+        }
     }
+    
 }

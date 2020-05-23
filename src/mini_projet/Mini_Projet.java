@@ -16,10 +16,8 @@ public class Mini_Projet extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginAs.fxml"));
-        
-        Scene scene = new Scene(root);   
-        
+        Parent root = FXMLLoader.load(getClass().getResource("LoginAs.fxml"));        
+        Scene scene = new Scene(root);           
         stage.setScene(scene);
         stage.resizableProperty().set(false);
         //stage.initStyle(StageStyle.UNDECORATED); 
@@ -44,12 +42,6 @@ public class Mini_Projet extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        // #####
-        //Connection conn = null;
-        //conn = DBConnector.getConnection();
-        //if(conn != null)
-        //    System.out.println("connection done !");
-        // #####
         launch(args);
         
     }

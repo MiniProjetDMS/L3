@@ -1,3 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mini_projet;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -17,21 +24,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import mini_projet.AdminPortalController;
-import mini_projet.DBConnector;
-import mini_projet.TablePatient;
 
+/**
+ * FXML Controller class
+ *
+ * @author Nadir
+ */
 public class ReceptionistPortalController implements Initializable {
 
-    
     @FXML
     private Pane paneManagePatient;
     @FXML
@@ -50,8 +60,6 @@ public class ReceptionistPortalController implements Initializable {
     private DatePicker appDate;
     @FXML
     private TextField AppTime;
-    @FXML
-    private TextField PatieInfo;
     @FXML
     private TableColumn<?, ?> numApp;
     @FXML
@@ -145,6 +153,10 @@ public class ReceptionistPortalController implements Initializable {
     private RadioButton radioButtonMal_patient;
     @FXML
     private RadioButton radioButtonFem_patient;
+    @FXML
+    private ToggleGroup sexe;
+    @FXML
+    private Label lab_ID;
 
     /**
      * Initializes the controller class.
@@ -152,10 +164,82 @@ public class ReceptionistPortalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         remplirTblesPatient();
+    }    
+
+    @FXML
+    private void toFrontManagePatient(MouseEvent event) {
+        paneManagePatient.toFront();
+    }
+
+    @FXML
+    private void toFrontManageAppointement(MouseEvent event) {
+        paneManageAppointement.toFront();
+    }
+
+    @FXML
+    private void toFrontMessageDoctor(MouseEvent event) {
+        paneMessageDoctor.toFront();
+    }
+
+    @FXML
+    private void exitR(MouseEvent event) throws IOException {
+        Parent home;
+        home = FXMLLoader.load(getClass().getResource("/mini_projet/LoginReceptionist.fxml"));//kayan problème de path normalement en utilise directement LoginReceptionist.fxml
+        Scene homeScene = new Scene(home);
+        Stage app_stage;
+        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        app_stage.setScene(homeScene);
+        app_stage.resizableProperty().set(false);
+        app_stage.show();
+    } 
+
+    @FXML
+    private void addPatient() throws SQLException, ClassNotFoundException{
+        newPatient();
+    }
+
+    /*
+    * recuper id selectioné et meter a jour ! Patient
+    */
+    @FXML
+    private void updateSelectPatient() throws SQLException, ClassNotFoundException{
+        
+        String nom_pat, prenom_pat, date_nes_pat, etat_civil, adress_pat, num_tel_pat, sexe = null;
+        nom_pat = textFieldNom_patient.getText();
+        prenom_pat = textFieldPrenom_patient.getText();
+        date_nes_pat = datePicker_patient.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
+        etat_civil = textFieldCivilStatus_patient.getText();
+        adress_pat = textFieldAdress_patient.getText();
+        if(radioButtonMal_patient.isSelected())
+            sexe = "M";
+        if(radioButtonFem_patient.isSelected())
+            sexe = "F";
+        num_tel_pat = textFieldPhone_patient.getText();
+        
+        if(tablePatient.getSelectionModel().getSelectedItem() != null){
+            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
+            System.out.println("mini_projet.AdminPortalController.updateReceptioniste() :ID :: " +selectReceptioniste.getId_pat());
+            TablePatient.updatePatient(selectReceptioniste.getId_pat(),nom_pat, prenom_pat, sexe, date_nes_pat, etat_civil, adress_pat, num_tel_pat);
+            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
+            afficherNewPatient(selectReceptioniste.getId_pat());
+        }
+    }
+
+    /*
+    * recuper id selectioné et supprimi de la bdd Patient
+    * 
+    */
+    @FXML
+    private void removeSelectPatient() throws SQLException, ClassNotFoundException{
+        if(tablePatient.getSelectionModel().getSelectedItem() != null){
+            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
+            TablePatient.deletePatient(selectReceptioniste.getId_pat());
+            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
+        }
     }
     
     /*
-    * Remplir les deux table Patient
+    * Remplir la table Patient
     * 
     */
     void remplirTblesPatient(){         
@@ -184,42 +268,7 @@ public class ReceptionistPortalController implements Initializable {
 
     }
     
-    
-    
-    
-    @FXML
-    private void exitR(MouseEvent event) throws IOException {
-        Parent home;
-        home = FXMLLoader.load(getClass().getResource("/mini_projet/LoginReceptionist.fxml"));//kayan problème de path normalement en utilise directement LoginReceptionist.fxml
-        Scene homeScene = new Scene(home);
-        Stage app_stage;
-        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(homeScene);
-        app_stage.resizableProperty().set(false);
-        app_stage.show();
-    }    
-
-    @FXML
-    private void toFrontManagePatient(MouseEvent event) {
-        paneManagePatient.toFront();
-    }
-
-    @FXML
-    private void toFrontManageAppointement(MouseEvent event) {
-        paneManageAppointement.toFront();
-    }
-
-    @FXML
-    private void toFrontMessageDoctor(MouseEvent event) {
-        paneMessageDoctor.toFront();
-    }
-    
-    @FXML
-    private void addPatient() throws SQLException, ClassNotFoundException{
-        newPatient();
-    }
-    
-    /*
+     /*
     * fonction recuperer et insertion les données de patient    
     * de formulaire vers la BDD
     */ 
@@ -265,46 +314,12 @@ public class ReceptionistPortalController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
-    /*
-    * recuper id selectioné et supprimi de la bdd Patient
-    * 
-    */
-    @FXML
-    private void removeSelectPatient() throws SQLException, ClassNotFoundException{
-        if(tablePatient.getSelectionModel().getSelectedItem() != null){
-            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
-            TablePatient.deletePatient(selectReceptioniste.getId_pat());
-            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
-        }
+        public void setID(int id){
+        lab_ID.setText("ID :: "+id);
     }
-    
-    /*
-    * recuper id selectioné et meter a jour ! Patient
-    */
-    @FXML
-    private void updateSelectPatient() throws SQLException, ClassNotFoundException{
-        
-        String nom_pat, prenom_pat, date_nes_pat, etat_civil, adress_pat, num_tel_pat, sexe = null;
-        nom_pat = textFieldNom_patient.getText();
-        prenom_pat = textFieldPrenom_patient.getText();
-        date_nes_pat = datePicker_patient.getValue().format(DateTimeFormatter.ISO_DATE);//getPromptText();
-        etat_civil = textFieldCivilStatus_patient.getText();
-        adress_pat = textFieldAdress_patient.getText();
-        if(radioButtonMal_patient.isSelected())
-            sexe = "M";
-        if(radioButtonFem_patient.isSelected())
-            sexe = "F";
-        num_tel_pat = textFieldPhone_patient.getText();
-        
-        if(tablePatient.getSelectionModel().getSelectedItem() != null){
-            TablePatient selectReceptioniste = tablePatient.getSelectionModel().getSelectedItem();
-            System.out.println("mini_projet.AdminPortalController.updateReceptioniste() :ID :: " +selectReceptioniste.getId_pat());
-            TablePatient.updatePatient(selectReceptioniste.getId_pat(),nom_pat, prenom_pat, sexe, date_nes_pat, etat_civil, adress_pat, num_tel_pat);
-            tablePatient.getItems().removeAll(tablePatient.getSelectionModel().getSelectedItem());
-            afficherNewPatient(selectReceptioniste.getId_pat());
-        }
+    private TableReceptionicte receptioniste = null; 
+    public void setReceptioniste(TableReceptionicte receptioniste){
+        this.receptioniste = receptioniste;
+        lab_ID.setText("Mmd :: "+this.receptioniste.getNom_recep());
     }
-    
-    
 }

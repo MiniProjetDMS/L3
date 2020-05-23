@@ -231,7 +231,7 @@ public class TableDoctor {
     * Test si pseudonym et le mot de passe existe dans la BDD
     * si oui resulta vrais sinon fausse
     */
-    public static boolean receptionisteExiste(String pseudonym, String password) throws SQLException, ClassNotFoundException{        
+    public static boolean doctorExiste(String pseudonym, String password) throws SQLException, ClassNotFoundException{        
         boolean status = false;
         try(Connection conn = DBConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM medcin WHERE pseudo_med = ? AND mdp_medc = ?");) {
@@ -245,6 +245,32 @@ public class TableDoctor {
             System.out.println(ex.getMessage());
         }        
          return status;
+    }
+    
+    /**
+     * Test si pseudonym et le mot de passe existe dans la BDD
+     * @param pseudonym
+     * @param password
+     * @return Doctor by ID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static TableDoctor _doctorExiste(String pseudonym, String password) throws SQLException, ClassNotFoundException{    
+        boolean status = false;
+        TableDoctor doctor = null;
+        try(Connection conn = DBConnector.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM medcin WHERE pseudo_med = ? AND mdp_medc = ?");) {
+            pstmt.setString(1, pseudonym);
+            pstmt.setString(2, password);
+            System.out.println("PreparedStatement :: "+pstmt);            
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            doctor = new TableDoctor(rs.getInt("id_med"), rs.getString("nom_med"), rs.getString("prenom_med"), rs.getString("sexe"), rs.getString("date_nes_med"), rs.getString("adress_med"), rs.getString("num_tel_med"), rs.getString("pseudo_med"), rs.getString("mdp_medc"), rs.getString("email_medc"));
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }        
+         return doctor;
     }
 
 }

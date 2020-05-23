@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.DoctorPortalController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="1020.0" style="-fx-background-color: #A3DEDA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.DoctorPortalController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="580.0" prefWidth="980.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <left>
@@ -32,6 +32,11 @@
                </BorderPane.margin>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image3" translateX="50.0" translateY="20.0" />
+                  <Label fx:id="lab_ID" prefHeight="17.0" prefWidth="235.0" textAlignment="CENTER" textFill="#011d80">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                   <Button mnemonicParsing="false" onMouseClicked="#toFrontProfil" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Profil" textFill="#61455f" translateY="110.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -84,68 +89,6 @@
                   <Pane fx:id="paneStatistique" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
                         <Label layoutX="175.0" layoutY="60.0" prefHeight="38.0" prefWidth="261.0" text="Statistique" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneProfil" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="253.0" layoutY="24.0" prefHeight="48.0" prefWidth="206.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="      Doctor Profil">
-                           <font>
-                              <Font name="Arial Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <Text layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="40.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="40.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="docIdLab" layoutX="172.0" layoutY="99.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docNomLab" layoutX="172.0" layoutY="147.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docPreLab" layoutX="172.0" layoutY="190.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docDateLab" layoutX="172.0" layoutY="231.0" prefHeight="30.0" prefWidth="132.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docAddLab" layoutX="172.0" layoutY="310.0" prefHeight="33.0" prefWidth="314.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docPhoneLab" layoutX="172.0" layoutY="355.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docLogLab" layoutX="172.0" layoutY="404.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="docGenLAb" layoutX="172.0" layoutY="268.0" prefHeight="30.0" prefWidth="133.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Button fx:id="profEdit" layoutX="549.0" layoutY="470.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="157.0" style="-fx-background-radius: 40;" text="Edit Your Profile">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Button>
                      </children>
                   </Pane>
                   <Pane fx:id="paneProfilManage" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
@@ -294,6 +237,71 @@
                         <Button fx:id="ordnc" layoutX="435.0" layoutY="418.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="253.0" style="-fx-background-radius: 40;" text="Prescription">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="22.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneProfil" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <Label layoutX="253.0" layoutY="24.0" prefHeight="48.0" prefWidth="206.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="      Doctor Profil">
+                           <font>
+                              <Font name="Arial Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="42.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="42.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="42.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="42.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="40.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="42.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="40.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="labID" contentDisplay="CENTER" layoutX="172.0" layoutY="99.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="c" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets></Label>
+                        <Label fx:id="labFamilyName" layoutX="172.0" layoutY="147.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labFirstName" layoutX="172.0" layoutY="190.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labBirthDate" layoutX="172.0" layoutY="231.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labAddress" layoutX="172.0" layoutY="310.0" prefHeight="33.0" prefWidth="349.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labPhoneNum" layoutX="172.0" layoutY="355.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labPseudo" layoutX="172.0" layoutY="404.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labSexe" layoutX="172.0" layoutY="268.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Button fx:id="profEdit" layoutX="549.0" layoutY="470.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="157.0" style="-fx-background-radius: 40;" text="Edit Your Profile">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Button>
                      </children>
