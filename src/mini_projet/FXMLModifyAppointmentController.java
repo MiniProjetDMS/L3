@@ -7,6 +7,7 @@ package mini_projet;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author Nadir
  */
-public class FXMLRendezVousPaneController implements Initializable {
+public class FXMLModifyAppointmentController implements Initializable {
 
     @FXML
     private Label labelNom;
@@ -36,11 +37,11 @@ public class FXMLRendezVousPaneController implements Initializable {
     @FXML
     private Label labelPhone;
     @FXML
+    private DatePicker dateRDV;
+    @FXML
     private Spinner<Integer> spinnerH;
     @FXML
     private Spinner<Integer> spinnerM;
-    @FXML
-    private DatePicker dateRDV;
     @FXML
     private TextArea infoRDV;
     @FXML
@@ -55,19 +56,19 @@ public class FXMLRendezVousPaneController implements Initializable {
     }    
     
     private void spinnerInit(){
-        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,23, 9);
+        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,23);
         spinnerH.setValueFactory(gradesValueFactoryH);
         SpinnerValueFactory<Integer> gradesValueFactoryM = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59, 00);
         spinnerM.setValueFactory(gradesValueFactoryM);
-    }
-    
+    }   
+
     private int id;
     public void setId(int id) throws SQLException, ClassNotFoundException{
         this.id = id;
         remplirInfoPatient(id);
     }
     private void remplirInfoPatient(int id) throws SQLException, ClassNotFoundException{
-        TablePatient patient = TablePatient.patientWhereID(id);
+        TablePatient patient = TableRendezVous.patientWhereIDrdv(id);
         labelNom.setText(patient.getNom_pat());
         labelPrenom.setText(patient.getPrenom_pat());
         labelDateNaissance.setText(patient.getDate_nes_pat());
@@ -80,7 +81,8 @@ public class FXMLRendezVousPaneController implements Initializable {
         date = dateRDV.getValue().format(DateTimeFormatter.ISO_DATE);
         heur = ""+spinnerH.getValue()+":"+spinnerM.getValue();
         info = infoRDV.getText();
-        TableRendezVous.insertNewRDV(id, date, heur, info);
+        System.out.println("modify rdv :: date : "+date +" heur : "+heur+" info : "+info);
+        TableRendezVous.upDateRDV(id, date, heur, info);
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }

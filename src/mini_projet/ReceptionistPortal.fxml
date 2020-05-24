@@ -261,21 +261,21 @@
                                  <HBox.margin>
                                     <Insets left="30.0" right="10.0" top="10.0" />
                                  </HBox.margin></Button>
-                              <Button mnemonicParsing="false" text="Cancel Appointment">
+                              <Button mnemonicParsing="false" onMouseClicked="#cancelSelectRDV" text="Cancel Appointment">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin></Button>
-                              <Button mnemonicParsing="false" text="Modify Appointment">
+                              <Button mnemonicParsing="false" onMouseClicked="#modiffierRDV" text="Modify Appointment">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin></Button>
-                              <Button mnemonicParsing="false" text="Activate Appointment">
+                              <Button mnemonicParsing="false" onMouseClicked="#activRDV" text="Activate Appointment">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>

@@ -339,13 +339,9 @@ public class ReceptionistPortalController implements Initializable {
     void remplirTblesRDV(){         
 
         try(Connection conn = DBConnector.getConnection();) {
-            //if(conn != null)
-            //    System.out.println("connection BDD Admin controller done !");
-            //SELECT `num_rdv`,`nom_pat`,`prenom_pat`,`num_tel_pat`,`date_heure`,`info_pat` FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat
-            //SELECT num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat
-            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat,activateRDV FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat");
             while(rs.next()){
-                oblistRDV.add(new TableRendezVous(rs.getInt("id_rdv"), rs.getString("date"), rs.getString("time_rdv"), rs.getInt("num_rdv"), rs.getString("info_pat"), rs.getString("nom_pat"), rs.getString("prenom_pat"), rs.getString("num_tel_pat")));
+                oblistRDV.add(new TableRendezVous(rs.getInt("id_rdv"), rs.getString("date"), rs.getString("time_rdv"), rs.getInt("num_rdv"), rs.getString("info_pat"), rs.getString("nom_pat"), rs.getString("prenom_pat"), rs.getString("num_tel_pat"),rs.getString("activateRDV")));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -357,9 +353,61 @@ public class ReceptionistPortalController implements Initializable {
             col_DateRDV.setCellValueFactory(new PropertyValueFactory<>("date"));
             col_TimeRDV.setCellValueFactory(new PropertyValueFactory<>("time_rdv"));
             col_InfoRDV.setCellValueFactory(new PropertyValueFactory<>("info_pat"));
-            //col_ActivateRDV.setCellValueFactory(new PropertyValueFactory<>("adress_pat"));
-            tableRDV.setItems(oblistRDV);      //remplir 1er table Patient       
+            col_ActivateRDV.setCellValueFactory(new PropertyValueFactory<>("activateRDV"));
+            tableRDV.setItems(oblistRDV);      //remplir 1er table RDV       
     }
-
+    
+    /*
+    * recuper id selectioné et supprimi de la bdd rendez vous
+    * 
+    */
+    @FXML
+    private void cancelSelectRDV() throws SQLException, ClassNotFoundException{
+        if(tableRDV.getSelectionModel().getSelectedItem() != null){
+            TableRendezVous selectReceptioniste = tableRDV.getSelectionModel().getSelectedItem();
+            TableRendezVous.cancelRDV(selectReceptioniste.getId_rdv());
+            tableRDV.getItems().removeAll(tableRDV.getSelectionModel().getSelectedItem());
+        }
+    }
+    
+    /*
+    * recuper id selectioné et modiffier le rendez vous dans la BDD
+    */
+    @FXML
+    private void modiffierRDV() throws SQLException, IOException, ClassNotFoundException{
+        if(tableRDV.getSelectionModel().getSelectedItem() != null){
+            TableRendezVous selectReceptioniste = tableRDV.getSelectionModel().getSelectedItem();
+            updateRDV(selectReceptioniste.getId_rdv());
+            System.out.println("ID :: "+selectReceptioniste.getId_rdv());
+        }
+    }
+    
+    /*
+    * Modiffier un RDV dans la BDD
+    * 
+    */
+    public void updateRDV(int id) throws IOException, SQLException, ClassNotFoundException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLModifyAppointment.fxml"));
+        Parent root = loader.load();
+        FXMLModifyAppointmentController mrdv = loader.getController();
+        mrdv.setId(id);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add appointment patient");
+        stage.resizableProperty().set(false);
+        stage.show();
+    }
+    
+    /*
+    * activer rendez vous
+    * 
+    */
+    @FXML
+    private void activRDV() throws SQLException, ClassNotFoundException{
+        if(tableRDV.getSelectionModel().getSelectedItem() != null){
+            TableRendezVous.upDateActiv(tableRDV.getSelectionModel().getSelectedItem().getId_rdv());            
+        }
+    }
+    
 
 }

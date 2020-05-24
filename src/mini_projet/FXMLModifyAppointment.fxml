@@ -14,19 +14,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.FXMLRendezVousPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.FXMLModifyAppointmentController">
    <children>
       <GridPane alignment="CENTER" layoutY="45.0" prefHeight="124.0" prefWidth="401.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Label text="Family name :">
                <GridPane.margin>
@@ -101,14 +101,14 @@
          </padding>
       </GridPane>
       <GridPane layoutY="230.0" prefHeight="61.0" prefWidth="459.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Label text="Desired date">
                <opaqueInsets>
@@ -136,7 +136,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Spinner fx:id="spinnerH" editable="true" prefHeight="25.0" prefWidth="88.0" />
-                  <Spinner fx:id="spinnerM" prefHeight="25.0" prefWidth="87.0" />
+                  <Spinner fx:id="spinnerM" editable="true" prefHeight="25.0" prefWidth="87.0" />
                </children>
             </HBox>
          </children>
@@ -160,8 +160,9 @@
       <TextArea fx:id="infoRDV" layoutX="20.0" layoutY="302.0" prefHeight="117.0" prefWidth="420.0" promptText="Information ..." AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="14.0" />
-         </font></TextArea>
-      <HBox layoutX="160.0" layoutY="426.0" prefHeight="40.0" prefWidth="140.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0">
+         </font>
+      </TextArea>
+      <HBox layoutX="160.0" layoutY="426.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#cancelBut" text="Cancel" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
                <opaqueInsets>
@@ -171,7 +172,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#getInfoRDV" text="Add" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
+            <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#getInfoRDV" text="Modify" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

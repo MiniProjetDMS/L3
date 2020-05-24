@@ -40,7 +40,7 @@ public class FXMLRendezVousIDPatientController implements Initializable {
         // TODO
     }    
     
-    private void nextStep(MouseEvent event, int id) throws IOException{
+    private void nextStep(MouseEvent event, int id) throws IOException, SQLException, ClassNotFoundException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLRendezVousPane.fxml"));
         Parent root = loader.load();
         FXMLRendezVousPaneController rdv = loader.getController();
