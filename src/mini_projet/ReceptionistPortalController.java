@@ -51,32 +51,6 @@ public class ReceptionistPortalController implements Initializable {
     @FXML
     private Button btnMsgD;
     @FXML
-    private TextField appID;
-    @FXML
-    private TextField PatieID;
-    @FXML
-    private TextField AppNum;
-    @FXML
-    private DatePicker appDate;
-    @FXML
-    private TextField AppTime;
-    @FXML
-    private TableColumn<?, ?> numApp;
-    @FXML
-    private TableColumn<?, ?> patientInfo;
-    @FXML
-    private TableColumn<?, ?> AppDate;
-    @FXML
-    private TableColumn<?, ?> AppTime2;
-    @FXML
-    private TableColumn<?, ?> AppCom;
-    @FXML
-    private Button UpdateApp;
-    @FXML
-    private Button DelApp;
-    @FXML
-    private Button AddApp;
-    @FXML
     private TextField DentNom;
     @FXML
     private TextField DentAdress;
@@ -157,6 +131,25 @@ public class ReceptionistPortalController implements Initializable {
     private ToggleGroup sexe;
     @FXML
     private Label lab_ID;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_NRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_FamilyNameRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_FirstNameRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_PhoneRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_DateRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_TimeRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_InfoRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_ActivateRDV;
+    @FXML
+    private TableView<TableRendezVous> tableRDV;
+    ObservableList<TableRendezVous> oblistRDV = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -164,6 +157,7 @@ public class ReceptionistPortalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         remplirTblesPatient();
+        remplirTblesRDV();
     }    
 
     @FXML
@@ -322,4 +316,50 @@ public class ReceptionistPortalController implements Initializable {
         this.receptioniste = receptioniste;
         lab_ID.setText("Mmd :: "+this.receptioniste.getNom_recep());
     }
+    
+    /*
+    * Ajoute un RDV
+    * 
+    */
+    @FXML
+    public void addRDV() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLRendezVousIDPatient.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Add appointment patient");
+        stage.resizableProperty().set(false);
+        stage.show();
+    }
+    
+    /*
+    * Remplir la table Rendez vous
+    * 
+    */
+    void remplirTblesRDV(){         
+
+        try(Connection conn = DBConnector.getConnection();) {
+            //if(conn != null)
+            //    System.out.println("connection BDD Admin controller done !");
+            //SELECT `num_rdv`,`nom_pat`,`prenom_pat`,`num_tel_pat`,`date_heure`,`info_pat` FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat
+            //SELECT num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat
+            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_rdv = patient.id_pat");
+            while(rs.next()){
+                oblistRDV.add(new TableRendezVous(rs.getInt("id_rdv"), rs.getString("date"), rs.getString("time_rdv"), rs.getInt("num_rdv"), rs.getString("info_pat"), rs.getString("nom_pat"), rs.getString("prenom_pat"), rs.getString("num_tel_pat")));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+            col_NRDV.setCellValueFactory(new PropertyValueFactory<>("num_rdv"));
+            col_FamilyNameRDV.setCellValueFactory(new PropertyValueFactory<>("nom_pat"));
+            col_FirstNameRDV.setCellValueFactory(new PropertyValueFactory<>("prenom_pat"));
+            col_PhoneRDV.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));
+            col_DateRDV.setCellValueFactory(new PropertyValueFactory<>("date"));
+            col_TimeRDV.setCellValueFactory(new PropertyValueFactory<>("time_rdv"));
+            col_InfoRDV.setCellValueFactory(new PropertyValueFactory<>("info_pat"));
+            //col_ActivateRDV.setCellValueFactory(new PropertyValueFactory<>("adress_pat"));
+            tableRDV.setItems(oblistRDV);      //remplir 1er table Patient       
+    }
+
+
 }

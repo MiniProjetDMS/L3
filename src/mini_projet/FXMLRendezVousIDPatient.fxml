@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="209.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.FXMLRendezVousIDPatientController">
+   <children>
+      <VBox layoutX="62.0" layoutY="9.0" prefHeight="200.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="90.0" prefWidth="390.0">
+               <children>
+                  <Label prefHeight="23.0" prefWidth="119.0" text="Enter patient ID">
+                     <HBox.margin>
+                        <Insets left="35.0" right="30.0" top="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFIdPatient" prefHeight="25.0" prefWidth="154.0" promptText="ID">
+                     <HBox.margin>
+                        <Insets left="40.0" right="40.0" top="40.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="57.0" prefWidth="390.0">
+               <children>
+                  <Label fx:id="labErreur" prefHeight="53.0" prefWidth="382.0" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="40.0" right="20.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="64.0" prefWidth="390.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Scans QR ">
+                     <HBox.margin>
+                        <Insets left="115.0" top="20.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#validationID" prefHeight="25.0" prefWidth="75.0" text="Validate">
+                     <HBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -168,4 +168,44 @@ public class TablePatient {
             System.out.println(ex.getMessage());
         }
     }
+    
+    /*
+    * test si ID patient existe dans BDD
+    * 
+    */
+    public static boolean idPatientexiste(int id) throws SQLException, ClassNotFoundException{
+        boolean status = false;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patient WHERE id_pat  = ?");) {
+            pstmt.setInt(1, id);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return status;
+    }
+    
+    /*
+    * test si ID patient existe dans BDD
+    * 
+    */
+    public static TablePatient patientWhereID(int id) throws SQLException, ClassNotFoundException{
+        boolean status = false;
+        TablePatient patient = null;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patient WHERE id_pat  = ?");) {
+            pstmt.setInt(1, id);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            patient = new TablePatient(rs.getInt("id_pat"),rs.getString("nom_pat"),rs.getString("prenom_pat"),rs.getString("sexe"),rs.getString("date_nes_pat"),rs.getString("etat_civil"),rs.getString("adress_pat"),rs.getString("num_tel_pat"));
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return patient;
+    }
 }
