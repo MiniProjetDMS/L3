@@ -353,7 +353,7 @@ public class ReceptionistPortalController implements Initializable {
             col_DateRDV.setCellValueFactory(new PropertyValueFactory<>("date"));
             col_TimeRDV.setCellValueFactory(new PropertyValueFactory<>("time_rdv"));
             col_InfoRDV.setCellValueFactory(new PropertyValueFactory<>("info_pat"));
-            col_ActivateRDV.setCellValueFactory(new PropertyValueFactory<>("activateRDV"));
+            col_ActivateRDV.setCellValueFactory(new PropertyValueFactory<>("activate"));
             tableRDV.setItems(oblistRDV);      //remplir 1er table RDV       
     }
     
@@ -408,6 +408,10 @@ public class ReceptionistPortalController implements Initializable {
             TableRendezVous.upDateActiv(tableRDV.getSelectionModel().getSelectedItem().getId_rdv());            
         }
     }
-    
+    @FXML
+    public void refreshRDVtable(){
+        oblistRDV.clear();
+        remplirTblesRDV();
+    }
 
 }

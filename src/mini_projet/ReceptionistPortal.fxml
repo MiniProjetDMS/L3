@@ -282,6 +282,14 @@
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin></Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#refreshRDVtable" text="Refresh">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </HBox>
                         <TableView fx:id="tableRDV" layoutX="10.0" layoutY="157.0" prefHeight="402.0" prefWidth="712.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="156.0">
