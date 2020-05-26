@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,10 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.FXMLModifyAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" style="-fx-background-color: #cae8d5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mini_projet.FXMLModifyAppointmentController">
    <children>
-      <GridPane alignment="CENTER" layoutY="45.0" prefHeight="124.0" prefWidth="401.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <GridPane alignment="CENTER" layoutX="15.0" layoutY="45.0" prefHeight="124.0" prefWidth="445.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
          <columnConstraints>
+            <ColumnConstraints />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -28,7 +31,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Family name :">
+            <Label text="Family name :" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -36,7 +39,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelNom" GridPane.columnIndex="1">
+            <Label fx:id="labelNom" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -44,7 +47,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label text="First name :" GridPane.rowIndex="1">
+            <Label text="First name :" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -52,7 +55,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="labelPrenom" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -60,7 +63,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label text="Date of Birth :" GridPane.rowIndex="2">
+            <Label text="Date of Birth :" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -68,7 +71,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelDateNaissance" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="labelDateNaissance" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -76,7 +79,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label text="phone number :" GridPane.rowIndex="3">
+            <Label text="phone number :" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -84,7 +87,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelPhone" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="labelPhone" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -92,6 +95,26 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8_contact_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../icon/icons8_contact_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../icon/icons8_birth_date_50px_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../icon/icons8_shake_phone_50px_1.png" />
+               </image>
+            </ImageView>
          </children>
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -100,8 +123,9 @@
             <Insets left="50.0" />
          </padding>
       </GridPane>
-      <GridPane layoutY="230.0" prefHeight="61.0" prefWidth="459.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane layoutX="22.0" layoutY="230.0" prefHeight="61.0" prefWidth="438.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">
          <columnConstraints>
+            <ColumnConstraints />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -110,7 +134,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Desired date">
+            <Label text="Desired date" GridPane.columnIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -121,7 +145,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Desired time" GridPane.rowIndex="1">
+            <Label text="Desired time" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -132,13 +156,23 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dateRDV" GridPane.columnIndex="1" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <DatePicker fx:id="dateRDV" promptText="mm/dd/yyyy" GridPane.columnIndex="2" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Spinner fx:id="spinnerH" editable="true" prefHeight="25.0" prefWidth="88.0" />
                   <Spinner fx:id="spinnerM" editable="true" prefHeight="25.0" prefWidth="87.0" />
                </children>
             </HBox>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8_schedule_50px_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../icon/icons8_present_50px.png" />
+               </image>
+            </ImageView>
          </children>
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -147,43 +181,62 @@
             <Insets left="50.0" />
          </padding>
       </GridPane>
-      <Text layoutX="22.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" text="patient information :" wrappingWidth="192.13671875">
+      <Text layoutX="30.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" text="patient information :" wrappingWidth="192.13671875">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="22.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" text="Appointment information :" wrappingWidth="192.13671875">
+      <Text layoutX="30.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" text="Appointment information :" wrappingWidth="192.13671875">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextArea fx:id="infoRDV" layoutX="20.0" layoutY="302.0" prefHeight="117.0" prefWidth="420.0" promptText="Information ..." AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <TextArea fx:id="infoRDV" layoutX="42.0" layoutY="302.0" prefHeight="117.0" prefWidth="398.0" promptText="Information ..." AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <HBox layoutX="160.0" layoutY="426.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0">
+      <HBox layoutX="155.0" layoutY="424.0" prefHeight="40.0" prefWidth="150.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#cancelBut" text="Cancel" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#cancelBut" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/icons8_cancel_50px_2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#getInfoRDV" text="Modify" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
+            <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#getInfoRDV" textAlignment="CENTER" HBox.hgrow="SOMETIMES">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/icons8_update_50px_2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </HBox>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/icons8_edit_property_50px.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
