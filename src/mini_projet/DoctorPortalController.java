@@ -3,7 +3,14 @@ package mini_projet;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,14 +18,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -40,54 +42,6 @@ public class DoctorPortalController implements Initializable {
     @FXML
     private Button profEdit;
     @FXML
-    private Pane paneProfilManage;
-    @FXML
-    private TextField docNom;
-    @FXML
-    private TextField docPrenom;
-    @FXML
-    private TextField docAddress;
-    @FXML
-    private TextField DocLog;
-    @FXML
-    private DatePicker docDate;
-    @FXML
-    private RadioButton male;
-    @FXML
-    private RadioButton female;
-    @FXML
-    private PasswordField DocPWD;
-    @FXML
-    private TextField docID;
-    @FXML
-    private TextField docPhone;
-    @FXML
-    private TableColumn<?, ?> numRdv;
-    @FXML
-    private TableColumn<?, ?> patInfo;
-    @FXML
-    private TableColumn<?, ?> RdvDate;
-    @FXML
-    private TableColumn<?, ?> RdvTime;
-    @FXML
-    private TableColumn<?, ?> RdvCom;
-    @FXML
-    private Button rdvEdit;
-    @FXML
-    private Button rdvAdd;
-    @FXML
-    private Button rdvDel;
-    @FXML
-    private TextField PatID;
-    @FXML
-    private DatePicker consult;
-    @FXML
-    private ImageView schema;
-    @FXML
-    private Tab treatList;
-    @FXML
-    private Button ordnc;
-    @FXML
     private Label labID;
     @FXML
     private Label labFamilyName;
@@ -102,7 +56,9 @@ public class DoctorPortalController implements Initializable {
     @FXML
     private Label labPseudo;
     @FXML
-    private Label labSexe;
+    private ListView<String> listePatien;
+    @FXML
+    private TextField textFieldRecherchePatient;
 
     /**
      * Initializes the controller class.
@@ -111,7 +67,7 @@ public class DoctorPortalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        listePatient();
     }    
     @FXML
     private void exitD(MouseEvent event) throws IOException {
@@ -148,7 +104,7 @@ public class DoctorPortalController implements Initializable {
     public void setID(int id){
         lab_ID.setText(""+id);
     }
-    
+
     private TableDoctor doctor = null; 
     public void setDoctor(TableDoctor doctor){
         this.doctor = doctor;
@@ -163,7 +119,53 @@ public class DoctorPortalController implements Initializable {
     labAddress.setText(doctor.getAdress_med());
     labPhoneNum.setText(doctor.getNum_tel_med());
     labPseudo.setText(doctor.getPseudo_med());
-    labSexe.setText(doctor.getSexe());
+    }
+    //SELECT id_rdv,nom_pat,prenom_pat,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat AND activateRDV = 'yes';
+    ObservableList<String> liste = FXCollections.observableArrayList();
+    private void listePatient(){
+        try(Connection conn = DBConnector.getConnection();) {
+            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,nom_pat,prenom_pat,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat AND activateRDV = 'yes'");
+            while(rs.next()){
+                String patient = ""+rs.getInt("id_rdv")+" "+rs.getString("nom_pat")+" "+rs.getString("nom_pat")+" "+rs.getString("time_rdv")+" "+rs.getString("info_pat");
+                liste.add(patient);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        listePatien.setItems(liste);
+        
     }
     
+    @FXML
+    public void newConsultation() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLNewConsultation.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("New Consultation");
+        stage.resizableProperty().set(false);
+        stage.show();
+    }
+    
+    @FXML
+    public void patientRecord() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPatientRecord.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Patient Record");
+        stage.resizableProperty().set(false);
+        stage.show();
+    }
+    
+    @FXML
+    public void viewPayments() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLViewPayments.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("View Payments");
+        stage.resizableProperty().set(false);
+        stage.show();
+    }
 }

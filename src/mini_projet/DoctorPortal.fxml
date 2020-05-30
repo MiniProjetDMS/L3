@@ -3,20 +3,13 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -37,45 +30,80 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#toFrontProfil" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Profil" textFill="#61455f" translateY="110.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontProfil" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Profil" textFill="#61455f" translateY="70.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-60.0">
+                           <image>
+                              <Image url="@../icon/icons8_medical_doctor_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#toFrontMedicalFile" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Medical File" textFill="#61455f" translateY="110.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontMedicalFile" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Medical File" textFill="#61455f" translateY="70.0">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-38.0">
+                           <image>
+                              <Image url="@../icon/icons8_dental_braces_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#toFrontStatistique" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Statistique" textFill="#61455f" translateY="110.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontAppointement" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Appointements List" textFill="#61455f" translateY="70.0">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-13.0">
+                           <image>
+                              <Image url="@../icon/icons8_calendar_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#toFrontAppointement" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Appointements List" textFill="#61455f" translateY="110.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#toFrontStatistique" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Statistique" textFill="#61455f" translateY="70.0">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-43.0">
+                           <image>
+                              <Image url="@../icon/icons8_statistics_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btnExit" mnemonicParsing="false" onMouseClicked="#exitD" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Exit" textFill="#61455f" translateY="110.0">
+                  <Button fx:id="btnExit" mnemonicParsing="false" onMouseClicked="#exitD" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 20;" text="Exit" textFill="#61455f" translateY="70.0">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-66.0">
+                           <image>
+                              <Image url="@../icon/icons8_close_sign_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
@@ -86,226 +114,147 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <Pane fx:id="paneStatistique" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                  <AnchorPane fx:id="paneProfil" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label layoutX="175.0" layoutY="60.0" prefHeight="38.0" prefWidth="261.0" text="Statistique" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneProfilManage" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="233.0" layoutY="24.0" prefHeight="48.0" prefWidth="265.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="      Doctor Profile Edit">
+                        <Label layoutX="252.0" layoutY="22.0" prefHeight="48.0" prefWidth="206.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="      Doctor Profil">
                            <font>
                               <Font name="Arial Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Text layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
+                        <Text layoutX="41.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="42.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                        <Text layoutX="384.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="42.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date">
+                        <Text layoutX="40.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="42.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                        <Text layoutX="41.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="42.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                        <Text layoutX="40.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="40.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                        <Text layoutX="201.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="42.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                        <Text layoutX="385.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number :">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="docNom" layoutX="155.0" layoutY="143.0" prefHeight="25.0" prefWidth="168.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <TextField fx:id="docPrenom" layoutX="155.0" layoutY="186.0" prefHeight="25.0" prefWidth="166.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <TextField fx:id="docAddress" layoutX="155.0" layoutY="306.0" prefHeight="25.0" prefWidth="317.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <TextField fx:id="DocLog" layoutX="153.0" layoutY="400.0" promptText="Type Here " style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <DatePicker fx:id="docDate" layoutX="155.0" layoutY="227.0" />
-                        <RadioButton fx:id="male" layoutX="148.0" layoutY="268.0" mnemonicParsing="false" text="Male">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="female" layoutX="314.0" layoutY="268.0" mnemonicParsing="false" text="Female">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </RadioButton>
-                        <PasswordField fx:id="DocPWD" layoutX="154.0" layoutY="451.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Text layoutX="42.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="docID" layoutX="155.0" layoutY="95.0" prefHeight="25.0" prefWidth="171.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Text layoutX="40.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="docPhone" layoutX="154.0" layoutY="351.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneAppointementList" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="15.0" layoutY="31.0" prefHeight="54.0" prefWidth="246.0" style="-fx-background-radius: 60;" styleClass="text-input-exemple" text=" Appointements List" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="23.0" />
-                           </font></Label>
-                        <TableView layoutX="18.0" layoutY="129.0" prefHeight="419.0" prefWidth="599.0">
-                          <columns>
-                            <TableColumn fx:id="numRdv" prefWidth="70.0" text="Appoint N°" />
-                            <TableColumn fx:id="patInfo" prefWidth="208.0" text="Patient Informations" />
-                              <TableColumn fx:id="RdvDate" minWidth="0.0" prefWidth="92.0" text="Date" />
-                              <TableColumn fx:id="RdvTime" prefWidth="82.0" text="Time" />
-                              <TableColumn fx:id="RdvCom" prefWidth="164.0" text="Comment" />
-                          </columns>
-                        </TableView>
-                        <Button fx:id="rdvEdit" layoutX="633.0" layoutY="227.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="68.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="Update">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="rdvAdd" layoutX="633.0" layoutY="305.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="68.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="Add">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="rdvDel" layoutX="633.0" layoutY="384.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="68.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="Delete">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-              </children>
-                  </Pane>
-                  <Pane fx:id="paneMedicalFile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="236.0" layoutY="14.0" prefHeight="49.0" prefWidth="201.0" style="-fx-background-radius: 50;" styleClass="text-input-exemple" text="  Medical File">
-                           <font>
-                              <Font name="System Bold" size="29.0" />
-                           </font></Label>
-                        <Text layoutX="39.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="PatID" layoutX="163.0" layoutY="97.0" prefHeight="25.0" prefWidth="171.0" promptText="Type Here" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Text layoutX="44.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text layoutX="39.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultation Date">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Text>
-                        <DatePicker fx:id="consult" layoutX="163.0" layoutY="141.0" />
-                        <Label layoutX="44.0" layoutY="227.0" prefHeight="39.0" prefWidth="177.0" styleClass="text-input" text="    Dental Sheme" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="schema" fitHeight="251.0" fitWidth="315.0" layoutX="39.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true" styleClass="text-input">
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </ImageView>
-                        <Text layoutX="419.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Treatement" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Text>
-                        <TabPane layoutX="407.0" layoutY="124.0" prefHeight="201.0" prefWidth="281.0" styleClass="text-input" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab fx:id="treatList" text="Medications" />
-                          </tabs>
-                        </TabPane>
-                        <Button fx:id="ordnc" layoutX="435.0" layoutY="418.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="253.0" style="-fx-background-radius: 40;" text="Prescription">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="22.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneProfil" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label layoutX="253.0" layoutY="24.0" prefHeight="48.0" prefWidth="206.0" style="-fx-background-radius: 40;" styleClass="text-input-exemple" text="      Doctor Profil">
-                           <font>
-                              <Font name="Arial Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <Text layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="40.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="42.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="40.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="labID" contentDisplay="CENTER" layoutX="172.0" layoutY="99.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" text="c" textAlignment="CENTER">
+                        <Label fx:id="labID" contentDisplay="CENTER" layoutX="248.0" layoutY="137.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 0;" styleClass="text-input-exemple" text="c" textAlignment="CENTER">
                            <opaqueInsets>
                               <Insets left="10.0" />
                            </opaqueInsets></Label>
-                        <Label fx:id="labFamilyName" layoutX="172.0" layoutY="147.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labFirstName" layoutX="172.0" layoutY="190.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labBirthDate" layoutX="172.0" layoutY="231.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labAddress" layoutX="172.0" layoutY="310.0" prefHeight="33.0" prefWidth="349.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labPhoneNum" layoutX="172.0" layoutY="355.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labPseudo" layoutX="172.0" layoutY="404.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Label fx:id="labSexe" layoutX="172.0" layoutY="268.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
-                        <Button fx:id="profEdit" layoutX="549.0" layoutY="470.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="157.0" style="-fx-background-radius: 40;" text="Edit Your Profile">
+                        <Label fx:id="labFamilyName" layoutX="127.0" layoutY="234.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labFirstName" layoutX="456.0" layoutY="234.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labBirthDate" layoutX="127.0" layoutY="269.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labAddress" layoutX="127.0" layoutY="303.0" prefHeight="25.0" prefWidth="551.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labPhoneNum" layoutX="492.0" layoutY="269.0" prefHeight="25.0" prefWidth="186.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Label fx:id="labPseudo" layoutX="127.0" layoutY="337.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-radius: 20;" styleClass="text-input-exemple" />
+                        <Button fx:id="profEdit" layoutX="548.0" layoutY="484.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="157.0" style="-fx-background-radius: 40;" text="Edit Your Profile">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Button>
                      </children>
-                  </Pane>
+                  </AnchorPane>
+                  <AnchorPane fx:id="paneAppointementList" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;">
+                     <children>
+                        <Label layoutX="268.0" layoutY="29.0" prefHeight="21.0" prefWidth="146.0" text="_tmp :: Appointement" AnchorPane.topAnchor="30.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="paneStatistique" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;" />
+                  <AnchorPane fx:id="paneMedicalFile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;">
+                     <children>
+                        <ListView fx:id="listePatien" layoutX="20.0" layoutY="174.0" prefHeight="382.0" prefWidth="431.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="174.0" />
+                        <Label layoutX="143.0" layoutY="145.0" prefHeight="30.0" prefWidth="170.0" text="List of scheduled patients" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="504.0" layoutY="251.0" prefHeight="287.0" prefWidth="180.0" AnchorPane.rightAnchor="41.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#newConsultation" prefHeight="50.0" prefWidth="181.0" text="New Consultation">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../icon/icons8_treatment_40px_1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#patientRecord" prefHeight="50.0" prefWidth="180.0" text="Patient Record">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0">
+                                       <image>
+                                          <Image url="@../icon/icons8_health_book_64px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#viewPayments" prefHeight="50.0" prefWidth="180.0" text="View Payments">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="-15.0">
+                                       <image>
+                                          <Image url="@../icon/icons8_cash_in_hand_40px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <AnchorPane layoutX="120.0" layoutY="46.0" prefHeight="71.0" prefWidth="485.0" style="-fx-background-color: #81c2ff; -fx-background-radius: 5;" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="46.0">
+                           <children>
+                              <TextField fx:id="textFieldRecherchePatient" layoutX="16.0" layoutY="18.0" prefHeight="35.0" prefWidth="392.0" promptText="cherche patient" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="77.0" />
+                              <Button layoutX="411.0" layoutY="18.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" text="Ok" AnchorPane.rightAnchor="14.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_search_30px_1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
                </children>
             </StackPane>
          </center>
