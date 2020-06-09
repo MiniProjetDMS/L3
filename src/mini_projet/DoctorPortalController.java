@@ -110,7 +110,9 @@ public class DoctorPortalController implements Initializable {
         this.doctor = doctor;
         setProfil();
     }
-    
+    /*
+    * Afficher profil medecin
+    */
     private void setProfil(){
     labID.setText(""+doctor.getId_med());
     labFamilyName.setText(doctor.getNom_med());
@@ -148,9 +150,11 @@ public class DoctorPortalController implements Initializable {
     }
     
     @FXML
-    public void patientRecord() throws IOException{
+    public void patientRecord() throws IOException, SQLException, ClassNotFoundException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPatientRecord.fxml"));
         Parent root = loader.load();
+        FXMLPatientRecordController record = loader.getController();
+        record.setId(1);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Patient Record");
@@ -159,9 +163,11 @@ public class DoctorPortalController implements Initializable {
     }
     
     @FXML
-    public void viewPayments() throws IOException{
+    public void viewPayments() throws IOException, SQLException, ClassNotFoundException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLViewPayments.fxml"));
         Parent root = loader.load();
+        FXMLViewPaymentsController facture = loader.getController();
+        facture.setId(1);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("View Payments");

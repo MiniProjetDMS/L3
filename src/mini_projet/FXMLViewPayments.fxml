@@ -19,6 +19,7 @@
           <TableColumn fx:id="col_numFacture" prefWidth="131.0" text="Numéro de Facture" />
           <TableColumn fx:id="col_numDent" prefWidth="111.0" text="Numéro de Dent" />
             <TableColumn fx:id="col_Act" prefWidth="148.0" text="Acte" />
+            <TableColumn fx:id="col_Date" prefWidth="148.0" text="Date" />
             <TableColumn fx:id="col_montant" prefWidth="93.0" text="Montant" />
             <TableColumn fx:id="col_Versement" prefWidth="75.0" text="Versement" />
             <TableColumn fx:id="col_Reste" prefWidth="108.0" text="Reste" />
