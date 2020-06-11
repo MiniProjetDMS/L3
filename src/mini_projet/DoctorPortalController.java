@@ -139,9 +139,11 @@ public class DoctorPortalController implements Initializable {
     }
     
     @FXML
-    public void newConsultation() throws IOException{
+    public void newConsultation() throws IOException, SQLException, ClassNotFoundException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLNewConsultation.fxml"));
         Parent root = loader.load();
+        FXMLNewConsultationController consultation = loader.getController();
+        consultation.setId(1,2);//id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("New Consultation");

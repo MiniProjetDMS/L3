@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -138,7 +139,7 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label prefHeight="70.0" prefWidth="378.0" text="..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="labObservation" prefHeight="70.0" prefWidth="378.0" text="..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <Label layoutX="14.0" layoutY="6.0" text="Fiche Technique de Patient">
@@ -237,27 +238,27 @@
                               <Insets right="30.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <TextField fx:id="texteFMontant" prefHeight="25.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="texteFMontant" prefHeight="25.0" prefWidth="282.0" promptText="500.00 da" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets right="30.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="labNumDent" prefHeight="25.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="labNumDent" prefHeight="25.0" prefWidth="282.0" promptText="00" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="30.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="texteFVersement" prefHeight="25.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="texteFVersement" prefHeight="25.0" prefWidth="290.0" promptText="500.00 da" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets right="30.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextArea fx:id="TextObservation" prefHeight="70.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <TextArea fx:id="TextObservation" prefHeight="70.0" prefWidth="306.0" promptText="Observation ..." GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets bottom="5.0" right="30.0" />
                            </GridPane.margin>
                         </TextArea>
-                        <Label fx:id="labResteVersement" text="Reste" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="labResteVersement" text="00.00 da" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -280,7 +281,10 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
                <children>
-                  <ImageView fx:id="image" fitHeight="280.0" fitWidth="500.0" layoutX="91.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ImageView fx:id="image" fitHeight="280.0" fitWidth="500.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                     <image>
+                        <Image url="@../css/nommer_vos_dents1.jpg" />
+                     </image></ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -333,22 +337,22 @@
                                                 <Insets left="20.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField fx:id="TexteFMedicament" GridPane.columnIndex="1">
+                                          <TextField fx:id="TexteFMedicament" promptText="Amoxicilline (CP)" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
                                           </TextField>
-                                          <TextField fx:id="TexteFDosage" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <TextField fx:id="TexteFDosage" promptText="1g" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
                                           </TextField>
-                                          <TextField fx:id="TexteFQuentite" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <TextField fx:id="TexteFQuentite" promptText="2 Boit" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
                                           </TextField>
-                                          <TextField fx:id="TexteFPostage" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <TextField fx:id="TexteFPostage" promptText="5 jrs" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <GridPane.margin>
                                                 <Insets right="20.0" />
                                              </GridPane.margin>
@@ -364,7 +368,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <HTMLEditor fx:id="htmlLetre" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="-80.0" layoutY="25.0" prefHeight="200.0" prefWidth="506.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <HTMLEditor fx:id="htmlLetre" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;div class=WordSection1&gt;&lt;p class=MsoNormal&gt;&lt;span style='mso-tab-count:5'&gt;                                                                                &lt;/span&gt;&lt;spanlang=FR style='mso-ansi-language:FR'&gt;DR. (XXXX)&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Dr. YYYYY,&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Médecin dutravail GIMS,&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Centre/ XXX&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Email:www@gmail.com&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Tel :&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;&lt;spanstyle='mso-tab-count:5'&gt;                                                                                &lt;/span&gt;Le/.../2020&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Cher confrère,&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;&lt;spanstyle='mso-tab-count:2'&gt;                                &lt;/span&gt;Merci derecevoir Mme XXL,&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Objet :&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;&lt;spanstyle='mso-tab-count:1'&gt;                &lt;/span&gt;Demande d’un avis expert dans lecadre d’une dégradation de l’état psychique&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;de la patiente etdes relations au travail, sur la possibilité ou non d’être&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;maintenue à sonposte de travail sans risque pour elle (exposition à des&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;situationsdéstabilisantes) et pour les autres.&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Situationactuelle :&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;&lt;spanstyle='mso-tab-count:1'&gt;                &lt;/span&gt;Elle présente depuis plusieursannées des difficultés relationnelles avec sa&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;hiérarchie et sescollègues&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span lang=FR style='mso-ansi-language:FR'&gt;Qui se sontfortement aggravées ces derniers temps avec un comportement&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=MsoNormal&gt;&lt;span class=SpellE&gt;agressif&lt;/span&gt; &lt;span class=SpellE&gt;décrit&lt;/span&gt;au travail.&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="-80.0" layoutY="25.0" prefHeight="200.0" prefWidth="506.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                     <Button layoutX="350.0" layoutY="255.0" mnemonicParsing="false" text="Imprimer" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="50.0" />
                                  </children>
                               </AnchorPane>
@@ -410,7 +414,7 @@
                                              </GridPane.margin>
                                           </Label>
                                           <DatePicker fx:id="dateDuCertification" prefHeight="25.0" prefWidth="262.0" GridPane.columnIndex="1" />
-                                          <TextField fx:id="TexteNombreDuJours" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <TextField fx:id="TexteNombreDuJours" promptText="0 jrs" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets right="40.0" />
                                              </GridPane.margin>

@@ -6,6 +6,11 @@
 package mini_projet;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,13 +87,40 @@ public class FXMLNewConsultationController implements Initializable {
     private Label labAuDateCertification;
     @FXML
     private ImageView image;
+    
+    private int id_med;
+    private int id_pat;
+    @FXML
+    private Label labObservation;
+    
+    public void setId(int id_med,int id_pat) throws SQLException, ClassNotFoundException{
+        this.id_med = id_med;
+        this.id_pat = id_pat;
+        ficheTechniquePatient(this.id_pat);
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
+        labDateConsultation.setText(dtf.format(now));
+        labAuDateCertification.setText(dtf.format(now));
+        System.out.println(dtf.format(now)); 
+        dateDuCertification.setValue(LocalDate.now());
     }    
+
+    void ficheTechniquePatient(int id_patient) throws SQLException, ClassNotFoundException{
+        TablePatient patient = TablePatient.patientWhereID(id_patient);
+        labDateN.setText(patient.getDate_nes_pat());
+        labNom.setText(patient.getNom_pat());
+        labPrenom.setText(patient.getPrenom_pat()); 
+        labAdresse.setText(patient.getAdress_pat()); 
+        LabNumTele.setText(patient.getNum_tel_pat()); 
+        labAntecedent.setText("Non"); 
+        labObservation.setText("Vide");
+    }
     
 }
