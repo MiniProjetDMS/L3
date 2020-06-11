@@ -154,7 +154,7 @@ public class DoctorPortalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPatientRecord.fxml"));
         Parent root = loader.load();
         FXMLPatientRecordController record = loader.getController();
-        record.setId(1);
+        record.setId(1,2);//id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Patient Record");
@@ -167,7 +167,7 @@ public class DoctorPortalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLViewPayments.fxml"));
         Parent root = loader.load();
         FXMLViewPaymentsController facture = loader.getController();
-        facture.setId(1);
+        facture.setId(1,1); // id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("View Payments");

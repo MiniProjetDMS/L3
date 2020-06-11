@@ -7,6 +7,7 @@ package mini_projet;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,11 +48,9 @@ public class FXMLViewPaymentsController implements Initializable {
     @FXML
     private TableColumn<TableFacture, String> col_Reste;
     ObservableList<TableFacture> oblistFacture = FXCollections.observableArrayList();
-    
     @FXML
-    private Spinner<?> spinnerNumFacture;
-    @FXML
-    private Spinner<?> spinnerVersement;
+    private Spinner<Integer> spinnerVersement = new Spinner<Integer>();
+    SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 1000, 100);
     @FXML
     private Label labNomPrenom;
     
@@ -60,17 +60,20 @@ public class FXMLViewPaymentsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        remplirTblesHistoriqueOrdonnance();
+        spinnerVersement.setValueFactory(valueFactory);
     }    
     
     /*
     * Remplir la table Facture
     * 
     */
-    void remplirTblesHistoriqueOrdonnance(){         
-
-        try(Connection conn = DBConnector.getConnection();) {            
-            ResultSet rs = conn.createStatement().executeQuery("SELECT num_dent,acte,date_consultation,montant,versement,reste FROM anamnese");   
+    private void remplirTblesFacture(int id_med,int id_pat){     
+        
+        try(Connection conn = DBConnector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement("SELECT num_dent,acte,date_consultation,montant,versement,reste FROM anamnese WHERE id_med = ? AND id_pat = ?");) {
+            pstmt.setInt(1, id_med);
+            pstmt.setInt(2, id_pat);
+            ResultSet rs = pstmt.executeQuery();
             int i = 0;
             while(rs.next()){
                 i++;
@@ -89,11 +92,24 @@ public class FXMLViewPaymentsController implements Initializable {
             tablePayments.setItems(oblistFacture);      //remplir 1er table Historique Ordonnace      
     }
     
-    private int id;
+    private int id_pat;
+    private int id_med;
 
-    public void setId(int id) throws SQLException, ClassNotFoundException {
-        this.id = id;
-        labNomPrenom.setText(TablePatient.patientWhereID(this.id).getNom_pat()+" "+TablePatient.patientWhereID(this.id).getPrenom_pat());
+    public void setId(int id_pat, int id_med) throws SQLException, ClassNotFoundException {
+        this.id_pat = id_pat;
+        this.id_med = id_med;
+        labNomPrenom.setText(TablePatient.patientWhereID(this.id_pat).getNom_pat()+" "+TablePatient.patientWhereID(this.id_pat).getPrenom_pat());
+        remplirTblesFacture(this.id_med,this.id_pat);
     }
+    
+    @FXML
+    public void updateVersement() throws SQLException, ClassNotFoundException{
+        int versement = spinnerVersement.getValue();
+        System.out.println("test Spinner = " +versement + "id med pat ::"+id_med +" "+ id_pat);
+        TableFacture.setVersement(id_med, id_pat, versement);
+        oblistFacture.clear();
+        remplirTblesFacture(id_med, id_pat);
+    }
+    
     
 }

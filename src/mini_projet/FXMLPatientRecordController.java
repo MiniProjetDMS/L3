@@ -7,6 +7,7 @@ package mini_projet;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -72,37 +73,36 @@ public class FXMLPatientRecordController implements Initializable {
     ObservableList<HistoriqueAnamnese> oblistAnam = FXCollections.observableArrayList();
     ObservableList<HistoriqueOrdonnances> oblistOrdonn = FXCollections.observableArrayList();
 
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) throws SQLException, ClassNotFoundException {
-        this.id = id;
-        ficheTechniquePatient(id);
+    private int id_med;
+    private int id_pat;
+    
+    public void setId(int id_med,int id_pat) throws SQLException, ClassNotFoundException {
+        this.id_med = id_med;
+        this.id_pat = id_pat;
+        ficheTechniquePatient(id_pat);
+        remplirTblesHistoriqueAnamnese(id_med,id_pat);
+        remplirTblesHistoriqueOrdonnance(id_med,id_pat);
     }
     
-    
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        remplirTblesHistoriqueAnamnese();
-        remplirTblesHistoriqueOrdonnance();
-        
+                
     }       
     
     /*
     * Remplir la table Historique Anamnèse
     * 
     */
-    void remplirTblesHistoriqueAnamnese(){         
+    void remplirTblesHistoriqueAnamnese(int id_med, int id_pat){         
 
-        try(Connection conn = DBConnector.getConnection();) {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT date_consultation,num_dent,acte,observation FROM anamnese");
+        try(Connection conn = DBConnector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement("SELECT date_consultation,num_dent,acte,observation FROM anamnese WHERE id_med = ? AND id_pat = ?");) {
+            pstmt.setInt(1, id_med);
+            pstmt.setInt(2, id_pat);
+            ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
                 oblistAnam.add(new HistoriqueAnamnese(rs.getInt("num_dent"),rs.getString("acte"),rs.getString("date_consultation"),rs.getString("observation")));
             }
@@ -121,10 +121,13 @@ public class FXMLPatientRecordController implements Initializable {
     * Remplir la table Historique Ordonnance
     * 
     */
-    void remplirTblesHistoriqueOrdonnance(){         
+    void remplirTblesHistoriqueOrdonnance(int id_med, int id_pat){         
 
-        try(Connection conn = DBConnector.getConnection();) {            
-            ResultSet rs = conn.createStatement().executeQuery("select * from ordonnance");            
+        try(Connection conn = DBConnector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement("select * from ordonnance WHERE id_med = ? AND id_pat = ?");) {
+            pstmt.setInt(1, id_med);
+            pstmt.setInt(2, id_pat);
+            ResultSet rs = pstmt.executeQuery();           
             while(rs.next()){
                 oblistOrdonn.add(new HistoriqueOrdonnances(rs.getString("date_ordonnace"),rs.getString("medicament1"),rs.getString("medicament2"),rs.getString("medicament3"),rs.getString("medicament4"),rs.getString("medicament5"),rs.getString("medicament6")));
             }

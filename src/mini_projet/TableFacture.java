@@ -5,6 +5,11 @@
  */
 package mini_projet;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nadir
@@ -28,6 +33,12 @@ public class TableFacture {
         this.reste = reste;
     }
 
+        public TableFacture(int montant, int versement, int reste) {
+        this.montant = montant;
+        this.versement = versement;
+        this.reste = reste;
+    }
+    
     public int getNum_facture() {
         return num_facture;
     }
@@ -83,7 +94,43 @@ public class TableFacture {
     public void setReste(int reste) {
         this.reste = reste;
     }
-    
-    
+ 
+    /*
+    * recuper de bdd table Anamnese Montant, Versement et le Reste
+    * WHERE ID Medecin et ID Patient
+    * calculer le nouveau reste 
+    * UPDATE le reste dans la BDD
+    */
+    public static int setVersement(int id_med, int id_pat, int versement) throws SQLException, ClassNotFoundException{
+        int id = 0;
+        boolean status = false;
+        try(Connection conn = DBConnector.getConnection();
+              PreparedStatement pstmt = conn.prepareStatement("SELECT id_anamnese,montant,versement,reste FROM anamnese WHERE id_med = ? AND id_pat = ?");){
+            pstmt.setInt(1, id_med);
+            pstmt.setInt(2, id_pat);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            id = rs.getInt("id_anamnese");
+            int mont = rs.getInt("montant");
+            int ver = rs.getInt("versement");
+            int reste = rs.getInt("reste");
+            System.out.println("mont : "+mont+" ver :"+ver+" reste :"+reste);
+            ver = ver + versement;
+            reste = mont - ver;     
+            System.out.println("mont : "+mont+" ver :"+ver+" nouveau reste :"+reste);
+            PreparedStatement pstmtU = conn.prepareStatement("UPDATE anamnese SET versement = ?, reste = ? WHERE anamnese.id_med = ? AND anamnese.id_pat = ?");   
+            pstmtU.setInt(1, ver);
+            pstmtU.setInt(2, reste);
+            pstmtU.setInt(3, id_med);
+            pstmtU.setInt(4, id_pat);
+            pstmtU.executeUpdate();
+            
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("mini_projet.TableFacture.setVersement() ::: id setV :"+id);
+        return id;
+    }
 
+    
 }

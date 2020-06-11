@@ -34,10 +34,9 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Numéro de Facture :" GridPane.rowIndex="1">
+            <Label text="Versement :" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -45,17 +44,8 @@
                   <Insets left="30.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Versement :" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Label>
-            <Spinner fx:id="spinnerNumFacture" editable="true" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Spinner fx:id="spinnerVersement" editable="true" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Mis a jour" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Spinner fx:id="spinnerVersement" editable="true" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onMouseClicked="#updateVersement" text="Mis a jour" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Nom et Prénom:">
                <font>
                   <Font name="System Bold" size="14.0" />
