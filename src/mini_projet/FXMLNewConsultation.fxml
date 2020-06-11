@@ -98,12 +98,12 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labDateN" text="Nom" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="labDateN" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labNom" text="labNom" GridPane.columnIndex="1">
+                        <Label fx:id="labNom" GridPane.columnIndex="1">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -111,17 +111,17 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labPrenom" text="Nom" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="labPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labAdresse" text="Nom" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="labAdresse" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabNumTele" text="Nom" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label fx:id="LabNumTele" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -243,7 +243,7 @@
                               <Insets right="30.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="labNumDent" prefHeight="25.0" prefWidth="282.0" promptText="00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="texteFNumDent" prefHeight="25.0" prefWidth="282.0" promptText="16" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="30.0" />
                            </GridPane.margin>
@@ -364,7 +364,7 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Letre">
+                      <Tab text="Lettre">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -450,7 +450,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="enregistrer">
+            <Button mnemonicParsing="false" onMouseClicked="#getAnamnese" text="enregistrer">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
