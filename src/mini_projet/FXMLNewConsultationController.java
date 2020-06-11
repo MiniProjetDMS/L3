@@ -6,6 +6,9 @@
 package mini_projet;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -50,8 +53,6 @@ public class FXMLNewConsultationController implements Initializable {
     @FXML
     private TextField texteFMontant;
     @FXML
-    private TextField labNumDent;
-    @FXML
     private TextField texteFVersement;
     @FXML
     private TextArea TextObservation;
@@ -92,6 +93,8 @@ public class FXMLNewConsultationController implements Initializable {
     private int id_pat;
     @FXML
     private Label labObservation;
+    @FXML
+    private TextField texteFNumDent;
     
     public void setId(int id_med,int id_pat) throws SQLException, ClassNotFoundException{
         this.id_med = id_med;
@@ -121,6 +124,53 @@ public class FXMLNewConsultationController implements Initializable {
         LabNumTele.setText(patient.getNum_tel_pat()); 
         labAntecedent.setText("Non"); 
         labObservation.setText("Vide");
+    }
+    
+    @FXML
+    private int getAnamnese() throws SQLException, ClassNotFoundException{
+        int num_dent,mont,vers,rest;        
+        try {
+           num_dent = Integer.parseInt(texteFNumDent.getText());
+           mont = Integer.parseInt(texteFMontant.getText());
+           vers = Integer.parseInt(texteFVersement.getText());
+        }catch (NumberFormatException e){
+           num_dent = 0;
+           mont = 0;
+           vers = 0;
+        }
+        rest = mont - vers;
+        labResteVersement.setText(""+rest+".00 da");
+        String act = "acte";//(String) comBoxActe.getValue();
+        String obser = TextObservation.getText();
+        ResultSet rs = null;
+        int anamneseId = 0;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO `anamnese` (`id_pat`, `id_med`, `num_dent`, `acte`, `montant`, `versement`, `reste`, `observation`) VALUES (?,?,?,?,?,?,?,?);");) {
+            pstmt.setInt(1, id_pat);
+            pstmt.setInt(2, id_med);
+            pstmt.setInt(3, num_dent);
+            pstmt.setString(4, act);
+            pstmt.setInt(5, mont);
+            pstmt.setInt(6, vers);
+            pstmt.setInt(7, rest);
+            pstmt.setString(8, obser);
+            int rowAffected = pstmt.executeUpdate();
+            if(rowAffected == 1)
+            {
+                rs = pstmt.getGeneratedKeys();
+                if(rs.next())
+                    anamneseId = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                if(rs != null)  rs.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return anamneseId;
     }
     
 }
