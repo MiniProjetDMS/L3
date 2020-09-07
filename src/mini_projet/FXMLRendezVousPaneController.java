@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -80,15 +82,28 @@ public class FXMLRendezVousPaneController implements Initializable {
         date = dateRDV.getValue().format(DateTimeFormatter.ISO_DATE);
         heur = ""+spinnerH.getValue()+":"+spinnerM.getValue();
         info = infoRDV.getText();
-        TableRendezVous.insertNewRDV(id, date, heur, info);
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+        if(testTime(spinnerH.getValue(),spinnerM.getValue())){
+            TableRendezVous.insertNewRDV(id, date, heur, info);
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        }
+        else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            //alert.setHeaderText("Results:");
+            alert.setContentText("Mankhedmoch f had lwa9t aaaa 7mar !!"); 
+            alert.showAndWait();
+        }
     }
     
     @FXML
     private void cancelBut(MouseEvent event){
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
+    }
+    
+    boolean testTime(int hr,int min){
+        return (hr >= 9 && hr <= 12) || (hr >= 14 && hr <= 16);
     }
     
 }

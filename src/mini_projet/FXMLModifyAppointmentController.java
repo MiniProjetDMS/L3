@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -82,9 +83,18 @@ public class FXMLModifyAppointmentController implements Initializable {
         heur = ""+spinnerH.getValue()+":"+spinnerM.getValue();
         info = infoRDV.getText();
         System.out.println("modify rdv :: date : "+date +" heur : "+heur+" info : "+info);
-        TableRendezVous.upDateRDV(id, date, heur, info);
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+        if(testTime(spinnerH.getValue(),spinnerM.getValue())){ 
+            TableRendezVous.upDateRDV(id, date, heur, info);
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            //alert.setHeaderText("Results:");
+            alert.setContentText("Mankhedmoch f had lwa9t aaaa 7mar !!"); 
+            alert.showAndWait();
+        }
     }
     
     @FXML
@@ -92,5 +102,7 @@ public class FXMLModifyAppointmentController implements Initializable {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-    
+    boolean testTime(int hr,int min){
+        return (hr >= 9 && hr <= 12) || (hr >= 14 && hr <= 16);
+    }
 }
