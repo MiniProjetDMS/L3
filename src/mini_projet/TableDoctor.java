@@ -272,5 +272,49 @@ public class TableDoctor {
         }        
          return doctor;
     }
-
+    
+    /*
+    * test si ID patient existe dans BDD
+    * 
+    */
+    public static boolean idPatientexiste(int id) throws SQLException, ClassNotFoundException{
+        boolean status = false;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patient WHERE id_pat  = ?");) {
+            pstmt.setInt(1, id);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return status;
+    }
+    
+    /*
+    * test si ID patient existe dans BDD
+    * 
+    */
+    public static TableDoctor doctorWhereID(int id) throws SQLException, ClassNotFoundException{
+        boolean status = false;
+        TableDoctor doctor = null;
+        try(Connection conn = DBConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM medcin WHERE id_med  = ?");) {
+            pstmt.setInt(1, id);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();      //(int id_med, String nom_med, String prenom_med, String date_nes_med, String adress_med, String num_tel_med)
+            doctor = new TableDoctor(rs.getInt("id_med"),rs.getString("nom_med"),rs.getString("prenom_med"),rs.getString("date_nes_med"),rs.getString("adress_med"),rs.getString("num_tel_med"));
+            System.out.println("resulta :: "+rs.getString(2));            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return doctor;
+    }
+    
+    @Override
+    public String toString() {
+        return "Dr."+this.nom_med +" "+this.prenom_med ;
+    }
 }

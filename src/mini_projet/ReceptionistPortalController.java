@@ -51,42 +51,6 @@ public class ReceptionistPortalController implements Initializable {
     @FXML
     private Button btnMsgD;
     @FXML
-    private TextField DentNom;
-    @FXML
-    private TextField DentAdress;
-    @FXML
-    private TextField DentPhone;
-    @FXML
-    private DatePicker DentDate;
-    @FXML
-    private TextField DentPre;
-    @FXML
-    private TextField DentCivil;
-    @FXML
-    private TextField DentGen;
-    @FXML
-    private TextField dentID;
-    @FXML
-    private TableColumn<?, ?> IDcolo;
-    @FXML
-    private TableColumn<?, ?> CNIcolo;
-    @FXML
-    private TableColumn<?, ?> nomColo;
-    @FXML
-    private TableColumn<?, ?> prenomColo;
-    @FXML
-    private TableColumn<?, ?> GenColo;
-    @FXML
-    private TableColumn<?, ?> phoneColo;
-    @FXML
-    private TableColumn<?, ?> AddressColo;
-    @FXML
-    private Button UpdateDent;
-    @FXML
-    private Button AddDent;
-    @FXML
-    private Button DelDent;
-    @FXML
     private TableView<TablePatient> tablePatient;
     @FXML
     private TableColumn<TablePatient, String> cId_patient;
@@ -139,6 +103,8 @@ public class ReceptionistPortalController implements Initializable {
     private TableColumn<TableRendezVous, String> col_FirstNameRDV;
     @FXML
     private TableColumn<TableRendezVous, String> col_PhoneRDV;
+    @FXML
+    private TableColumn<TableRendezVous, String> col_NameDoctor;
     @FXML
     private TableColumn<TableRendezVous, String> col_DateRDV;
     @FXML
@@ -265,6 +231,7 @@ public class ReceptionistPortalController implements Initializable {
      /*
     * fonction recuperer et insertion les données de patient    
     * de formulaire vers la BDD
+    * id_medecinTraitant par Default 0  f bdd !! 
     */ 
     private void newPatient() throws SQLException, ClassNotFoundException{        
         String nom_pat, prenom_pat, date_nes_pat, etat_civil, adress_pat, num_tel_pat, sexe = null;
@@ -339,9 +306,9 @@ public class ReceptionistPortalController implements Initializable {
     void remplirTblesRDV(){         
 
         try(Connection conn = DBConnector.getConnection();) {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,num_rdv,nom_pat,prenom_pat,num_tel_pat,date,time_rdv,info_pat,activateRDV FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,num_rdv,nom_pat,prenom_pat,id_medecinTraitant,num_tel_pat,date,time_rdv,info_pat,activateRDV FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat");
             while(rs.next()){
-                oblistRDV.add(new TableRendezVous(rs.getInt("id_rdv"), rs.getString("date"), rs.getString("time_rdv"), rs.getInt("num_rdv"), rs.getString("info_pat"), rs.getString("nom_pat"), rs.getString("prenom_pat"), rs.getString("num_tel_pat"),rs.getString("activateRDV")));
+                oblistRDV.add(new TableRendezVous(rs.getInt("id_rdv"), rs.getString("date"), rs.getString("time_rdv"), rs.getInt("num_rdv"), rs.getString("info_pat"), rs.getString("nom_pat"), rs.getString("prenom_pat"), rs.getInt("id_medecinTraitant"), rs.getString("num_tel_pat"),rs.getString("activateRDV")));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -349,7 +316,8 @@ public class ReceptionistPortalController implements Initializable {
             col_NRDV.setCellValueFactory(new PropertyValueFactory<>("num_rdv"));
             col_FamilyNameRDV.setCellValueFactory(new PropertyValueFactory<>("nom_pat"));
             col_FirstNameRDV.setCellValueFactory(new PropertyValueFactory<>("prenom_pat"));
-            col_PhoneRDV.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));
+            col_PhoneRDV.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));//TableDoctor.doctorWhereID
+            col_NameDoctor.setCellValueFactory(new PropertyValueFactory<>("nomMed"));
             col_DateRDV.setCellValueFactory(new PropertyValueFactory<>("date"));
             col_TimeRDV.setCellValueFactory(new PropertyValueFactory<>("time_rdv"));
             col_InfoRDV.setCellValueFactory(new PropertyValueFactory<>("info_pat"));

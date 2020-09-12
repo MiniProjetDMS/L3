@@ -6,14 +6,21 @@
 package mini_projet;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -47,19 +54,40 @@ public class FXMLRendezVousPaneController implements Initializable {
     private TextArea infoRDV;
     @FXML
     private Button closeButton;
+    
+    ObservableList<TableDoctor> doctor = FXCollections.observableArrayList();
+    @FXML
+    private ChoiceBox<TableDoctor> choicBoxDoctor;
 
-    /**
+    /*
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         spinnerInit();
+        try {
+            remplirChoicBoxMed();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLRendezVousPaneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
+    private void remplirChoicBoxMed() throws SQLException{
+        try(Connection conn = DBConnector.getConnection();) {
+            ResultSet rs2 = conn.createStatement().executeQuery("select * from medcin");
+                while(rs2.next()){
+                    doctor.add(new TableDoctor(rs2.getInt("id_med"), rs2.getString("nom_med"), rs2.getString("prenom_med"),rs2.getString("date_nes_med"), rs2.getString("adress_med"), rs2.getString("num_tel_med")));
+                }
+                } catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        choicBoxDoctor.setItems(doctor);
+    }
+    
     private void spinnerInit(){
-        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,23, 9);
+        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(8,16, 8);
         spinnerH.setValueFactory(gradesValueFactoryH);
-        SpinnerValueFactory<Integer> gradesValueFactoryM = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59, 00);
+        SpinnerValueFactory<Integer> gradesValueFactoryM = new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 30, 00, 30);
         spinnerM.setValueFactory(gradesValueFactoryM);
     }
     
@@ -79,13 +107,24 @@ public class FXMLRendezVousPaneController implements Initializable {
     @FXML
     private void getInfoRDV(MouseEvent event) throws SQLException, ClassNotFoundException{
         String date, heur, info;
+        int idMed;
         date = dateRDV.getValue().format(DateTimeFormatter.ISO_DATE);
-        heur = ""+spinnerH.getValue()+":"+spinnerM.getValue();
+        heur = ""+spinnerH.getValue()+":"+spinnerM.getValue()+":00";
+        idMed = choicBoxDoctor.getSelectionModel().getSelectedItem().getId_med();
         info = infoRDV.getText();
         if(testTime(spinnerH.getValue(),spinnerM.getValue())){
-            TableRendezVous.insertNewRDV(id, date, heur, info);
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.close();
+            if(!TableRendezVous.verifierTime(date, heur)){
+                TableRendezVous.insertNewRDV(id, date, heur, info);
+                TablePatient.updateIdPatient(id,idMed);
+                Stage stage = (Stage) closeButton.getScene().getWindow();
+                stage.close();
+            }else{
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Warning");
+                //alert.setHeaderText("Results:");
+                alert.setContentText("Mer7babik chawala bedal lwa9t !!"); 
+                alert.showAndWait();
+            }
         }
         else{
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -93,6 +132,7 @@ public class FXMLRendezVousPaneController implements Initializable {
             //alert.setHeaderText("Results:");
             alert.setContentText("Mankhedmoch f had lwa9t aaaa 7mar !!"); 
             alert.showAndWait();
+            
         }
     }
     
@@ -104,6 +144,8 @@ public class FXMLRendezVousPaneController implements Initializable {
     
     boolean testTime(int hr,int min){
         return (hr >= 9 && hr <= 12) || (hr >= 14 && hr <= 16);
+        
     }
+    
     
 }

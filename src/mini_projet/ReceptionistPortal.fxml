@@ -118,97 +118,6 @@
 
                            </children>
                   </Pane>
-                  <AnchorPane fx:id="paneManageAppointement" prefHeight="563.0" prefWidth="722.0" style="-fx-background-color: #caead5; -fx-background-radius: 20;">
-                     <children>
-                        <HBox cache="true" layoutX="8.0" layoutY="11.0" prefHeight="76.0" prefWidth="706.0" style="-fx-background-color: #b5d0bf; -fx-background-radius: 20;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-                           <children>
-                              <Button accessibleHelp="Add Appointment" mnemonicParsing="false" onMouseClicked="#addRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Add">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="30.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icon/icons8_calendar_plus_50px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#cancelSelectRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Cancel">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icon/icons8_calendar_minus_50px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#modiffierRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Modify">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icon/icons8_edit_calendar_64px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#activRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Activate">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icon/icons8_alarm_60px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#refreshRDVtable" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Refresh">
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icon/icons8_refresh_52px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <TableView fx:id="tableRDV" layoutX="10.0" layoutY="157.0" prefHeight="402.0" prefWidth="712.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="156.0">
-                          <columns>
-                            <TableColumn fx:id="col_NRDV" prefWidth="75.0" text="N°RDV" />
-                            <TableColumn fx:id="col_FamilyNameRDV" prefWidth="107.0" text="Family name" />
-                              <TableColumn fx:id="col_FirstNameRDV" prefWidth="94.0" text="First name" />
-                              <TableColumn fx:id="col_PhoneRDV" prefWidth="97.0" text="N° Phone" />
-                              <TableColumn fx:id="col_DateRDV" prefWidth="87.0" text="Date RDV" />
-                              <TableColumn fx:id="col_TimeRDV" prefWidth="75.0" text="Time RDV" />
-                              <TableColumn fx:id="col_InfoRDV" prefWidth="91.0" text="Information" />
-                              <TableColumn fx:id="col_ActivateRDV" prefWidth="83.0" text="Activate" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
                   <AnchorPane fx:id="paneManagePatient" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cae8d5; -fx-background-radius: 20;">
                      <children>
                         <TableView fx:id="tablePatient" layoutX="11.0" layoutY="226.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="334.0" prefWidth="626.0" snapToPixel="false" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="226.0">
@@ -381,6 +290,98 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="paneManageAppointement" prefHeight="563.0" prefWidth="722.0" style="-fx-background-color: #caead5; -fx-background-radius: 20;">
+                     <children>
+                        <HBox cache="true" layoutX="8.0" layoutY="11.0" prefHeight="76.0" prefWidth="706.0" style="-fx-background-color: #b5d0bf; -fx-background-radius: 20;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                           <children>
+                              <Button accessibleHelp="Add Appointment" mnemonicParsing="false" onMouseClicked="#addRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Add">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_calendar_plus_50px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#cancelSelectRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Cancel">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_calendar_minus_50px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#modiffierRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Modify">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_edit_calendar_64px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#activRDV" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Activate">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_alarm_60px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#refreshRDVtable" prefHeight="53.0" prefWidth="120.0" style="-fx-background-radius: 40;" text="Refresh">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/icons8_refresh_52px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tableRDV" layoutX="10.0" layoutY="157.0" prefHeight="402.0" prefWidth="712.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="156.0">
+                          <columns>
+                            <TableColumn fx:id="col_NRDV" prefWidth="53.0" text="N°RDV" />
+                            <TableColumn fx:id="col_FamilyNameRDV" prefWidth="93.0" text="Family name" />
+                              <TableColumn fx:id="col_FirstNameRDV" prefWidth="75.0" text="First name" />
+                              <TableColumn fx:id="col_PhoneRDV" prefWidth="105.0" text="N° Phone" />
+                              <TableColumn fx:id="col_NameDoctor" prefWidth="75.0" text="Medecin" />
+                              <TableColumn fx:id="col_DateRDV" prefWidth="134.0" text="Date RDV" />
+                              <TableColumn fx:id="col_TimeRDV" prefWidth="75.0" text="Time RDV" />
+                              <TableColumn fx:id="col_InfoRDV" prefWidth="91.0" text="Information" />
+                              <TableColumn fx:id="col_ActivateRDV" prefWidth="83.0" text="Activate" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
                </children>

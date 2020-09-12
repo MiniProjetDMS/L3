@@ -47,6 +47,8 @@ public class FXMLModifyAppointmentController implements Initializable {
     private TextArea infoRDV;
     @FXML
     private Button closeButton;
+    @FXML
+    private Label labelDoctor;
 
     /**
      * Initializes the controller class.
@@ -57,9 +59,9 @@ public class FXMLModifyAppointmentController implements Initializable {
     }    
     
     private void spinnerInit(){
-        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,23);
+        SpinnerValueFactory<Integer> gradesValueFactoryH = new SpinnerValueFactory.IntegerSpinnerValueFactory(8,16, 8);
         spinnerH.setValueFactory(gradesValueFactoryH);
-        SpinnerValueFactory<Integer> gradesValueFactoryM = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59, 00);
+        SpinnerValueFactory<Integer> gradesValueFactoryM = new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 30, 00, 30);
         spinnerM.setValueFactory(gradesValueFactoryM);
     }   
 
@@ -74,6 +76,7 @@ public class FXMLModifyAppointmentController implements Initializable {
         labelPrenom.setText(patient.getPrenom_pat());
         labelDateNaissance.setText(patient.getDate_nes_pat());
         labelPhone.setText(patient.getNum_tel_pat());
+        labelDoctor.setText("Dr."+TableDoctor.doctorWhereID(patient.getId_medecinTraitant()).getNom_med());
     }
     
     @FXML

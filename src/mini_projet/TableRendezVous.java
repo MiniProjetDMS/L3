@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 
 /**
@@ -18,10 +19,13 @@ public class TableRendezVous {
     String time_rdv; 
     int num_rdv;
     String info_pat;
-    String nom_pat,prenom_pat,num_tel_pat;
+    String nom_pat,prenom_pat;
+    int id_medecinTraitant;
+    String nomMed;
+    String num_tel_pat;
     String activate;
 
-    public TableRendezVous(int id_rdv, String date, String time_rdv, int num_rdv, String info_pat, String nom_pat, String prenom_pat, String num_tel_pat, String activate) {
+    public TableRendezVous(int id_rdv, String date, String time_rdv, int num_rdv, String info_pat, String nom_pat, String prenom_pat, int id_medecinTraitant, String num_tel_pat, String activate) throws SQLException, ClassNotFoundException {
         this.id_rdv = id_rdv;
         this.date = date;
         this.time_rdv = time_rdv;
@@ -29,6 +33,8 @@ public class TableRendezVous {
         this.info_pat = info_pat;
         this.nom_pat = nom_pat;
         this.prenom_pat = prenom_pat;
+        this.id_medecinTraitant = id_medecinTraitant;
+        this.nomMed = TableDoctor.doctorWhereID(id_medecinTraitant).getNom_med();
         this.num_tel_pat = num_tel_pat;
         this.activate = activate;
     }
@@ -74,6 +80,14 @@ public class TableRendezVous {
 
     public String getNum_tel_pat() {
         return num_tel_pat;
+    }
+
+    public int getId_medecinTraitant() {
+        return id_medecinTraitant;
+    }
+
+    public void setId_medecinTraitant(int id_medecinTraitant) {
+        this.id_medecinTraitant = id_medecinTraitant;
     }
 
     public void setId_rdv(int id_rdv) {
@@ -193,7 +207,7 @@ public class TableRendezVous {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        patient = TablePatient.patientWhereID(idPat);
+        patient = TablePatient.patientDWhereID(idPat);
         return patient;
     }
     
@@ -210,5 +224,53 @@ public class TableRendezVous {
             System.out.println(ex.getMessage());
         }  
     }
+    /*
+        méthode t7esblna che7al kayan m rdv hadak nhar 
+        paramétre rahi string psq f les requet SQL tji la date entre cote 
+        
+    */
+    static int nombreRdvCeJour(String D) throws SQLException, ClassNotFoundException{
+        boolean status = false;
+        int count = 0;
+        try(Connection conn = DBConnector.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_rdv) FROM rdvs WHERE date  = ?");) {
+            pstmt.setString(1, D);
+            System.out.println("PreparedStatement :: "+pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            status = rs.next();
+            System.out.println("resulta :: "+rs.getString(1)); 
+            count = Integer.parseInt(rs.getString(1));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return count;
+    }
+    
+    static boolean verifierTime(String D, String T)throws SQLException, ClassNotFoundException{
+        if(nombreRdvCeJour(D)>0){ // yla 3adna des Rendez vous hadak nhar nchofo l wa9t yla dayinah wla laa 
+            boolean status = false;
+            int count = 0;
+            try(Connection conn = DBConnector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_rdv) FROM rdvs WHERE time_rdv  = ?");) {
+                pstmt.setString(1, T);
+                System.out.println("PreparedStatement :: "+pstmt);
+                ResultSet rs = pstmt.executeQuery();
+                status = rs.next();
+                System.out.println("resulta :: "+rs.getString(1)); 
+                count = Integer.parseInt(rs.getString(1));
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return count > 0;
+        }else return false; // sinon mandi3och lwa9t directement nerfdo rendez vous jedid !
+    }
 
+    public String getNomMed() {
+        return nomMed;
+    }
+
+    public void setNomMed(String nomMed) {
+        this.nomMed = nomMed;
+    }
+    
 }
