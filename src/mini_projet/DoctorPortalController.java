@@ -143,7 +143,7 @@ public class DoctorPortalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLNewConsultation.fxml"));
         Parent root = loader.load();
         FXMLNewConsultationController consultation = loader.getController();
-        consultation.setId(1,2);//id_med,id_pat
+        consultation.setId(doctor.getId_med(),getIdSelected());//id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("New Consultation");
@@ -156,7 +156,7 @@ public class DoctorPortalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPatientRecord.fxml"));
         Parent root = loader.load();
         FXMLPatientRecordController record = loader.getController();
-        record.setId(1,2);//id_med,id_pat
+        record.setId(doctor.getId_med(),getIdSelected());//id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Patient Record");
@@ -169,11 +169,23 @@ public class DoctorPortalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLViewPayments.fxml"));
         Parent root = loader.load();
         FXMLViewPaymentsController facture = loader.getController();
-        facture.setId(1,1); // id_med,id_pat
+        facture.setId(doctor.getId_med(),getIdSelected()); // id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("View Payments");
         stage.resizableProperty().set(false);
         stage.show();
+    }
+    
+    private int getIdSelected() throws ClassNotFoundException, SQLException{        
+        String patientSelected = listePatien.getSelectionModel().getSelectedItem();
+        int i = 0;
+        String _id = "";
+        do{
+            _id = _id+""+patientSelected.charAt(i);
+            i++;
+        }while(patientSelected.charAt(i) != ' '); 
+        System.out.println("test ****************** :: "+_id);
+        return TableRendezVous.patientWhereIDrdv(Integer.parseInt(_id)).getId_pat();
     }
 }

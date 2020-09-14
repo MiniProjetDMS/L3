@@ -313,7 +313,7 @@ public class ReceptionistPortalController implements Initializable {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminPortalController.class.getName()).log(Level.SEVERE, null, ex);
         }        
-            col_NRDV.setCellValueFactory(new PropertyValueFactory<>("num_rdv"));
+            col_NRDV.setCellValueFactory(new PropertyValueFactory<>("id_rdv"));
             col_FamilyNameRDV.setCellValueFactory(new PropertyValueFactory<>("nom_pat"));
             col_FirstNameRDV.setCellValueFactory(new PropertyValueFactory<>("prenom_pat"));
             col_PhoneRDV.setCellValueFactory(new PropertyValueFactory<>("num_tel_pat"));//TableDoctor.doctorWhereID

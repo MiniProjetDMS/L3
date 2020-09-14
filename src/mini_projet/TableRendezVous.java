@@ -249,7 +249,7 @@ public class TableRendezVous {
     static boolean verifierTime(String D, String T)throws SQLException, ClassNotFoundException{
         if(nombreRdvCeJour(D)>0){ // yla 3adna des Rendez vous hadak nhar nchofo l wa9t yla dayinah wla laa 
             boolean status = false;
-            int count = 0;
+            int count = 0;System.out.println("mini_projet.TableRendezVous.verifierTime() ********* -------- ");
             try(Connection conn = DBConnector.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_rdv) FROM rdvs WHERE time_rdv  = ?");) {
                 pstmt.setString(1, T);
