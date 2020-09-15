@@ -299,7 +299,7 @@
                                       <columns>
                                         <TableColumn fx:id="col_Num_medicament" prefWidth="43.0" text="N°" />
                                         <TableColumn fx:id="col_medicament" prefWidth="203.0" text="Médicament" />
-                                          <TableColumn fx:id="col" prefWidth="77.0" text="Dose" />
+                                          <TableColumn fx:id="col_dose" prefWidth="77.0" text="Dose" />
                                           <TableColumn fx:id="colPostagie" prefWidth="85.33331298828125" text="Posologie" />
                                           <TableColumn fx:id="col_quentite" prefWidth="79.6666259765625" text="Quentité" />
                                       </columns>
@@ -359,7 +359,7 @@
                                           </TextField>
                                        </children>
                                     </GridPane>
-                                    <Button layoutX="452.0" layoutY="83.0" mnemonicParsing="false" text="Add" AnchorPane.rightAnchor="0.0" />
+                                    <Button layoutX="452.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#newOrdonnance" text="Add" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                         </content>

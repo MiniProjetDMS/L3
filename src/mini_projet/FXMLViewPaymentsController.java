@@ -95,7 +95,7 @@ public class FXMLViewPaymentsController implements Initializable {
     private int id_pat;
     private int id_med;
 
-    public void setId(int id_pat, int id_med) throws SQLException, ClassNotFoundException {
+    public void setId(int id_med, int id_pat) throws SQLException, ClassNotFoundException { 
         this.id_pat = id_pat;
         this.id_med = id_med;
         labNomPrenom.setText(TablePatient.patientWhereID(this.id_pat).getNom_pat()+" "+TablePatient.patientWhereID(this.id_pat).getPrenom_pat());

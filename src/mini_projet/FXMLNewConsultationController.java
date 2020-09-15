@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -24,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.HTMLEditor;
 
@@ -59,17 +62,19 @@ public class FXMLNewConsultationController implements Initializable {
     @FXML
     private Label labResteVersement;
     @FXML
-    private TableView<?> tableOrdonnance;
+    private TableView<Ordonnance> tableOrdonnance;
     @FXML
-    private TableColumn<?, ?> col_Num_medicament;
+    private TableColumn<Ordonnance, String> col_Num_medicament;
     @FXML
-    private TableColumn<?, ?> col_medicament;
+    private TableColumn<Ordonnance, String> col_medicament;
     @FXML
-    private TableColumn<?, ?> col;
+    private TableColumn<Ordonnance, String> col_dose;
     @FXML
-    private TableColumn<?, ?> colPostagie;
+    private TableColumn<Ordonnance, String> colPostagie;
     @FXML
-    private TableColumn<?, ?> col_quentite;
+    private TableColumn<Ordonnance, String> col_quentite;
+    
+    ObservableList<Ordonnance> ordonnance = FXCollections.observableArrayList();    
     @FXML
     private TextField TexteFMedicament;
     @FXML
@@ -172,5 +177,29 @@ public class FXMLNewConsultationController implements Initializable {
         }
         return anamneseId;
     }
+    @FXML
+    private void newOrdonnance(){
+        String medicament, dosage, quentite,postage;
+        medicament = TexteFMedicament.getText();
+        dosage = TexteFDosage.getText();
+        quentite = TexteFQuentite.getText();
+        postage = TexteFPostage.getText();
     
+        ordonnance.add(new Ordonnance(medicament, dosage, quentite, postage));
+        
+        col_Num_medicament.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_medicament.setCellValueFactory(new PropertyValueFactory<>("medicament"));
+        col_dose.setCellValueFactory(new PropertyValueFactory<>("dosage"));
+        colPostagie.setCellValueFactory(new PropertyValueFactory<>("postage"));
+        col_quentite.setCellValueFactory(new PropertyValueFactory<>("quentite"));
+        tableOrdonnance.setItems(ordonnance);      //remplir table Ordonnance    
+        
+    }
 }
+/* Code de Message d'erreur
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Warning");
+                //alert.setHeaderText("Results:");
+                alert.setContentText("Mer7babik chawala bedal lwa9t !!"); 
+                alert.showAndWait();
+*/

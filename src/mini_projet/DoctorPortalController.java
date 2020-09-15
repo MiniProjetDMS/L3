@@ -128,7 +128,7 @@ public class DoctorPortalController implements Initializable {
         try(Connection conn = DBConnector.getConnection();) {
             ResultSet rs = conn.createStatement().executeQuery("SELECT id_rdv,nom_pat,prenom_pat,time_rdv,info_pat FROM rdvs FULL JOIN patient ON id_patRDV = patient.id_pat AND activateRDV = 'yes'");
             while(rs.next()){
-                String patient = ""+rs.getInt("id_rdv")+" "+rs.getString("nom_pat")+" "+rs.getString("nom_pat")+" "+rs.getString("time_rdv")+" "+rs.getString("info_pat");
+                String patient = ""+rs.getInt("id_rdv")+" "+rs.getString("nom_pat")+" "+rs.getString("prenom_pat")+" "+rs.getString("time_rdv")+" "+rs.getString("info_pat");
                 liste.add(patient);
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -165,10 +165,11 @@ public class DoctorPortalController implements Initializable {
     }
     
     @FXML
-    public void viewPayments() throws IOException, SQLException, ClassNotFoundException{
+    public void viewPayments() throws IOException, SQLException, ClassNotFoundException{// Bug fixed ==> on a trompé dans l'order des deux paramétre de la méthodes "facture.setId(ID Doctor & ID Patient)"
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLViewPayments.fxml"));
         Parent root = loader.load();
         FXMLViewPaymentsController facture = loader.getController();
+        System.out.println("mini_projet.DoctorPortalController.viewPayments() ID med => "+doctor.getId_med()+" ID Patient => "+getIdSelected());
         facture.setId(doctor.getId_med(),getIdSelected()); // id_med,id_pat
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -177,6 +178,9 @@ public class DoctorPortalController implements Initializable {
         stage.show();
     }
     
+    /*
+    * return ID d'un patien sélection de la liste 
+    */
     private int getIdSelected() throws ClassNotFoundException, SQLException{        
         String patientSelected = listePatien.getSelectionModel().getSelectedItem();
         int i = 0;
@@ -186,6 +190,6 @@ public class DoctorPortalController implements Initializable {
             i++;
         }while(patientSelected.charAt(i) != ' '); 
         System.out.println("test ****************** :: "+_id);
-        return TableRendezVous.patientWhereIDrdv(Integer.parseInt(_id)).getId_pat();
+        return TableRendezVous.patientWhereIDrdv(Integer.parseInt(_id)).getId_pat(); //On Id d'un rendez-vous donc en fait une jointure entre les deux table patient et table rendez-vous pour fait en sourt ID de patient.
     }
 }
